@@ -1,0 +1,10 @@
+--- a/renderer/Cinematic.cpp
++++ b/renderer/Cinematic.cpp
+@@ -39,7 +39,6 @@ If you have questions concerning this license or the applicable additional terms
+ 
+ extern idCVar s_noSound;
+ 
+-#define JPEG_INTERNALS
+ //extern "C" {
+ #include <jpeglib.h>
+ //}

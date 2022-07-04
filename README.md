@@ -15,6 +15,6 @@ inactive
 
 * games-fps/alephone
 * games-fps/alephone-marathon
-* games-fps/alephone-durendal
+* games-fps/alephone-durandal
 * games-fps/alephone-infinity
 
