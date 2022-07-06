@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>PF4Public@users.noreply.github.com</email>
+	</maintainer>
+	<upstream>
+		<remote-id type="github">FontManager/font-manager</remote-id>
+		<bugs-to>https://github.com/FontManager/font-manager/issues</bugs-to>
+		<doc>http://fontmanager.github.io/</doc>
+	</upstream>
+	<longdescription>
+		A simple font management application for GTK Desktop Environments
+	</longdescription>
+	<use>
+		<flag name="manager">Build font-manager</flag>
+		<flag name="nautilus">Build Nautilus extension</flag>
+		<flag name="nemo">Build Nemo extension</flag>
+		<flag name="reproducible">Make the build reproducible</flag>
+		<flag name="google-fonts">Google Fonts integration</flag>
+		<flag name="gnome-search-provider">Install GNOME shell search provider</flag>
+		<flag name="thunar">Build Thunar extension</flag>
+		<flag name="viewer">Build font-viewer</flag>
+	</use>
+</pkgmetadata>
