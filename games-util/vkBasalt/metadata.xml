@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>GoGoOtaku+Ebuild@gmail.com</email>
+	</maintainer>
+	<upstream>
+		<remote-id type="github">DadSchoorse/vkBasalt</remote-id>
+		<bugs-to>https://github.com/DadSchoorse/vkBasalt/issues</bugs-to>
+	</upstream>
+	<longdescription>
+		A vulkan post processing layer for linux
+	</longdescription>
+</pkgmetadata>

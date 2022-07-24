@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>GoGoOtaku+Ebuild@gmail.com</email>
+	</maintainer>
+	<upstream>
+		<remote-id type="bitbucket">ecwolf/ecwolf</remote-id>
+		<bugs-to>https://bitbucket.org/ecwolf/ecwolf/issues</bugs-to>
+		<doc>http://maniacsvault.net/ecwolf/wiki</doc>
+	</upstream>
+	<longdescription>
+		Advanced port of Wolfenstein 3D based off of Wolf4SDL. Intends to back port some of the moding features of ZDoom to Wolfenstein 3D.
+	</longdescription>
+	<use>
+		<flag name="non-free">Build with MAME OPL implimentation</flag>
+	</use>
+</pkgmetadata>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>GoGoOtaku+Ebuild@gmail.com</email>
+	</maintainer>
+	<upstream>
+		<remote-id type="github">Novum/vkQuake</remote-id>
+		<bugs-to>https://github.com/Novum/vkQuake/issues</bugs-to>
+	</upstream>
+	<longdescription>
+		Vulkan Quake port based on QuakeSpasm
+	</longdescription>
+	<use>
+		<flag name="mpg123">Enable mpg123 audio codec for mp3 files</flag>
+		<flag name="tremor">Enable tremor audio codec for vorbis files</flag>
+		<flag name="umx">Add buildin umx support for playing Soundtracker-style music files</flag>
+		<flag name="wav">Enable wav audio codec for wavetable files</flag>
+		<flag name="xmp">Add libxmp support for playing of Soundtracker-style music files</flag>
+	</use>
+</pkgmetadata>

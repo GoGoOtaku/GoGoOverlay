@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>GoGoOtaku+Ebuild@gmail.com</email>
+	</maintainer>
+	<upstream>
+		<remote-id type="github">markc/midicomp</remote-id>
+		<bugs-to>https://github.com/markc/midicomp/issues</bugs-to>
+	</upstream>
+	<longdescription>
+		 A MIDI Compiler - convert SMF MIDI files to and from plain text
+	</longdescription>
+</pkgmetadata>
