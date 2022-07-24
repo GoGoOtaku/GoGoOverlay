@@ -16,15 +16,11 @@ fi
 LICENSE="GPL-2+"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="+wave flac opus mikmod xmp umx +mad mpg123 +vorbis tremor"
+IUSE="+wave flac opus modplug mikmod xmp umx +mad mpg123 +vorbis tremor"
 REQUIRED_USE="
-	mad? ( !mpg123 )
-	mpg123? ( !mad )
-	vorbis? ( !tremor )
-	tremor? ( !vorbis )
-	mikmod? ( !xmp !umx )
-	xmp? ( !mikmod !umx )
-	umx? ( !mikmod !xmp )"
+	^^ ( mad mpg123 )
+	^^ ( vorbis tremor )
+	^^ ( modplug mikmod xmp umx )"
 
 BDEPEND="virtual/pkgconfig"
 DEPEND="
@@ -36,7 +32,8 @@ DEPEND="
 	mpg123? ( media-sound/mpg123 )
 	tremor? ( media-libs/tremor )
 	vorbis? ( media-libs/libvorbis )
-	mikmod? ( media-libs/libmikmod )"
+	mikmod? ( media-libs/libmikmod )
+	modplug? ( media-libs/libmodplug )"
 
 RDEPEND="${DEPEND}"
 
@@ -55,6 +52,7 @@ src_compile() {
 		USE_CODEC_OPUS=$(usex opus 1 0)
 
 		# either mikmod, or xmp
+		USE_CODEC_MODPLUG=$(usex modplug 1 0)
 		USE_CODEC_MIKMOD=$(usex mikmod 1 0)
 		USE_CODEC_XMP=$(usex xmp 1 0)
 		USE_CODEC_UMX=$(usex umx 1 0)

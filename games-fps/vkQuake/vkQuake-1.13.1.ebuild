@@ -15,7 +15,7 @@ fi
 
 LICENSE="GPL-2+"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="amd64 x86"
 IUSE="+wave flac opus modplug mikmod xmp umx +mad mpg123 +vorbis tremor"
 REQUIRED_USE="
 	^^ ( mad mpg123 )
