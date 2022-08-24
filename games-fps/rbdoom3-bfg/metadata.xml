@@ -1,16 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-  <use>
-    <flag name="standalone">Skip DOOM-3-BFG base/ folder and use assets/ instead</flag>
-    <flag name="classic">Build with The Ultimate DOOM and DOOM 2</flag>
-    <flag name="sdl2">Use SDL2 instead of SDL1.2</flag>
-    <flag name="binkdec">Use included libbinkdec to render Bink videos</flag>
-	<flag name="vulkan">Use Vulkan instead of OpenGL (lacks most advanced features)</flag>
-    <flag name="system-libglew">Use the system libglew instead of the bundled one</flag>
-	<flag name="system-libjpeg">Use the system libjpeg instead of the bundled one</flag>
-    <flag name="system-libpng">Use the system libpng instead of the bundled one</flag>
-    <flag name="system-rapidjson">Use the system rapidjson instead of the bundled one</flag>
-    <flag name="system-zlib">Use the system zlib instead of the bundled one</flag>
-  </use>
+	<maintainer type="person">
+		<email>GoGoOtaku+Ebuild@gmail.com</email>
+	</maintainer>
+	<upstream>
+		<remote-id type="github">RobertBeckebans/RBDOOM-3-BFG</remote-id>
+		<bugs-to>https://github.com/RobertBeckebans/RBDOOM-3-BFG/issues</bugs-to>
+	</upstream>
+	<use>
+		<flag name="standalone">Skip DOOM-3-BFG base/ folder and use assets/ instead</flag>
+		<flag name="classic">Build with The Ultimate DOOM and DOOM 2</flag>
+		<flag name="sdl2">Use SDL2 instead of SDL1.2</flag>
+		<flag name="binkdec">Use included libbinkdec to render Bink videos</flag>
+		<flag name="vulkan">Use Vulkan instead of OpenGL (lacks most advanced features)</flag>
+		<flag name="system-libglew">Use the system libglew instead of the bundled one</flag>
+		<flag name="system-libjpeg">Use the system libjpeg instead of the bundled one</flag>
+		<flag name="system-libpng">Use the system libpng instead of the bundled one</flag>
+		<flag name="system-rapidjson">Use the system rapidjson instead of the bundled one</flag>
+		<flag name="system-zlib">Use the system zlib instead of the bundled one</flag>
+	</use>
 </pkgmetadata>
