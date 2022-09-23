@@ -1,0 +1,39 @@
+#!/usr/bin/env sh
+
+VKQUAKE2_DIR="/usr/share/vkquake2"
+
+if ! [ -e baseq2/pak0.pak ]; then
+    echo "Quake 2 base game not detected in baseq2!"
+    exit
+fi
+
+ln -si ${VKQUAKE2_DIR}/quake2               ./
+ln -si ${VKQUAKE2_DIR}/q2ded                ./
+ln -si ${VKQUAKE2_DIR}/ref_glx.so           ./
+ln -si ${VKQUAKE2_DIR}/ref_vk.so            ./
+ln -si ${VKQUAKE2_DIR}/baseq2/gamex64.so    baseq2/
+
+if [ -e ctf ]; then
+    ln -si ${VKQUAKE2_DIR}/ctf/gamex64.so    ctf/
+else
+    echo "CTF (ctf) not found!"
+fi
+
+if [ -e rogue ]; then
+ln -si ${VKQUAKE2_DIR}/rogue/gamex64.so     rogue/
+else
+    echo "Ground Zero (rogue) not found!"
+fi
+
+if [ -e xatrix ]; then
+ln -si ${VKQUAKE2_DIR}/xatrix/gamex64.so    xatrix/
+else
+    echo "The Reckoning (xatrix) not found!"
+fi
+
+if [ -e zaetrix ]; then
+ln -si ${VKQUAKE2_DIR}/zaero/gamex64.so     zaero/
+else
+    echo "Quake II: Zaero (zaero) not found!"
+fi
+

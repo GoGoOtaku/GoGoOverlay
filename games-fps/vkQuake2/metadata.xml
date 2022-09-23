@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>GoGoOtaku+Ebuild@gmail.com</email>
+	</maintainer>
+	<upstream>
+		<remote-id type="github">kondrak/vkQuake</remote-id>
+		<bugs-to>https://github.com/kondrak/vkQuake/issues</bugs-to>
+	</upstream>
+	<longdescription>
+		id Software's Quake 2 v3.21 with mission packs and Vulkan support
+	</longdescription>
+</pkgmetadata>

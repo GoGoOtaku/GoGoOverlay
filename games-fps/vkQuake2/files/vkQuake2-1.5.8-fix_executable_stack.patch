@@ -1,0 +1,12 @@
+diff --git a/linux/snd_mixa.s b/linux/snd_mixa.s
+index 7128e19..a35b2f7 100644
+--- a/linux/snd_mixa.s
++++ b/linux/snd_mixa.s
+@@ -191,3 +191,7 @@ LClampDone2:
+ 
+ #endif	// id386
+ 
++#if defined(__linux__) && defined(__ELF__)
++.section .note.GNU-stack,"",%progbits
++#endif
++
