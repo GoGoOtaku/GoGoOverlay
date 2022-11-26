@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>GoGoOtaku+Ebuild@gmail.com</email>
+	</maintainer>
+	<upstream>
+		<remote-id type="github">ArnoAnsems/CatacombGL</remote-id>
+		<bugs-to>https://github.com/ArnoAnsems/CatacombGL/issues</bugs-to>
+	</upstream>
+	<longdescription>
+		CatacombGL is a Windows source port with OpenGL graphics for
+		Catacomb 3D (1991), The Catacomb Abyss (1992),
+		The Catacomb Armageddon (1992) and The Catacomb Apocalypse (1993). 
+	</longdescription>
+</pkgmetadata>
