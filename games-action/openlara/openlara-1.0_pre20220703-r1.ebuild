@@ -12,7 +12,7 @@ SRC_URI="https://github.com/XProger/OpenLara/archive/${SHA}.zip -> ${P}.zip"
 LICENSE="BSD-2"
 SLOT="0"
 KEYWORDS="~amd64"
-IUSE="+sdl debug"
+IUSE="+sdl log_fps debug"
 
 DEPEND="
 	virtual/opengl
@@ -28,6 +28,10 @@ BDEPEND="!sdl? ( >=dev-util/premake-5 )"
 S="${WORKDIR}/OpenLara-${SHA}"
 
 src_prepare() {
+	if !(use log_fps); then
+		eapply "${FILESDIR}/${PN}-disable-fps-log.patch"
+	fi
+
 	if use sdl; then
 		S=${S}/src/platform/sdl2
 	else
