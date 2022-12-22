@@ -22,7 +22,7 @@ VALA_USE_DEPEND="vapigen"
 
 LICENSE="GPL-3"
 SLOT="0"
-IUSE="doc gnome-search-provider google-fonts +manager nautilus nemo reproducible thunar +viewer +nls"
+IUSE="doc gnome-search-provider google-fonts +manager nemo reproducible thunar +viewer +nls"
 
 RDEPEND="gnome-base/gnome-common
 	>=dev-db/sqlite-3.8
@@ -36,7 +36,6 @@ RDEPEND="gnome-base/gnome-common
 		>=net-libs/libsoup-2.62
 		>=net-libs/webkit-gtk-2.24
 	)
-	nautilus? ( gnome-base/nautilus )
 	nemo? ( gnome-extra/nemo )
 	thunar? ( xfce-base/thunar )
 "
@@ -60,7 +59,6 @@ src_configure() {
 		$(meson_use manager) \
 		$(meson_use viewer) \
 		$(meson_use reproducible) \
-		$(meson_use nautilus) \
 		$(meson_use nemo) \
 		$(meson_use thunar) \
 		$(meson_use gnome-search-provider search-provider) \
