@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<longdescription lang="en">
+		This is a fork of prboom+ with many new features, including:
+
+		* Heretic, Hexen, MBF21, and Doom-in-Hexen support
+		* In-game console and scripting
+		* Full controller support
+		* Palette-based lightmode for opengl
+		* Debugging features for testing
+		* Strict mode for speedrunning
+		* Various quality of life improvements
+		* Advanced tools for TASing
+		* Rewind
+	</longdescription>
+	<maintainer type="person" proxied="yes">
+		<email>GoGoOtaku+Ebuild@gmail.com</email>
+	</maintainer>
+	<use>
+		<flag name="dumb">Enable support for various tracker-style music formats via <pkg>media-libs/dumb</pkg></flag>
+		<flag name="fluidsynth">Enable support for MIDI via <pkg>media-sound/fluidsynth</pkg></flag>
+		<flag name="portmidi">Enable support for MIDI via <pkg>media-libs/portmidi</pkg></flag>
+		<flag name="sdl2-image">Enable support for high-resolution texture support via <pkg>media-libs/sdl2-image</pkg></flag>
+	</use>
+	<upstream>
+		<bugs-to>https://github.com/kraflab/dsda-doom/issues</bugs-to>
+		<doc lang="en">https://github.com/kraflab/dsda-doom</doc>
+	</upstream>
+</pkgmetadata>
