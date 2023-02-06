@@ -24,6 +24,7 @@
 		<flag name="sdl2-image">Enable support for high-resolution texture support via <pkg>media-libs/sdl2-image</pkg></flag>
 	</use>
 	<upstream>
+		<remote-id type="github">kraflab/dsda-doom</remote-id>
 		<bugs-to>https://github.com/kraflab/dsda-doom/issues</bugs-to>
 		<doc lang="en">https://github.com/kraflab/dsda-doom</doc>
 	</upstream>
