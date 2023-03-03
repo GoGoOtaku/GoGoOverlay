@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>GoGoOtaku+Ebuild@gmail.com</email>
+	</maintainer>
+	<upstream>
+		<remote-id type="github">optyfr/JRomManager</remote-id>
+		<bugs-to>https://github.com/optyfr/JRomManager/issues</bugs-to>
+	</upstream>
+	<longdescription>
+		A Rom Manager entirely written in Java and released under GPL-2
+	</longdescription>
+</pkgmetadata>
