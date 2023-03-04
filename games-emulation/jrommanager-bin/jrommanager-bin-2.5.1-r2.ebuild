@@ -11,6 +11,8 @@ LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64"
 
+RESTRICT="strip"
+
 DEPEND="sys-fs/fuse"
 RDEPEND="${DEPEND} !games-emulation/jrommanager"
 BDEPEND=""
