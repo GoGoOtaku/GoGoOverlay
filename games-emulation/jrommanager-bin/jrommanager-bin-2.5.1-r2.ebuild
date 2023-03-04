@@ -25,7 +25,6 @@ src_prepare() {
 }
 
 src_install() {
-	exeinto /usr/bin
-	doexe jrommanager
+	dobin jrommanager
 }
 
