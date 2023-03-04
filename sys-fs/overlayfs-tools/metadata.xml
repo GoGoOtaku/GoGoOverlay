@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>GoGoOtaku+Ebuild@gmail.com</email>
+	</maintainer>
+	<upstream>
+		<remote-id type="github">kmxz/overlayfs-tools</remote-id>
+		<bugs-to>https://github.com/kmxz/overlayfs-tools/issues</bugs-to>
+	</upstream>
+	<longdescription>
+		 Maintenance tools for overlay-filesystem.
+	</longdescription>
+</pkgmetadata>
