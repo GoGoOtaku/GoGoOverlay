@@ -8,14 +8,14 @@ HOMEPAGE="https://github.com/Novum/vkQuake"
 
 if [[ ${PV} = "9999" ]] ; then
 	inherit git-r3
-	EGIT_REPO_URI="https://github.com/Novum/vkQuakei.git"
+	EGIT_REPO_URI="https://github.com/Novum/vkQuake.git"
 else
 	SRC_URI="https://github.com/Novum/vkQuake/archive/refs/tags/${PV}.tar.gz -> ${P}.tar.gz"
 fi
 
 LICENSE="GPL-2+"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="amd64 x86"
 IUSE="+wav flac opus modplug mikmod xmp umx +mad mpg123 +vorbis tremor"
 REQUIRED_USE="
 	^^ ( mad mpg123 )

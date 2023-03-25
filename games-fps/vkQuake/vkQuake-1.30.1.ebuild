@@ -8,15 +8,15 @@ HOMEPAGE="https://github.com/Novum/vkQuake"
 
 if [[ ${PV} = "9999" ]] ; then
 	inherit git-r3
-	EGIT_REPO_URI="https://github.com/Novum/vkQuakei.git"
+	EGIT_REPO_URI="https://github.com/Novum/vkQuake.git"
 else
 	SRC_URI="https://github.com/Novum/vkQuake/archive/refs/tags/${PV}.tar.gz -> ${P}.tar.gz"
 fi
 
 LICENSE="GPL-2+"
 SLOT="0"
-KEYWORDS="amd64 x86"
-IUSE="+wave flac opus modplug mikmod xmp umx +mad mpg123 +vorbis tremor"
+KEYWORDS="~amd64 ~x86"
+IUSE="+wav flac opus modplug mikmod xmp umx +mad mpg123 +vorbis tremor"
 REQUIRED_USE="
 	^^ ( mad mpg123 )
 	^^ ( vorbis tremor )
@@ -45,7 +45,7 @@ src_compile() {
 		DO_USERDIRS=1
 
 		### Enable/Disable codecs for streaming music support
-		USE_CODEC_WAVE=$(usex wave 1 0)
+		USE_CODEC_WAVE=$(usex wav 1 0)
 		USE_CODEC_FLAC=$(usex flac 1 0)
 		USE_CODEC_MP3=$(usex mad 1 $(usex mpg123 1 0))
 		USE_CODEC_VORBIS=$(usex vorbis 1 $(usex tremor 1 0))
