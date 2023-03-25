@@ -15,12 +15,9 @@ active
 
 * games-utils/vkBasalt
 
-### https://github.com/winny-/winny-overlay
+### https://gitlab.com/menelkir/gentoo-overlay
 
-inactive
+active (slow updates)
 
-* games-fps/alephone
-* games-fps/alephone-marathon
-* games-fps/alephone-durandal
-* games-fps/alephone-infinity
+* games-emulation/mame-libretro
 
