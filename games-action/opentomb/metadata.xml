@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>GoGoOtaku+Ebuild@gmail.com</email>
+	</maintainer>
+	<upstream>
+		<remote-id type="github">opentomb/OpenTomb</remote-id>
+		<bugs-to>https://github.com/opentomb/OpenTomb/issues</bugs-to>
+	</upstream>
+	<longdescription>
+		An open-source Tomb Raider 1-5 engine remake.
+	</longdescription>
+	<use>
+		<flag name="system-freetype">Dynamic link system freetype</flag>
+	</use>
+</pkgmetadata>
