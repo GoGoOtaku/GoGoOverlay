@@ -43,3 +43,16 @@ src_configure() {
 	cmake_src_configure
 }
 
+src_install() {
+	dodir /usr/share/OpenTomb
+	insinto /usr/share/OpenTomb
+
+	doins config.lua
+	doins -r scripts
+	doins -r shaders
+	doins -r resource
+
+	cd "${WORKDIR}/OpenTomb-${HASH}_build"
+	dobin OpenTomb
+}
+
