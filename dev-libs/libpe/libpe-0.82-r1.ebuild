@@ -3,21 +3,21 @@
 
 EAPI=8
 
-SHA="277ee7a724dd5828c3a1f589b3a7807e2ead1a2c"
-
 DESCRIPTION="The PE library used by pev"
 HOMEPAGE="pev.sf.net"
-SRC_URI="https://github.com/merces/libpe/archive/${SHA}.zip"
+SRC_URI="https://github.com/mentebinaria/readpe/archive/refs/tags/v${PV}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="LGPL-3"
 SLOT="0"
-KEYWORDS="amd64"
+KEYWORDS="~amd64"
 
 DEPEND="dev-libs/openssl"
 RDEPEND="${DEPEND}"
 BDEPEND=""
 
-S="${WORKDIR}/libpe-${SHA}"
+LDFLAGS="${LDFLAGS} -lm"
+
+S="${WORKDIR}/readpe-${PV}/lib/libpe"
 
 src_prepare() {
 	default
