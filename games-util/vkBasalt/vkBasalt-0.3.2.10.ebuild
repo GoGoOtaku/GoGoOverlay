@@ -10,16 +10,9 @@ inherit meson multilib-minimal
 
 DESCRIPTION="A vulkan post processing layer"
 HOMEPAGE="https://github.com/DadSchoorse/vkBasalt"
+SRC_URI="https://github.com/DadSchoorse/vkBasalt/archive/v${PV}.tar.gz -> ${P}.tar.gz"
 
-if [[ ${PV} == "9999" ]] ; then
-	inherit git-r3
-	EGIT_REPO_URI="https://github.com/DadSchoorse/vkBasalt.git"
-	EGIT_SUBMODULES=()
-else
-	SRC_URI="https://github.com/DadSchoorse/vkBasalt/archive/v${PV}.tar.gz -> ${P}.tar.gz"
-	KEYWORDS="~amd64 ~x86"
-fi
-
+KEYWORDS="amd64 x86"
 LICENSE="ZLIB"
 SLOT="0"
 
