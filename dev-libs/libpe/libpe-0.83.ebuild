@@ -1,23 +1,23 @@
-# Copyright 1999-2019 Gentoo Authors
+# Copyright 2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
-DESCRIPTION="The PE file analysis toolkit"
-HOMEPAGE="http://pev.sf.net"
+DESCRIPTION="The PE library used by pev"
+HOMEPAGE="pev.sf.net"
 SRC_URI="https://github.com/mentebinaria/readpe/archive/refs/tags/v${PV}.tar.gz -> ${P}.tar.gz"
 
-KEYWORDS="amd64"
-LICENSE="GPL-2 openssl"
+LICENSE="LGPL-3"
 SLOT="0"
-IUSE=""
+KEYWORDS="amd64"
 
-DEPEND="
-	dev-libs/openssl
-	dev-libs/libpe
-"
+DEPEND="dev-libs/openssl"
 RDEPEND="${DEPEND}"
-S="${WORKDIR}/readpe-${PV}/src"
+BDEPEND=""
+
+LDFLAGS="${LDFLAGS} -lm"
+
+S="${WORKDIR}/readpe-${PV}/lib/libpe"
 
 src_prepare() {
 	default
@@ -32,5 +32,12 @@ src_prepare() {
 		Makefile
 	echo "$@"
 	"$@" || die
+}
+
+src_install() {
+	default
+
+	cd include
+	doheader -r libpe
 }
 

@@ -5,7 +5,7 @@ EAPI=7
 
 DESCRIPTION="The PE file analysis toolkit"
 HOMEPAGE="http://pev.sf.net"
-SRC_URI="https://github.com/merces/pev/archive/refs/tags/v${PV}.tar.gz -> ${P}.tar.gz"
+SRC_URI="https://github.com/mentebinaria/readpe/archive/refs/tags/v${PV}.tar.gz -> ${P}.tar.gz"
 
 KEYWORDS="amd64"
 LICENSE="GPL-2 openssl"
@@ -14,10 +14,10 @@ IUSE=""
 
 DEPEND="
 	dev-libs/openssl
-	=dev-libs/libpe-20210119
+	=dev-libs/libpe-${PV}
 "
 RDEPEND="${DEPEND}"
-S="${S}/src"
+S="${WORKDIR}/readpe-${PV}/src"
 
 src_prepare() {
 	default
