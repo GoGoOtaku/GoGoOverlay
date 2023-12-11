@@ -1,18 +1,21 @@
 # Copyright 1999-2020 Ophelia Beatrice de Sica
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
-inherit cmake git-r3
+inherit cmake
 
 DESCRIPTION="ECWolf is a port of the Wolfenstein 3D engine based of Wolf4SDL."
 HOMEPAGE="https://maniacsvault.net/ecwolf/"
-EGIT_REPO_URI="https://bitbucket.org/ecwolf/${PN}.git"
 
 if [[ ${PV} != "9999" ]] ; then
-	KEYWORDS="amd64 x86"
-	# 2022-04-11
-	EGIT_COMMIT="777265eccd1b6436ed4381b4b25e22f6c4365136"
+	KEYWORDS="~amd64 ~x86"
+	SRC_URI="https://bitbucket.org/ecwolf/ecwolf/get/1.5pre.tar.gz -> ${P}.tar.gz"
+
+	S="${WORKDIR}/ecwolf-ecwolf-601d5b2a0f12"
+else
+	inherit git-r3
+	EGIT_REPO_URI="https://bitbucket.org/ecwolf/${PN}.git"
 fi
 
 LICENSE="BSD GPL-2+ MIT non-free? ( XMAME )"
@@ -34,25 +37,6 @@ BDEPEND=""
 
 src_prepare() {
 	default
-
-	# Install binary to bin directory instead of /usr/games
-	local DIRLINE="set(CMAKE_INSTALL_BINDIR \"games\")"
-	set -- env \
-	sed -i \
-		-e "/${DIRLINE}/d" \
-		CMakeLists.txt
-	echo "$@"
-	"$@" || die
-
-	# We're not building debian packages today
-	# this also fixes the docdir
-	local CPACKLINE="set(USE_CPACK ON)"
-	set -- env \
-	sed -i \
-		-e "/${CPACKLINE}/d" \
-		CMakeLists.txt
-	echo "$@"
-	"$@" || die
 
 	cmake_src_prepare
 }

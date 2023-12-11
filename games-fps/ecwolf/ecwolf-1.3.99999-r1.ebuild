@@ -1,21 +1,18 @@
 # Copyright 1999-2020 Ophelia Beatrice de Sica
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
-inherit cmake
+inherit cmake git-r3
 
 DESCRIPTION="ECWolf is a port of the Wolfenstein 3D engine based of Wolf4SDL."
 HOMEPAGE="https://maniacsvault.net/ecwolf/"
+EGIT_REPO_URI="https://bitbucket.org/ecwolf/${PN}.git"
 
 if [[ ${PV} != "9999" ]] ; then
-	KEYWORDS="~amd64 ~x86"
-	SRC_URI="https://bitbucket.org/ecwolf/ecwolf/get/${PV}.tar.gz -> ${P}.tar.gz"
-
-	S="${WORKDIR}/ecwolf-ecwolf-8cf8d23a6da3"
-else
-	inherit git-r3
-	EGIT_REPO_URI="https://bitbucket.org/ecwolf/${PN}.git"
+	KEYWORDS="amd64 x86"
+	# 2022-04-11
+	EGIT_COMMIT="777265eccd1b6436ed4381b4b25e22f6c4365136"
 fi
 
 LICENSE="BSD GPL-2+ MIT non-free? ( XMAME )"
