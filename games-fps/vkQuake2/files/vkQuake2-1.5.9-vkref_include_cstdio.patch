@@ -1,0 +1,12 @@
+diff --git a/ref_vk/vk_mem_alloc.h b/ref_vk/vk_mem_alloc.h
+index 7b04e54..ca224a8 100644
+--- a/ref_vk/vk_mem_alloc.h
++++ b/ref_vk/vk_mem_alloc.h
+@@ -2565,6 +2565,7 @@ VMA_CALL_PRE void VMA_CALL_POST vmaFreeStatsString(
+ #ifdef VMA_IMPLEMENTATION
+ #undef VMA_IMPLEMENTATION
+ 
++#include <cstdio>
+ #include <cstdint>
+ #include <cstdlib>
+ #include <cstring>

@@ -35,7 +35,7 @@ DEPEND="
 RDEPEND="${DEPEND}"
 
 src_prepare() {
-	eapply "${FILESDIR}/${P}-fix_executable_stack.patch"
+	eapply "${FILESDIR}/${P}-vkref_include_cstdio.patch"
 	S="${S}/linux"
 	eapply_user
 }
