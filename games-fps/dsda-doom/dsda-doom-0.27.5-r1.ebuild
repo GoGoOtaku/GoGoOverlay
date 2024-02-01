@@ -30,6 +30,7 @@ RDEPEND="${DEPEND}"
 S="${WORKDIR}/${P}/prboom2"
 
 src_prepare() {
+	eapply "${FILESDIR}/${PN}-findmad.patch"
 	cmake_src_prepare
 }
 
