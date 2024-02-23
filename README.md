@@ -63,7 +63,7 @@ I try to have up-to-date, high quality and versioned ebuilds. Ebuilds with a yyy
 
 | Package | Description |
 | --- | --- |
-| media-fonts/powerline-fonts | Yet another Powerline Fonts collection |
+| media-fonts/powerline-fonts | Powerline Fonts collection |
 
 ## Credits
 
@@ -72,5 +72,7 @@ I try to have up-to-date, high quality and versioned ebuilds. Ebuilds with a yyy
 | app-misc/font-manager | [pf4public](https://github.com/PF4Public/gentoo-overlay) | Remove Buggy Nautilus Support |
 | games-emulation/mame-libretro | [menelkir](https://gitlab.com/menelkir/gentoo-overlay) | Faster Updates |
 | games-utils/vkBasalt | [thegreatmcpain](https://gitlab.com/TheGreatMcPain/thegreatmcpain-overlay) | Remove Shader Dependency |
+| media-fonts/powerline-fonts | [menelkir](https://gitlab.com/menelkir/gentoo-overlay) | Bitmap Font Handling |
+
 
 
