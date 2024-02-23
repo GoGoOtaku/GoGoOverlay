@@ -1,0 +1,91 @@
+openblok is build with it's own version of libSDL2pp.
+This patch uses an external version that is provided by a different package.
+Additionally this means that game_system needs to be build with C++17
+
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -22,6 +22,9 @@ if(NOT "${CMAKE_BUILD_TYPE}" STREQUAL "release" AND NOT VITA)
+     option(BUILD_TEST_COVERAGE "Build the test coverage report" OFF)
+ endif()
+
++option(USE_SYSTEM_LIBSDL2PP "Use system instead of bundled libSDL2pp" OFF)
++option(USE_SYSTEM_UNITTESTCPP "Use system instead of bundled UnitTest++" OFF)
++
+ # Intallation locations
+ if(INSTALL_PORTABLE)
+     set(EXEDIR "." CACHE STRING "Install location of the runtime executable")
+--- a/src/system/CMakeLists.txt
++++ b/src/system/CMakeLists.txt
+@@ -55,7 +55,16 @@ target_include_directories(module_system PRIVATE "${CMAKE_CURRENT_BINARY_DIR}/..
+
+ # use SDL2
+ target_compile_definitions(module_system PRIVATE OPENBLOK_DATADIR="${DATADIR}")
+-target_link_libraries(module_system SDL2pp)
++if(USE_SYSTEM_LIBSDL2PP)
++    find_package(SDL2pp REQUIRED)
++    target_link_libraries(module_system SDL2pp::SDL2pp)
++    # Mainline libSDL2pp requires C++17 std::Optional template
++    set_target_properties(module_system PROPERTIES CXX_STANDARD 17)
++else()
++    target_link_libraries(module_system SDL2pp)
++    include(RequireCxx11)
++    require_cxx11_or_higher(module_system)
++endif()
+
+ # GNU gettext
+ if(ENABLE_LOCALES)
+@@ -97,9 +106,7 @@ if(VITA)
+ endif()
+
+ include(EnableWarnings)
+-include(RequireCxx11)
+ enable_warnings(module_system)
+-require_cxx11_or_higher(module_system)
+
+ option(ENABLE_JPG "Enable JPG image support" ON)
+ option(ENABLE_MP3 "Enable MP3 music support" ON)
+--- a/thirdparty/CMakeLists.txt
++++ b/thirdparty/CMakeLists.txt
+@@ -1,16 +1,22 @@
+ # SDL2
+-set(SDL2PP_CXXSTD 11)
+-set(SDL2PP_WITH_IMAGE ON)
+-set(SDL2PP_WITH_MIXER ON)
+-set(SDL2PP_WITH_TTF ON)
+-add_subdirectory(libSDL2pp)
+-
++if(USE_SYSTEM_LIBSDL2PP)
++    find_package(SDL2pp REQUIRED)
++else()
++    set(SDL2PP_CXXSTD 11)
++    set(SDL2PP_WITH_IMAGE ON)
++    set(SDL2PP_WITH_MIXER ON)
++    set(SDL2PP_WITH_TTF ON)
++    add_subdirectory(libSDL2pp)
++endif()
+ 
+ # tinydir
+ add_subdirectory(tinydir)
+ 
+-
+ # UnitTest++
+-if(CMAKE_BUILD_TYPE STREQUAL "debug" AND BUILD_TESTS)
+-    add_subdirectory(unittest-cpp)
++if(BUILD_TESTS)
++    if(USE_SYSTEM_UNITTESTCPP)
++        find_package(UnitTest++ REQUIRED)
++    else()
++        add_subdirectory(unittest-cpp)
++    endif()
+ endif()
+--- a/tests/CMakeLists.txt
++++ b/tests/CMakeLists.txt
+@@ -15,6 +15,8 @@ set(TEST_H
+        # TestUtils.h
+ )
+ 
++find_package(UnitTest++ REQUIRED)
++
+ add_executable(openblok_test ${TEST_SRC} ${TEST_H})
+ 
+ target_link_libraries(openblok_test UnitTest++)

@@ -1,0 +1,21 @@
+From 5562515b830656f3bb8c703b60b44461c8900320 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?M=C3=A1ty=C3=A1s=20Mustoha?= <matyas.mustoha@gmail.com>
+Date: Wed, 25 Oct 2023 10:14:35 +0200
+Subject: [PATCH] Fixed a missing include
+
+---
+ src/system/InputConfigFile.cpp | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/src/system/InputConfigFile.cpp b/src/system/InputConfigFile.cpp
+index e2aaeb20..bd612175 100644
+--- a/src/system/InputConfigFile.cpp
++++ b/src/system/InputConfigFile.cpp
+@@ -4,6 +4,7 @@
+ #include "Log.h"
+ 
+ #include <algorithm>
++#include <iterator>
+ #include <regex>
+ #include <sstream>
+ #include <assert.h>

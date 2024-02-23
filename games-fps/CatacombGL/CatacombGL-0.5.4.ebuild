@@ -21,7 +21,7 @@ DEPEND="
 	test? ( dev-cpp/gtest )
 "
 RDEPEND="${DEPEND}"
-BDEPEND="dev-util/cmake"
+BDEPEND=""
 
 S="${WORKDIR}/${P}-beta"
 

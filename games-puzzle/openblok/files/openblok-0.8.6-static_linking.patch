@@ -1,0 +1,13 @@
+Static linking of build in libraries.
+
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -22,6 +22,8 @@ if(NOT "${CMAKE_BUILD_TYPE}" STREQUAL "release" AND NOT VITA)
+     option(BUILD_TEST_COVERAGE "Build the test coverage report" OFF)
+ endif()
+ 
++option(BUILD_SHARED_LIBS "Build local libraries shared/dynamic" ON)
++
+ # Intallation locations
+ if(INSTALL_PORTABLE)
+     set(EXEDIR "." CACHE STRING "Install location of the runtime executable")

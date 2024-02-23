@@ -1,0 +1,182 @@
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -1,14 +1,9 @@
+-cmake_minimum_required(VERSION 3.1 FATAL_ERROR)
++cmake_minimum_required(VERSION 3.26 FATAL_ERROR)
+ project(openblok C CXX)
+ 
+ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_SOURCE_DIR}/cmake)
+ include(ProjectVersion)
+ 
+-
+-# Build options
+-
+-include(SetDefaultBuildType)
+-
+ # Portable install
+ set(INSTALL_PORTABLE_DEFAULT OFF)
+ if(WIN32 OR CYGWIN OR VITA)
+@@ -16,10 +11,17 @@ if(WIN32 OR CYGWIN OR VITA)
+ endif()
+ option(INSTALL_PORTABLE "The installation step should put the data directory next to the runtime" ${INSTALL_PORTABLE_DEFAULT})
+ 
+-# Currently unit tests only work only in Debug
+-if(NOT "${CMAKE_BUILD_TYPE}" STREQUAL "release" AND NOT VITA)
+-    option(BUILD_TESTS "Build the unit tests" ON)
+-    option(BUILD_TEST_COVERAGE "Build the test coverage report" OFF)
++# Tests init
++set(BUILD_TESTS_DEFAULT OFF)
++if("${CMAKE_BUILD_TYPE}" STREQUAL "Debug")
++    set(BUILD_TESTS_DEFAULT ON)
++endif()
++option(BUILD_TESTS "Build the unit tests" ${BUILD_TESTS_DEFAULT})
++option(BUILD_TEST_COVERAGE "Build the test coverage report" OFF)
++
++# No tests for Vita
++if(VITA)
++    set(BUILD_TESTS OFF)
+ endif()
+ 
+ # Intallation locations
+@@ -52,6 +54,10 @@ endif()
+ 
+ # Global compiler settings
+ 
++if(BUILD_TESTS)
++    add_compile_definitions(OPENBLOK_TEST)
++endif()
++
+ # Build coverage report if requested
+ if(BUILD_TEST_COVERAGE)
+     include(CodeCoverage)
+@@ -65,8 +76,9 @@ add_subdirectory(thirdparty)
+ # The main game source
+ include_directories(src)
+ add_subdirectory(src)
+-if(CMAKE_BUILD_TYPE STREQUAL "debug" AND BUILD_TESTS)
++if(BUILD_TESTS)
+     add_subdirectory(tests)
++    enable_testing()
+ endif()
+ 
+ 
+--- a/src/game/CMakeLists.txt
++++ b/src/game/CMakeLists.txt
+@@ -141,7 +141,7 @@ set(MOD_GAME_H
+     util/Matrix.h
+ )
+ 
+-if(CMAKE_BUILD_TYPE STREQUAL "debug")
++if(BUILD_TESTS)
+     list(APPEND MOD_GAME_SRC components/well/Ascii.cpp)
+     list(APPEND MOD_GAME_H components/well/Ascii.h)
+ endif()
+--- a/src/game/components/MinoStorage.cpp
++++ b/src/game/components/MinoStorage.cpp
+@@ -12,7 +12,7 @@ std::unordered_map<PieceType, std::shared_ptr<Mino>, PieceTypeHash> MinoStorage:
+ std::unordered_map<PieceType, std::shared_ptr<Mino>, PieceTypeHash> MinoStorage::ghosts;
+ std::shared_ptr<Mino> MinoStorage::matrixcell;
+ 
+-#ifndef NDEBUG
++#ifdef OPENBLOK_TEST
+ void MinoStorage::loadDummyMinos()
+ {
+     for (const auto& type : PieceTypeList) {
+--- a/src/game/components/MinoStorage.h
++++ b/src/game/components/MinoStorage.h
+@@ -23,7 +23,7 @@ public:
+ 
+     static RGBColor color(PieceType);
+ 
+-#ifndef NDEBUG
++#ifdef OPENBLOK_TEST
+     static void loadDummyMinos();
+ #endif
+ 
+--- a/src/game/components/Well.cpp
++++ b/src/game/components/Well.cpp
+@@ -84,7 +84,7 @@ void Well::updateGameplayOnly(const std::vector<InputEvent>& events)
+     lock_delay.update(*this);
+ }
+ 
+-#ifndef NDEBUG
++#ifdef OPENBLOK_TEST
+ void Well::update(const std::vector<InputEvent>& events)
+ {
+     updateKeystateOnly(events);
+@@ -469,7 +469,7 @@ void Well::notify(const WellEvent& event)
+         obs(event);
+ }
+ 
+-#ifndef NDEBUG
++#ifdef OPENBLOK_TEST
+ 
+ std::string Well::asAscii() const
+ {
+--- a/src/game/components/Well.h
++++ b/src/game/components/Well.h
+@@ -16,7 +16,7 @@
+ #include <vector>
+ #include <stdint.h>
+ 
+-#ifndef NDEBUG
++#ifdef OPENBLOK_TEST
+ #include "well/Ascii.h"
+ #include <string>
+ #endif
+@@ -75,7 +75,7 @@ public:
+         observers[static_cast<uint8_t>(evtype)].push_back(std::forward<WellObserver>(obs));
+     }
+ 
+-#ifndef NDEBUG
++#ifdef OPENBLOK_TEST
+     void update(const std::vector<InputEvent>&); ///< Update both the keystate and the game logic
+     std::string asAscii() const;
+     void fromAscii(const std::string&);
+@@ -138,7 +138,7 @@ private:
+     WellComponents::LockDelay lock_delay;
+     WellComponents::Render renderer;
+     WellComponents::TSpin tspin;
+-#ifndef NDEBUG
++#ifdef OPENBLOK_TEST
+     WellComponents::Ascii ascii;
+ #endif
+ 
+@@ -148,7 +148,7 @@ private:
+     friend class WellComponents::LockDelay;
+     friend class WellComponents::Render;
+     friend class WellComponents::TSpin;
+-#ifndef NDEBUG
++#ifdef OPENBLOK_TEST
+     friend class WellComponents::Ascii;
+ #endif
+ };
+--- a/src/system/Event.h
++++ b/src/system/Event.h
+@@ -32,7 +32,7 @@ using DeviceID = int8_t;
+ 
+ class InputEvent {
+ public:
+-#ifndef NDEBUG
++#ifdef OPENBLOK_TEST
+     explicit InputEvent(InputType type, bool pressed, DeviceID source = -1);
+ #else
+     explicit InputEvent(InputType type, bool pressed, DeviceID source);
+--- a/tests/CMakeLists.txt
++++ b/tests/CMakeLists.txt
+@@ -15,6 +15,8 @@ set(TEST_H
+        # TestUtils.h
+ )
+ 
++find_package(UnitTest++ REQUIRED)
++
+ add_executable(openblok_test ${TEST_SRC} ${TEST_H})
+ 
+ target_link_libraries(openblok_test UnitTest++)
+@@ -25,3 +27,6 @@ include(EnableWarnings)
+ include(RequireCxx11)
+ enable_warnings(openblok_test)
+ require_cxx11_or_higher(openblok_test)
++
++add_test(NAME UnitTests COMMAND openblok_test)
++enable_testing()

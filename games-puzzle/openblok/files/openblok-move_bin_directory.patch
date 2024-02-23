@@ -1,0 +1,14 @@
+By default openblok's executable is installed to /usr/games.
+This patch moves this to /usr/bin to comply with Gentoo standards.
+
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -28,7 +28,7 @@ if(INSTALL_PORTABLE)
+     set(DATADIR "./data" CACHE STRING "Install location of the data files")
+ else()
+     set(SHAREDIR "${CMAKE_INSTALL_PREFIX}/share" CACHE STRING "Base directory of installed data files")
+-    set(EXEDIR "${CMAKE_INSTALL_PREFIX}/games" CACHE STRING "Install location of the runtime executable")
++    set(EXEDIR "${CMAKE_INSTALL_PREFIX}/bin" CACHE STRING "Install location of the runtime executable")
+     set(DATADIR "${SHAREDIR}/openblok" CACHE STRING "Install location of the data files")
+     if(UNIX AND NOT APPLE AND NOT CYGWIN AND NOT VITA)
+         option(INSTALL_DESKTOPICON "Install desktop shortcut and icon" ON)
