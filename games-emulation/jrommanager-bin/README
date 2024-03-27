@@ -1,0 +1,23 @@
+# games-emulation/jrommanager-bin
+
+## What is this?
+
+This is the "official" AppImage release of JRomManager from the github of jrommanager.
+It's a binary version of games-emulator/jrommanger from the main gentoo repository.
+
+## Why is this?
+
+Gentoo's version sadly is horribly out of date. This is because JRomManger switched to a better build system for Java, gradle.
+Sadly tho Gentoo has very poor support for Java to begin with not to mention different build systems.
+I don't use Java a lot but from how Java is meant to be used gradle seems to be a good build system.
+I mention this since I don't think any of this is a problem with JRomManager or gradle.
+
+Java ebuild are horrible to maintain in the best of times but for unsupported build systems it gets even more difficult.
+Stack on top of that, that Java build systems are not meant to be run package by package but rather download and handle every dependency by the system.
+
+So far as I can tell gradle does not support downloading the dependencies in a separate step and thus downloading would have to be enabled for the entire ebuild.
+Combine this with Java not really fitting well into the GNU/Linux eco system but rather likes to sit on it's own with all it's dependencies locally.
+
+I tried making this work but without spending a bunch of time implementing gradle support into portage and/or rolling no or our own build system I couldn't make it work.
+Frankly this is not worth the effort for me. Not to mention that my inexperience with Java would make this even more effort for me.
+
