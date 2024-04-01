@@ -1,0 +1,104 @@
+#!/usr/bin/env bash
+
+BIN_DIR=/usr/lib/iortcw
+DATA_DIR=
+MOUNT_DIR=${HOME}/.iortcw
+SAVE_DIR=${HOME}/.local/iortcw
+
+UMOUNT_ON_EXIT=1
+UFS_OPTIONS=
+
+# Load config if exists
+_CONF="${IORTCW_CONFIG:=${HOME}/.config/iortcw.conf}"
+test -f $_CONF && source $_CONF
+
+_help() {
+	echo "iortcw [--help|help|cfg|ded|mp|sp]"
+	echo ""
+	echo "--help/help: 		Print this help"
+	echo "cfg: 			Print config"
+	echo "ded: 			Launch dedicated server"
+	echo "mp: 			Launch multiplayer client"
+	echo "sp: 			Launch singleplayer client (default)"
+	echo ""
+	echo "Config location under ${_CONF}"
+	echo "Set DATA_DIR to game folder or launch directly from it"
+	echo ""
+	echo "IORTCW_CONFIG environment variable can be used for a different config location"
+}
+
+_print_config() {
+	echo "# --- CONFIG --- "
+	echo "# Base directory of game files"
+	echo "DATA_DIR=\"${DATA_DIR}\""
+	echo ""
+	echo "# Directory of executables (changing not recommended)"
+	echo "BIN_DIR=\"${BIN_DIR}\""
+	echo ""
+	echo "# Directory where unionfs mounts"
+	echo "# WARNING: DO NOT SET THIS TO THE SAME AS OTHER DIRECTORIES!"
+	echo "MOUNT_DIR=\"${MOUNT_DIR}\""
+	echo ""
+	echo "# If set saves all changes (saves, configs, etc) here instead of the data directory"
+	echo "SAVE_DIR=\"${SAVE_DIR}\""
+	echo ""
+	echo "# If set unmounts the unionfs after game exists"
+	echo "UMOUNT_ON_EXIT=${UMOUNT_ON_EXIT}"
+	echo ""
+	echo "# Custom options for unionfs"
+	echo "UFS_OPTIONS=\"${UFS_OPTIONS}\""
+}
+
+die() { echo "$*" 1>&2 ; exit 1; }
+
+case $1 in
+	--help) 
+		_help
+		exit
+		;;
+	help) 
+		_help
+		exit
+		;;
+	cfg)
+		_print_config
+		exit
+		;;
+	ded) _BIN=iowolfded ;;
+	mp) _BIN=iowolfmp ;;
+	sp) _BIN=iowolfsp ;;
+	*) _BIN=iowolfsp ;;
+esac
+
+test -n "${DATA_DIR}" || DATA_DIR="$(pwd)"
+
+test -f "${DATA_DIR}/Main/pak0.pk3" || test -f "${DATA_DIR}/main/pak0.pk3" || die "Game not found in ${DATA_DIR}!"
+
+if ! [ -e "${DATA_DIR}/main" ] ; then
+	pushd "${DATA_DIR}"
+	ln -s Main main
+	popd
+fi
+
+if [ -f "/usr/bin/unionfs" ] && ! [ -e "${MOUNT_DIR}/.mounted" ] ; then
+	test -d "${MOUNT_DIR}" || mkdir -p "${MOUNT_DIR}"
+
+	if [ -n "${SAVE_DIR}" ] ; then
+		test -d "${SAVE_DIR}" || mkdir -p "${SAVE_DIR}"
+		unionfs ${UFS_OPTIONS} "${SAVE_DIR}=RW:${DATA_DIR}:${BIN_DIR}" "${MOUNT_DIR}"
+	else
+		unionfs ${UFS_OPTIONS} "${DATA_DIR}=RW:${BIN_DIR}" "${MOUNT_DIR}"
+	fi
+
+	touch "${MOUNT_DIR}/.mounted"
+fi
+
+pushd "${MOUNT_DIR}"
+./${_BIN} $@
+popd
+
+if [ -n ${UMOUNT_ON_EXIT} ] ; then
+	rm "${MOUNT_DIR}/.mounted"
+	umount "${MOUNT_DIR}"
+fi
+
