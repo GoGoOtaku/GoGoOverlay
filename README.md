@@ -19,6 +19,7 @@ I try to have up-to-date, high quality and versioned ebuilds. Ebuilds with a yyy
 | games-action/reflection-hle | Keen Dreams, Catacomb 3D, Wolfenstein 3D | 
 | games-fps/CatacombGL | Catacomb 3D |
 | games-fps/ecwolf | Wolfenstein 3D |
+| games-fps/iortcw | Return to Castle Wolfenstein |
 | games-fps/dsda-doom | DOOM |
 | games-fps/rbdoom3-bfg | DOOM 3 BFG |
 | games-fps/vkQuake | Quake |
