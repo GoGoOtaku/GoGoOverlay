@@ -1,0 +1,18 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 1ac7534..c20a4e6 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -44,12 +44,11 @@ include(CPack)
+ # Multiarch support
+ if(UNIX AND NOT APPLE)
+ 	# We are in the games section
+-	set(CMAKE_INSTALL_BINDIR "games")
++	set(CMAKE_INSTALL_BINDIR "bin")
+ 
+ 	include(GNUInstallDirs)
+ 	if(CPACK_PACKAGE_NAME)
+ 		# Match this to package name instead of project name
+-		set(CMAKE_INSTALL_DOCDIR "${CMAKE_INSTALL_DATAROOTDIR}/doc/${CPACK_PACKAGE_NAME}")
+ 	endif()
+ 	# GNUInstallDirs doesn't provide this, but we could use share/product_name
+ 	set(CMAKE_INSTALL_DATAPRODUCTDIR "${CMAKE_INSTALL_DATADIR}/${PRODUCT_DIRECTORY}")

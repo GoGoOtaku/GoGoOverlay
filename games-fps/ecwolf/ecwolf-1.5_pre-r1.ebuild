@@ -35,9 +35,10 @@ DEPEND="${RDEPEND}"
 BDEPEND=""
 
 
-src_prepare() {
-	default
 
+src_prepare() {
+	eapply "${FILESDIR}/${PN}-gentoo.patch"
+	default
 	cmake_src_prepare
 }
 
