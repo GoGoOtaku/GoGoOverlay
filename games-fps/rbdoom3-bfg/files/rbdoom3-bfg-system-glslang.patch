@@ -4,9 +4,9 @@
  		endif()
  
  	else()
-+		include(/usr/lib64/cmake/glslangTargets.cmake RESULT_VARIABLE	glslangTargetFound)
-+		include(/usr/lib64/cmake/SPIRVTargets.cmake RESULT_VARIABLE SPIRVTargetFound)
-+		if(${glslangTargetFound} MATCHES "NOTFOUND" OR ${SPIRVTargetFound} MATCHES "NOTFOUND")
++		find_package(glslang)
++		find_package(SPIRV-Tools REQUIRED)
++		if(NOT (${glslang_FOUND} AND ${SPIRV-Tools_FOUND}))
  		# override Glslang build options
  		
  		# options required by November 2018 release
