@@ -1,0 +1,14 @@
+diff --git a/pcsound/pcsound.c b/pcsound/pcsound.c
+index 6e62aad..19af22e 100644
+--- a/pcsound/pcsound.c
++++ b/pcsound/pcsound.c
+@@ -27,7 +27,9 @@
+ 
+ static pcsound_driver_t *drivers[] = 
+ {
++#ifndef DISABLE_SDL2MIXER
+     &pcsound_sdl_driver,
++#endif
+     NULL,
+ };
+ 

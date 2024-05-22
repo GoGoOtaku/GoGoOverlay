@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>GoGoOtaku+Ebuild@gmail.com</email>
+	</maintainer>
+	<upstream>
+		<remote-id type="github">JNechaevsky/CRL</remote-id>
+		<bugs-to>https://github.com/JNechaevsky/CRL/issues</bugs-to>
+	</upstream>
+	<use>
+		<flag name="sdl2-mixer">Enable support for Sound/MIDI via media-libs/sdl2-mixer</flag>
+		<flag name="fluidsynth">Enable support for MIDI via media-sound/fluidsynth</flag>
+		<flag name="net">Enable support for network play</flag>
+		<flag name="asan">Enable Address sanitizer for debugging</flag>
+	</use>
+</pkgmetadata>
