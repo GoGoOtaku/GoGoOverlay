@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>GoGoOtaku+Ebuild@gmail.com</email>
+	</maintainer>
+	<upstream>
+		<remote-id type="github">dhewm/dhewm3</remote-id>
+		<bugs-to>https://github.com/dhewm/dhewm3/issues</bugs-to>
+	</upstream>
+	<use>
+		<flag name="base">Add support for the Doom 3 base game</flag>
+		<flag name="client">Build playable game executable - disable for server installation</flag>
+		<flag name="d3xp">Add support for Doom 3: Resurrection of Evil expansion</flag>
+	</use>
+</pkgmetadata>
