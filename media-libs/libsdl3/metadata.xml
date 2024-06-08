@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>GoGoOtaku+Ebuild@gmail.com</email>
+	</maintainer>
+	<upstream>
+		<remote-id type="github">libsdl-org/SDL</remote-id>
+		<bugs-to>https://github.com/libsdl-org/SDL/issues</bugs-to>
+	</upstream>
+	<use>
+		<flag name="gles">Enable GLES (OpenGL for Embedded Systems) support</flag>
+		<flag name="haptic">Enable the haptic (force feedback) subsystem</flag>
+		<flag name="hidapi">Enable the human interface device subsystem</flag>
+		<flag name="ibus">Enable support for <pkg>app-i18n/ibus</pkg></flag>
+		<flag name="kms">Build the KMSDRM video driver</flag>
+		<flag name="libdecor">Use client-side window decorations on Wayland</flag>
+		<flag name="libusb">Use libusb for low level joystick drivers</flag>
+		<flag name="pic">Disable optimized assembly code that is not PIC friendly</flag>
+		<flag name="pipewire">Enable support for the <pkg>media-video/pipewire</pkg> audio backend</flag>
+		<flag name="sndio">Enable support for the <pkg>media-sound/sndio</pkg> backend</flag>
+		<flag name="webcam">Enable the camera subsystem</flag>
+		<flag name="joystick">Control joystick support (disable at your own risk)</flag>
+		<flag name="sound">Control audio support (disable at your own risk)</flag>
+		<flag name="video">Control video support (disable at your own risk)</flag>
+		<flag name="cpu_flags_loong_lasx">Use LASX instruction set (Loongarch)</flag>
+		<flag name="cpu_flags_loong_lsx">Use LSX instruction set (Loongarch)</flag>
+		<flag name="video_cards_rockchip">Use ROCKCHIP Hardware Acceleration video driver (ARM/AARCH64)</flag>
+	</use>
+</pkgmetadata>
