@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>GoGoOtaku+Ebuild@gmail.com</email>
+	</maintainer>
+	<upstream>
+		<remote-id type="github">dhewm/dhewm3-sdk</remote-id>
+		<bugs-to>https://github.com/dhewm/dhewm3-sdk/issues</bugs-to>
+	</upstream>
+</pkgmetadata>
