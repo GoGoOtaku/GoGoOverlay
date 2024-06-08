@@ -1,0 +1,57 @@
+diff --git a/src/engine/d_player.h b/src/engine/d_player.h
+index 94c6e17..2718df8 100644
+--- a/src/engine/d_player.h
++++ b/src/engine/d_player.h
+@@ -142,9 +142,9 @@ typedef struct player_s {
+     int             refire;
+ 
+     // For intermission stats.
+-    float           killcount;
+-    float           itemcount;
+-    float           secretcount;
++    int           killcount;
++    int           itemcount;
++    int           secretcount;
+ 
+     // Hint messages.
+     int8_t*           message;
+diff --git a/src/engine/doomstat.h b/src/engine/doomstat.h
+index a92f0dc..15eaa74 100644
+--- a/src/engine/doomstat.h
++++ b/src/engine/doomstat.h
+@@ -140,9 +140,9 @@ extern int          consoleplayer;
+ // Scores, rating.
+ // Statistics on a given map, for intermission.
+ //
+-extern  float       totalkills;
+-extern  float       totalitems;
+-extern  float       totalsecret;
++extern  int       totalkills;
++extern  int       totalitems;
++extern  int       totalsecret;
+ 
+ // Timer, for scores.
+ extern  int         basetic;
+diff --git a/src/engine/g_game.c b/src/engine/g_game.c
+index 29bfe2e..2ebbe0b 100644
+--- a/src/engine/g_game.c
++++ b/src/engine/g_game.c
+@@ -139,12 +139,12 @@ int         bodyqueslot;
+ byte forcejump = 0;
+ byte forcefreelook = 0;
+ 
+-float killcount;
+-float itemcount;
+-float secretcount;
+-float totalkills;
+-float totalitems;
+-float totalsecret;
++int killcount;
++int itemcount;
++int secretcount;
++int totalkills;
++int totalitems;
++int totalsecret;
+ 
+ NETCVAR(sv_nomonsters, 0);
+ NETCVAR(sv_fastmonsters, 0);

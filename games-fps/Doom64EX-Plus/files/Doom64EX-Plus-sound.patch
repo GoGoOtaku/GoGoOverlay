@@ -1,0 +1,34 @@
+diff --git a/src/engine/i_audio.c b/src/engine/i_audio.c
+index 720a710..55ec095 100644
+--- a/src/engine/i_audio.c
++++ b/src/engine/i_audio.c
+@@ -61,7 +61,7 @@ CVAR(s_soundfont, doomsnd.sf2);
+ #ifdef _WIN32
+ CVAR_CMD(s_driver, dsound)
+ #elif __linux__
+-CVAR_CMD(s_driver, alsa)
++CVAR_CMD(s_driver, pulseaudio)
+ #elif __APPLE__
+ CVAR_CMD(s_driver, coreaudio)
+ #else
+@@ -88,6 +88,7 @@ CVAR_CMD(s_driver, sndio)
+         !dstrcmp(driver, "coreaudio") ||
+         !dstrcmp(driver, "dsound") ||
+         !dstrcmp(driver, "portaudio") ||
++        !dstrcmp(driver, "pulseaudio") ||
+         !dstrcmp(driver, "sndio") ||
+         !dstrcmp(driver, "sndman") ||
+         !dstrcmp(driver, "dart") ||
+diff --git a/src/engine/i_audio.h b/src/engine/i_audio.h
+index 273bf14..ca761d8 100644
+--- a/src/engine/i_audio.h
++++ b/src/engine/i_audio.h
+@@ -25,7 +25,7 @@
+ 
+ // 20120107 bkw: Linux users can change the default FluidSynth backend here:
+ #ifndef _WIN32
+-#define DEFAULT_FLUID_DRIVER "sndio"
++#define DEFAULT_FLUID_DRIVER "pulseaudio"
+ 
+ // 20120203 villsa: add default for windows
+ #else
