@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>GoGoOtaku+Ebuild@gmail.com</email>
+	</maintainer>
+	<upstream>
+		<remote-id type="github">mmatyas/openblok</remote-id>
+		<bugs-to>https://github.com/mmatyas/openblok/issues</bugs-to>
+	</upstream>
+	<use>
+		<flag name="mod">Add support for SoundTracker-style music files</flag>
+	</use>
+</pkgmetadata>

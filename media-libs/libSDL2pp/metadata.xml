@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>GoGoOtaku+Ebuild@gmail.com</email>
+	</maintainer>
+	<upstream>
+		<remote-id type="github">libSDL2pp/libSDL2pp</remote-id>
+		<bugs-to>https://github.com/libSDL2pp/libSDL2pp/issues</bugs-to>
+	</upstream>
+	<use>
+		<flag name="image">Add support for <pkg>media-libs/sdl2-image</pkg></flag>
+		<flag name="mixer">Add support for <pkg>media-libs/sdl2-mixer</pkg></flag>
+		<flag name="ttf">Add support for <pkg>media-libs/sdl2-ttf</pkg></flag>
+	</use>
+</pkgmetadata>

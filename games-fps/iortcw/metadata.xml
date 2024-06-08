@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>GoGoOtaku+Ebuild@gmail.com</email>
+	</maintainer>
+	<upstream>
+		<remote-id type="github">iortcw/iortcw</remote-id>
+		<bugs-to>https://github.com/iortcw/iortcw/issues</bugs-to>
+	</upstream>
+	<use>
+		<flag name="bloom">Add support for bloom post-processing</flag>
+		<flag name="freetype">Add support for truetype</flag>
+		<flag name="mumble">Add support for voip using mumble via <pkg>net-voip/mumble</pkg></flag>
+		<flag name="starter">Install script to launch the game easier via <pkg>sys-fs/unionfs-fuse</pkg></flag>
+		<flag name="system-freetype">Use system freetype instead of bundled</flag>
+		<flag name="system-jpeg">Use system jpeg library instead of bundled </flag>
+		<flag name="system-ogg">Use system ogg library instead of bundled</flag>
+		<flag name="system-opus">Use system opus library instead of bundled</flag>
+		<flag name="system-vorbis">Use system vorbis library instead of bundled</flag>
+		<flag name="system-zlib">Use system zlib instead of bundled</flag>
+		<flag name="voip">Add in-game voip support</flag>
+		<flag name="xdg">Use XDG complient folder structure</flag>
+		<flag name="yacc">Use yacc to update code/tools/lcc/lburg/gram.c (Not Recommended)</flag>
+	</use>
+</pkgmetadata>
