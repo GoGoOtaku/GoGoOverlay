@@ -1,0 +1,13 @@
+diff --git a/extensions/nautilus/meson.build b/extensions/nautilus/meson.build
+index 93d5a1f..238266f 100644
+--- a/extensions/nautilus/meson.build
++++ b/extensions/nautilus/meson.build
+@@ -6,7 +6,7 @@ nautilus_info = '''
+     For more information see https://wiki.gnome.org/Apps/Files
+ '''
+ 
+-nautilus = dependency('libnautilus-extension', not_found_message: nautilus_info)
++nautilus = dependency('libnautilus-extension-4', not_found_message: nautilus_info)
+ 
+ result = run_command(python, '-c', list_sources)
+ nautilus_extension_sources = result.stdout().strip().split('\n')
