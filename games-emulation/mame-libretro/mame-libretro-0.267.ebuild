@@ -5,7 +5,7 @@ EAPI=7
 
 LIBRETRO_CORE_NAME="mame"
 LIBRETRO_REPO_NAME="libretro/mame"
-LIBRETRO_COMMIT_SHA="38a4bf055f3faf96ba8099165aec4cc8711a63a6"
+LIBRETRO_COMMIT_SHA="1e31f3a77644341e0ff9065aff3bc249fb024978"
 inherit check-reqs libretro-core
 
 DESCRIPTION="MAME (current) for libretro."
