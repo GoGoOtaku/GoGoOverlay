@@ -1,0 +1,79 @@
+diff --git a/src/engine/i_audio.c b/src/engine/i_audio.c
+index 720a710..e8ae8df 100644
+--- a/src/engine/i_audio.c
++++ b/src/engine/i_audio.c
+@@ -70,21 +70,10 @@ CVAR_CMD(s_driver, sndio)
+ {
+     char* driver = cvar->string;
+ 
+-    // this is absolutely horrible
+-    if (!dstrcmp(cvar->defvalue, "default")) {
+-        cvar->defvalue = DEFAULT_FLUID_DRIVER;
+-    }
+-
+-    // same as above
+-    if (!dstrcmp(driver, "default")) {
+-        CON_CvarSet(cvar->name, DEFAULT_FLUID_DRIVER);
+-        return;
+-    }
+-
+     if (!dstrcmp(driver, "jack") ||
+         !dstrcmp(driver, "alsa") ||
+         !dstrcmp(driver, "oss") ||
+-        !dstrcmp(driver, "alsa") ||
++        !dstrcmp(driver, "pulseaudio") ||
+         !dstrcmp(driver, "coreaudio") ||
+         !dstrcmp(driver, "dsound") ||
+         !dstrcmp(driver, "portaudio") ||
+@@ -1526,4 +1515,4 @@ void I_StartSound(int sfx_id, sndsrc_t* origin, int volume, int pan, int reverb)
+         for (i = 16; i < MIDI_CHANNELS + 15; i++) {
+             fluid_synth_set_interp_method(doomseq.synth, i, FLUID_INTERP_LINEAR);
+         }
+-}
+\ No newline at end of file
++}
+diff --git a/src/engine/i_audio.h b/src/engine/i_audio.h
+index 273bf14..9f199da 100644
+--- a/src/engine/i_audio.h
++++ b/src/engine/i_audio.h
+@@ -23,14 +23,14 @@
+ #ifndef __I_AUDIO_H__
+ #define __I_AUDIO_H__
+ 
+-// 20120107 bkw: Linux users can change the default FluidSynth backend here:
+-#ifndef _WIN32
+-#define DEFAULT_FLUID_DRIVER "sndio"
+-
+-// 20120203 villsa: add default for windows
+-#else
++#ifdef _WIN32
+ #define DEFAULT_FLUID_DRIVER "dsound"
+-
++#elif __linux__
++#define DEFAULT_FLUID_DRIVER "alsa"
++#elif __APPLE__
++#define DEFAULT_FLUID_DRIVER "coreaudio"
++#else
++#define DEFAULT_FLUID_DRIVER "sndio"
+ #endif
+ 
+ typedef struct {
+@@ -57,4 +57,4 @@ void I_StopSound(sndsrc_t* origin, int sfx_id);
+ void I_StartMusic(int mus_id);
+ void I_StartSound(int sfx_id, sndsrc_t* origin, int volume, int pan, int reverb);
+ 
+-#endif // __I_AUDIO_H__
+\ No newline at end of file
++#endif // __I_AUDIO_H__
+diff --git a/src/engine/s_sound.c b/src/engine/s_sound.c
+index d5c6038..14ae850 100644
+--- a/src/engine/s_sound.c
++++ b/src/engine/s_sound.c
+@@ -413,6 +413,7 @@ void S_RegisterCvars(void) {
+     CON_CvarRegister(&s_musvol);
+     CON_CvarRegister(&s_gain);
+     CON_CvarRegister(&s_soundfont);
++    CON_CvarRegister(&s_driver);
+ }
+ 
+ 

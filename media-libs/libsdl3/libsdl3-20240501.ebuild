@@ -5,9 +5,11 @@ EAPI=8
 
 inherit cmake-multilib
 
+PHASH="d95f5bad2459608816cbf24f14dcab618a4a9ab7"
+
 DESCRIPTION="Simple Direct Media Layer"
 HOMEPAGE="https://libsdl.org/"
-SRC_URI="https://github.com/libsdl-org/SDL/archive/refs/tags/prerelease-3.1.2.tar.gz -> ${P}.tar.gz"
+SRC_URI="https://github.com/libsdl-org/SDL/archive/${PHASH}.zip -> ${P}.zip"
 
 LICENSE="ZLIB"
 SLOT="0"
@@ -87,7 +89,7 @@ DEPEND="
 RDEPEND="${DEPEND}"
 BDEPEND=""
 
-S="${WORKDIR}/SDL-prerelease-${PV}"
+S="${WORKDIR}/SDL-${PHASH}"
 
 multilib_src_configure() {
 	local mycmakeargs=(
