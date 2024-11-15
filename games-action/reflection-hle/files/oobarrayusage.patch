@@ -1,0 +1,73 @@
+diff --git a/src/wolf3d/id_vl.c b/src/wolf3d/id_vl.c
+index 36574bd..be193d7 100644
+--- a/src/wolf3d/id_vl.c
++++ b/src/wolf3d/id_vl.c
+@@ -57,7 +57,7 @@ id0_unsigned_t	bordercolor;
+ // REFKEEN: Variable isn't read
+ //id0_boolean_t		fastpalette;				// if true, use outsb to set
+ 
+-id0_byte_t		id0_far	palette1[256][3],id0_far palette2[256][3];
++id0_byte_t		id0_far	palette1[256*3],id0_far palette2[256*3];
+ 
+ //===========================================================================
+ 
+@@ -559,17 +559,19 @@ void VL_FadeOut (id0_int_t start, id0_int_t end, id0_int_t red, id0_int_t green,
+ 	id0_byte_t	id0_far *origptr, id0_far *newptr;
+ 
+ 	VL_WaitVBL(1);
+-	VL_GetPalette (&palette1[0][0]);
+-	memcpy (palette2,palette1,768);
++	VL_GetPalette (palette1);
++	memcpy (palette2,palette1, sizeof(id0_byte_t id0_far) * 256 * 3);
+ //	_fmemcpy (palette2,palette1,768);
+ 
++	id0_int_t buf_start = start*3;
++
+ //
+ // fade through intermediate frames
+ //
+ 	for (i=0;i<steps;i++)
+ 	{
+-		origptr = &palette1[start][0];
+-		newptr = &palette2[start][0];
++		origptr = &palette1[buf_start];
++		newptr = &palette2[buf_start];
+ 		for (j=start;j<=end;j++)
+ 		{
+ 			orig = *origptr++;
+@@ -584,7 +586,7 @@ void VL_FadeOut (id0_int_t start, id0_int_t end, id0_int_t red, id0_int_t green,
+ 		}
+ 
+ 		VL_WaitVBL(1);
+-		VL_SetPalette (&palette2[0][0]);
++		VL_SetPalette (palette2);
+ 	}
+ 
+ //
+@@ -612,8 +614,8 @@ void VL_FadeIn (id0_int_t start, id0_int_t end, id0_byte_t id0_far *palette, id0
+ 	id0_int_t		i,j,delta;
+ 
+ 	VL_WaitVBL(1);
+-	VL_GetPalette (&palette1[0][0]);
+-	memcpy (&palette2[0][0],&palette1[0][0],sizeof(palette1));
++	VL_GetPalette (palette1);
++	memcpy (palette2,palette1,sizeof(id0_byte_t id0_far) * 256 * 3);
+ //	_fmemcpy (&palette2[0][0],&palette1[0][0],sizeof(palette1));
+ 
+ 	start *= 3;
+@@ -626,12 +628,12 @@ void VL_FadeIn (id0_int_t start, id0_int_t end, id0_byte_t id0_far *palette, id0
+ 	{
+ 		for (j=start;j<=end;j++)
+ 		{
+-			delta = palette[j]-palette1[0][j];
+-			palette2[0][j] = palette1[0][j] + delta * i / steps;
++			delta = palette[j]-palette1[j];
++			palette2[j] = palette1[j] + delta * i / steps;
+ 		}
+ 
+ 		VL_WaitVBL(1);
+-		VL_SetPalette (&palette2[0][0]);
++		VL_SetPalette (palette2);
+ 	}
+ 
+ //

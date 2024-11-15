@@ -1,0 +1,69 @@
+diff --git a/src/id91_11/cat_all/catabyss/mapsabs.h b/src/id91_11/cat_all/catabyss/mapsabs.h
+index 61f8efd..e24c250 100644
+--- a/src/id91_11/cat_all/catabyss/mapsabs.h
++++ b/src/id91_11/cat_all/catabyss/mapsabs.h
+@@ -52,7 +52,7 @@ typedef enum {
+ 		TILE_TESTER_2_MAP,       // 21
+ 		GOOD_MAP_TO_USE_MAP,     // 22
+ 		LASTMAP
+-	     } mapnames;
++	     } catabyss_mapnames;
+ 
+ //
+ // TILEINFO offsets
+diff --git a/src/id91_11/cat_all/catapoc/mapsapc.h b/src/id91_11/cat_all/catapoc/mapsapc.h
+index 81cfb7a..3947887 100644
+--- a/src/id91_11/cat_all/catapoc/mapsapc.h
++++ b/src/id91_11/cat_all/catapoc/mapsapc.h
+@@ -47,7 +47,7 @@ typedef enum {
+ 		EGYPT_1_MAP,             // 16
+ 		WIZARD_GARDEN_MAP,       // 17
+ 		LASTMAP
+-	     } mapnames;
++	     } catapoc_mapnames;
+ 
+ //
+ // TILEINFO offsets
+diff --git a/src/id91_11/cat_all/catarm/mapsarm.h b/src/id91_11/cat_all/catarm/mapsarm.h
+index bbe1d6e..e813856 100644
+--- a/src/id91_11/cat_all/catarm/mapsarm.h
++++ b/src/id91_11/cat_all/catarm/mapsarm.h
+@@ -46,7 +46,7 @@ typedef enum {
+ 		FORTRESS_OF_NEM_MAP,     // 15
+ 		PASSAGE_TO_SURF_MAP,     // 16
+ 		LASTMAP
+-	     } mapnames;
++	     } catarm_mapnames;
+ 
+ //
+ // TILEINFO offsets
+diff --git a/src/wolf3d/mapssdm.h b/src/wolf3d/mapssdm.h
+index d07926b..332d389 100644
+--- a/src/wolf3d/mapssdm.h
++++ b/src/wolf3d/mapssdm.h
+@@ -11,4 +11,4 @@ typedef enum {
+ 		TUNNELS_1_MAP,           // 0
+ 		TUNNELS_2_MAP,           // 1
+ 		LASTMAP
+-	     } mapnames;
++	     } wolf3dsdm_mapnames;
+diff --git a/src/wolf3d/mapssod.h b/src/wolf3d/mapssod.h
+index b207c08..0e309e1 100644
+--- a/src/wolf3d/mapssod.h
++++ b/src/wolf3d/mapssod.h
+@@ -30,4 +30,4 @@ typedef enum {
+ 		SECRET_2_MAP,            // 19
+ 		ANGEL_OF_DEATH_MAP,      // 20
+ 		LASTMAP
+-	     } mapnames;
++	     } wolf3dsod_mapnames;
+diff --git a/src/wolf3d/mapswl6.h b/src/wolf3d/mapswl6.h
+index 5f32468..723c21a 100644
+--- a/src/wolf3d/mapswl6.h
++++ b/src/wolf3d/mapswl6.h
+@@ -70,4 +70,4 @@ typedef enum {
+ 		WOLF6_SECRET_MAP,        // 59
+ 		MAP4L10PATH_MAP,         // 60
+ 		LASTMAP
+-	     } mapnames;
++	     } wolf3dwl6_mapnames;
