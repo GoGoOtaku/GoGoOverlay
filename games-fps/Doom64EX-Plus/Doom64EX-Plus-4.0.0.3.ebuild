@@ -5,7 +5,7 @@ EAPI=8
 
 DESCRIPTION="An improved modern version of Doom64EX"
 HOMEPAGE="https://github.com/atsb/Doom64EX-Plus"
-SRC_URI="https://github.com/atsb/Doom64EX-Plus/archive/refs/tags/4.0.0.1.tar.gz -> ${P}.tar.gz"
+SRC_URI="https://github.com/atsb/Doom64EX-Plus/archive/refs/tags/${PV}.SDL.3.1.3.tar.gz -> ${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -15,8 +15,8 @@ IUSE="man doc"
 
 # Note: Technically media-libs/libsdl2[sound] is also required due to fluidsynth
 DEPEND="
-	=media-libs/libsdl3-20240501[sound,video]
-	=media-libs/sdl3-net-20240508
+	>=media-libs/libsdl3-3.1.3[sound,video]
+	=media-libs/sdl3-net-20241102
 	media-libs/libpng
 	media-sound/fluidsynth[sdl]
 	virtual/glu
@@ -26,12 +26,12 @@ RDEPEND="${DEPEND}"
 BDEPEND=""
 
 PATCHES=(
-	# Fixed in upstream
-	${FILESDIR}/${P}-soundfix.patch
 )
 
 DATADIR="/usr/share/doom64ex-plus"
 CFLAGS="${CFLAGS} -DDOOM_UNIX_INSTALL=1 -DDOOM_UNIX_SYSTEM_DATADIR=\\\"${DATADIR}\\\""
+
+S="${WORKDIR}/${P}.SDL.3.1.3/"
 
 src_install() {
 	# Lowercase to keep with man page

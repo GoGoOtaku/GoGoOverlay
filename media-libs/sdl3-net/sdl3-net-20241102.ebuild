@@ -5,8 +5,8 @@ EAPI=8
 
 inherit cmake-multilib
 
-if [[ ${PV} == "20240508" ]] ; then
-	PHASH="8cacdeef36ffe89399bc85a2a59f25e1e4991e9f"
+if [[ ${PV} == "20241102" ]] ; then
+	PHASH="9d76627ca50cddde3259dc06df180427730a1420"
 fi
 
 DESCRIPTION="A simple, cross-platform wrapper over TCP/IP sockets"
@@ -17,7 +17,7 @@ LICENSE="ZLIB"
 SLOT="0"
 KEYWORDS=""
 
-DEPEND=">=media-libs/libsdl3-3.1.2[${MULTILIB_USEDEP}]"
+DEPEND=">=media-libs/libsdl3-3.1.3[${MULTILIB_USEDEP}]"
 RDEPEND="${DEPEND}"
 BDEPEND=""
 

@@ -13,7 +13,7 @@ SRC_URI="https://github.com/libsdl-org/SDL/archive/${PHASH}.zip -> ${P}.zip"
 
 LICENSE="ZLIB"
 SLOT="0"
-KEYWORDS="~x86 ~amd64"
+KEYWORDS=""
 
 IUSE="
 	+sound +video webcam +joystick +haptic +hidapi
