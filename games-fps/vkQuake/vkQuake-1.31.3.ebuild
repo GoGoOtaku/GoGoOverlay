@@ -15,7 +15,7 @@ fi
 
 LICENSE="GPL-2+"
 SLOT="0"
-KEYWORDS="amd64 x86"
+KEYWORDS="~amd64 ~x86"
 IUSE="+wav flac opus modplug mikmod xmp umx +mad mpg123 +vorbis tremor"
 REQUIRED_USE="
 	^^ ( mad mpg123 )
@@ -43,6 +43,10 @@ src_compile() {
 	local myemakeopts=(
 		# Enable/Disable user directories support
 		DO_USERDIRS=1
+
+		# Counter intuitively this actually skips stripping
+		# as it replaces strip with the true shell command
+		DO_STRIP=true
 
 		### Enable/Disable codecs for streaming music support
 		USE_CODEC_WAVE=$(usex wav 1 0)
