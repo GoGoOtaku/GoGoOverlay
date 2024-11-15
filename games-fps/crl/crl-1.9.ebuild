@@ -28,7 +28,7 @@ RDEPEND="${DEPEND}"
 BDEPEND=""
 
 PATCHES=(
-	${FILESDIR}/${P}-fix-sdl2-mixer-dep.patch
+	${FILESDIR}/${PN}-fix-sdl2-mixer-dep.patch
 )
 
 S=${WORKDIR}/CRL-${P}
