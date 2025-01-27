@@ -11,7 +11,7 @@ if [[ ${PV} = *9999* ]]; then
 	SRC_URI=""
 else
 	SRC_URI="https://github.com/FontManager/font-manager/archive/${PV}.tar.gz -> ${P}.tar.gz"
-	KEYWORDS="amd64 x86"
+	KEYWORDS="~amd64 ~x86"
 fi
 
 DESCRIPTION="A simple font management application for Gtk+ Desktop Environments"
@@ -22,7 +22,7 @@ VALA_USE_DEPEND="vapigen"
 
 LICENSE="GPL-3"
 SLOT="0"
-IUSE="doc google-fonts +manager nautilus nemo reproducible thunar +viewer +nls gnome unihan"
+IUSE="apparmor doc google-fonts +manager nautilus nemo reproducible thunar +viewer +nls gnome unihan"
 
 RDEPEND="
 	>=dev-db/sqlite-3.35
@@ -34,9 +34,10 @@ RDEPEND="
 	>=media-libs/freetype-2.10
 	>=media-libs/harfbuzz-2.5
 	>=x11-libs/pango-1.45
+	apparmor? ( sys-libs/libapparmor )
 	google-fonts? (
 		>=net-libs/libsoup-3.0
-		>=net-libs/webkit-gtk-2.42
+		>=net-libs/webkit-gtk-2.42:6
 	)
 	nemo? ( gnome-extra/nemo )
 	nautilus? ( gnome-base/nautilus )
@@ -67,6 +68,7 @@ src_configure() {
 	meson_src_configure \
 		$(meson_use manager) \
 		$(meson_use viewer) \
+		$(meson_use apparmor app-armor) \
 		$(meson_use reproducible) \
 		$(meson_use nautilus) \
 		$(meson_use nemo) \
@@ -79,3 +81,11 @@ src_configure() {
 		$(meson_use doc yelp-doc) \
 		$(meson_use doc gtk-doc)
 }
+
+pkg_postinst() {
+	elog "If you got a severe warnings QA notice of type"
+	elog "'incompatible-pointer-types' - Be Not Afraid!"
+	elog "This is a known error with Vala code generation"
+	elog "and should not interfere with runtime performance."
+}
+
