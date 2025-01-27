@@ -24,15 +24,14 @@ PATCHES=(
 	# While linkers should be able to unravel this could lead to optimization
 	# issues.
 	# See: 
-	${FILESDIR}/remove_SDL_scancode.patch
-	${FILESDIR}/unique_mapnames.patch
+	${FILESDIR}/${P}-missing-include-guards.patch 
+	${FILESDIR}/${P}-sdl_scancodes.patch
 
 	# This fixes an issue with accessing a 2D array like a 1D array
 	# (i.e. acessing a [256][3] array by [0][69]
 	# This should work in practice but leads to undefined behavior
 	# which in turn can lead to problems with loop optimization
 	# See: -Waggressive-loop-optimizations
-	# TODO: Ugly quick fix
-	${FILESDIR}/oobarrayusage.patch
+	${FILESDIR}/${P}-oobarrayusage.patch 
 )
 

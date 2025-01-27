@@ -1,0 +1,48 @@
+diff --git a/src/wolf3d/mapssdm.h b/src/wolf3d/mapssdm.h
+index d07926b..640ca6f 100644
+--- a/src/wolf3d/mapssdm.h
++++ b/src/wolf3d/mapssdm.h
+@@ -1,3 +1,5 @@
++REFKEEN_NS_B
++
+ ///////////////////////////////////////
+ //
+ // TED5 Map Header for SDM
+@@ -12,3 +14,5 @@ typedef enum {
+ 		TUNNELS_2_MAP,           // 1
+ 		LASTMAP
+ 	     } mapnames;
++
++REFKEEN_NS_E
+diff --git a/src/wolf3d/mapssod.h b/src/wolf3d/mapssod.h
+index b207c08..a79a171 100644
+--- a/src/wolf3d/mapssod.h
++++ b/src/wolf3d/mapssod.h
+@@ -1,3 +1,5 @@
++REFKEEN_NS_B
++
+ ///////////////////////////////////////
+ //
+ // TED5 Map Header for SOD
+@@ -31,3 +33,5 @@ typedef enum {
+ 		ANGEL_OF_DEATH_MAP,      // 20
+ 		LASTMAP
+ 	     } mapnames;
++
++REFKEEN_NS_E
+diff --git a/src/wolf3d/mapswl6.h b/src/wolf3d/mapswl6.h
+index 5f32468..d04c783 100644
+--- a/src/wolf3d/mapswl6.h
++++ b/src/wolf3d/mapswl6.h
+@@ -1,3 +1,5 @@
++REFKEEN_NS_B
++
+ ///////////////////////////////////////
+ //
+ // TED5 Map Header for WL6
+@@ -71,3 +73,5 @@ typedef enum {
+ 		MAP4L10PATH_MAP,         // 60
+ 		LASTMAP
+ 	     } mapnames;
++
++REFKEEN_NS_E
