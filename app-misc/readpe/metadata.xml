@@ -9,7 +9,4 @@
 		<bugs-to>https://github.com/mentebinaria/readpe/issues</bugs-to>
 		<doc>https://github.com/mentebinaria/readpe/wiki</doc>
 	</upstream>
-	<longdescription>
-		The PE file analysis toolkit
-	</longdescription>
 </pkgmetadata>

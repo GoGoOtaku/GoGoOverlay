@@ -1,0 +1,12 @@
+diff --git a/src/core/system.h b/src/core/system.h
+index 22a6bd7..db7d498 100644
+--- a/src/core/system.h
++++ b/src/core/system.h
+@@ -6,6 +6,7 @@
+ extern "C" {
+ #endif
+     
++#include <stddef.h>
+ #include <stdint.h>
+ #include <SDL2/SDL_platform.h>
+ #include <SDL2/SDL_opengl.h>

@@ -15,7 +15,7 @@ KEYWORDS="~amd64"
 IUSE="+client +base +d3xp +dedicated +imgui"
 
 DEPEND="
-	virtual/jpeg:0
+	media-libs/libjpeg-turbo
 	media-libs/libogg
 	media-libs/libsdl2
 	media-libs/libvorbis

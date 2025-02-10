@@ -1,18 +1,11 @@
 # Copyright 1999-2022 Ophelia Beatrice de Sica
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
-inherit flag-o-matic
+EAPI=8
 
 DESCRIPTION="id Software's Quake 2 v3.21 with mission packs and Vulkan support"
 HOMEPAGE="https://github.com/kondrak/vkQuake2"
-
-if [[ ${PV} = "9999" ]] ; then
-	inherit git-r3
-	EGIT_REPO_URI="https://github.com/kondrak/vkQuake2.git"
-else
-	SRC_URI="https://github.com/kondrak/vkQuake2/archive/refs/tags/${PV}.tar.gz -> ${P}.tar.gz"
-fi
+SRC_URI="https://github.com/kondrak/vkQuake2/archive/refs/tags/${PV}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="GPL-2+"
 SLOT="0"
@@ -96,4 +89,3 @@ pkg_postinst() {
 	elog "* Capture the Flag (Multiplayer) (+set game ctf)"
 	elog "* Quake II: Zaero (free on moddb) (+set game zaero)"
 }
-

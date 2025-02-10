@@ -6,13 +6,15 @@ EAPI=8
 SHA="c7e6e5f763b5632202d64f0b247bdad146a06a1e"
 
 DESCRIPTION="Classic Tomb Raider open-source engine"
-HOMEPAGE="xproger.info/projects/openlara/"
-SRC_URI="https://github.com/XProger/OpenLara/archive/${SHA}.zip -> ${P}.zip"
+HOMEPAGE="https://xproger.info/projects/openlara/"
+SRC_URI="https://github.com/XProger/OpenLara/archive/${SHA}.tar.gz -> ${P}.tar.gz"
+
+S="${WORKDIR}/OpenLara-${SHA}"
 
 LICENSE="BSD-2"
 SLOT="0"
 KEYWORDS="~amd64"
-IUSE="+sdl log_fps debug"
+IUSE="+sdl debug"
 
 DEPEND="
 	virtual/opengl
@@ -25,10 +27,8 @@ DEPEND="
 RDEPEND="${DEPEND}"
 BDEPEND="!sdl? ( >=dev-util/premake-5 )"
 
-S="${WORKDIR}/OpenLara-${SHA}"
-
 src_prepare() {
-	if !(use log_fps); then
+	if !(use debug); then
 		eapply "${FILESDIR}/${PN}-disable-fps-log.patch"
 	fi
 
@@ -36,7 +36,7 @@ src_prepare() {
 		S=${S}/src/platform/sdl2
 	else
 		S=${S}/src/platform/nix
-		cd ${S}
+		cd "${S}"
 		premake5 gmake2
 	fi
 
@@ -87,4 +87,3 @@ pkg_postinst() {
 	elog "    └── {CD /FLV Files}"
 	echo
 }
-

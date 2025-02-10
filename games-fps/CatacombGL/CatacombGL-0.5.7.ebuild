@@ -9,10 +9,13 @@ DESCRIPTION="Catacomb source port with OpenGL graphics"
 HOMEPAGE="https://github.com/ArnoAnsems/CatacombGL"
 SRC_URI="https://github.com/ArnoAnsems/CatacombGL/archive/refs/tags/v${PV}-beta.tar.gz -> ${P}.tar.gz"
 
+S="${WORKDIR}/${P}-beta"
+
 LICENSE="GPL-3+"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="-test"
+IUSE="test"
+RESTRICT="!test? ( test )"
 
 DEPEND="
 	media-libs/libsdl2
@@ -21,9 +24,6 @@ DEPEND="
 	test? ( dev-cpp/gtest )
 "
 RDEPEND="${DEPEND}"
-BDEPEND=""
-
-S="${WORKDIR}/${P}-beta"
 
 src_configure() {
 	local mycmakeargs=()
@@ -34,4 +34,3 @@ src_configure() {
 
 	cmake_src_configure
 }
-

@@ -1,22 +1,18 @@
 # Copyright 1999-2020 Ophelia Beatrice de Sica
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 DESCRIPTION="Vulkan Quake port based on QuakeSpasm"
 HOMEPAGE="https://github.com/Novum/vkQuake"
+SRC_URI="https://github.com/Novum/vkQuake/archive/refs/tags/${PV}.tar.gz -> ${P}.tar.gz"
 
-if [[ ${PV} = "9999" ]] ; then
-	inherit git-r3
-	EGIT_REPO_URI="https://github.com/Novum/vkQuake.git"
-else
-	SRC_URI="https://github.com/Novum/vkQuake/archive/refs/tags/${PV}.tar.gz -> ${P}.tar.gz"
-fi
+S="${WORKDIR}/${P}/Quake"
 
 LICENSE="GPL-2+"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="+wav flac opus modplug mikmod xmp umx +mad mpg123 +vorbis tremor"
+IUSE="+wav flac opus modplug mikmod +xmp umx +mad mpg123 +vorbis tremor"
 REQUIRED_USE="
 	^^ ( mad mpg123 )
 	^^ ( vorbis tremor )
@@ -36,8 +32,6 @@ DEPEND="
 	modplug? ( media-libs/libmodplug )"
 
 RDEPEND="${DEPEND}"
-
-S="${WORKDIR}/${P}/Quake"
 
 src_compile() {
 	local myemakeopts=(
@@ -74,4 +68,3 @@ src_compile() {
 src_install() {
 	dobin vkquake
 }
-

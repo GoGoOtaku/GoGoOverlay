@@ -9,7 +9,4 @@
 		<bugs-to>https://github.com/merces/libpe/issues</bugs-to>
 		<doc>https://github.com/merces/pev/wiki</doc>
 	</upstream>
-	<longdescription>
-		The PE library used by pev
-	</longdescription>
 </pkgmetadata>

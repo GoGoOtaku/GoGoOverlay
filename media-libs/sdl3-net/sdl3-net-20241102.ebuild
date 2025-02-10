@@ -11,7 +11,9 @@ fi
 
 DESCRIPTION="A simple, cross-platform wrapper over TCP/IP sockets"
 HOMEPAGE="https://libsdl.org/"
-SRC_URI="https://github.com/libsdl-org/SDL_net/archive/${PHASH}.zip -> ${P}.zip"
+SRC_URI="https://github.com/libsdl-org/SDL_net/archive/${PHASH}.tar.gz -> ${P}.tar.gz"
+
+S="${WORKDIR}/SDL_net-${PHASH}"
 
 LICENSE="ZLIB"
 SLOT="0"
@@ -19,9 +21,6 @@ KEYWORDS=""
 
 DEPEND=">=media-libs/libsdl3-3.1.3[${MULTILIB_USEDEP}]"
 RDEPEND="${DEPEND}"
-BDEPEND=""
-
-S="${WORKDIR}/SDL_net-${PHASH}"
 
 multilib_src_configure() {
 	local mycmakeargs=(

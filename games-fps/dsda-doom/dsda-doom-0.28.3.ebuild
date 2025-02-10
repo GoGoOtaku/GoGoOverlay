@@ -9,6 +9,8 @@ DESCRIPTION="Speedrunning focused fork of prboom+ with extra tooling for demos."
 HOMEPAGE="https://github.com/kraflab/dsda-doom"
 SRC_URI="https://github.com/kraflab/dsda-doom/archive/refs/tags/v${PV}.tar.gz -> ${P}.tar.gz"
 
+S="${WORKDIR}/${P}/prboom2"
+
 LICENSE="GPL-2+ GPL-3+ BSD BSD-2 BSD-with-disclosure CC-BY-3.0 CC0-1.0 LGPL-2.1+ MIT public-domain"
 SLOT="0"
 KEYWORDS="~amd64 ~arm64 ~x86"
@@ -26,8 +28,6 @@ DEPEND="
 	sdl2-image? ( media-libs/sdl2-image )
 	vorbis? ( media-libs/libvorbis )"
 RDEPEND="${DEPEND}"
-
-S="${WORKDIR}/${P}/prboom2"
 
 src_prepare() {
 	eapply "${FILESDIR}/${PN}-docdir.patch"

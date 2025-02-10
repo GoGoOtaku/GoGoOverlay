@@ -1,23 +1,23 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 DESCRIPTION="The PE file analysis toolkit"
 HOMEPAGE="http://pev.sf.net"
 SRC_URI="https://github.com/mentebinaria/readpe/archive/refs/tags/v${PV}.tar.gz -> ${P}.tar.gz"
 
-KEYWORDS="amd64"
+S="${WORKDIR}/readpe-${PV}/src"
+
 LICENSE="GPL-2 openssl"
 SLOT="0"
-IUSE=""
+KEYWORDS="amd64"
 
 DEPEND="
 	dev-libs/openssl
-	=dev-libs/libpe-${PV}
+	~dev-libs/libpe-${PV}
 "
 RDEPEND="${DEPEND}"
-S="${WORKDIR}/readpe-${PV}/src"
 
 src_prepare() {
 	default
@@ -33,4 +33,3 @@ src_prepare() {
 	echo "$@"
 	"$@" || die
 }
-

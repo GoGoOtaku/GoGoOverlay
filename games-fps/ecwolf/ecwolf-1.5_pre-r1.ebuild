@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit cmake
+inherit cmake xdg-utils
 
 DESCRIPTION="ECWolf is a port of the Wolfenstein 3D engine based of Wolf4SDL."
 HOMEPAGE="https://maniacsvault.net/ecwolf/"
@@ -32,9 +32,6 @@ RDEPEND="
 	x11-libs/gtk+
 	app-arch/xz-utils"
 DEPEND="${RDEPEND}"
-BDEPEND=""
-
-
 
 src_prepare() {
 	eapply "${FILESDIR}/${PN}-gentoo.patch"
@@ -61,4 +58,3 @@ pkg_postinst() {
 	elog "Consult the man page for more information."
 	echo
 }
-

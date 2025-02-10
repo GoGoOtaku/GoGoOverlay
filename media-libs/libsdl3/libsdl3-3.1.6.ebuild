@@ -5,15 +5,15 @@ EAPI=8
 
 inherit cmake-multilib
 
-# PHASH="d95f5bad2459608816cbf24f14dcab618a4a9ab7"
-
 DESCRIPTION="Simple Direct Media Layer"
 HOMEPAGE="https://libsdl.org/"
-SRC_URI="https://github.com/libsdl-org/SDL/archive/refs/tags/preview-${PV}.zip -> ${P}.zip"
+SRC_URI="https://github.com/libsdl-org/SDL/archive/refs/tags/preview-${PV}.tar.gz -> ${P}.tar.gz"
+
+S="${WORKDIR}/SDL-preview-${PV}"
 
 LICENSE="ZLIB"
 SLOT="0"
-KEYWORDS="~x86 ~amd64"
+KEYWORDS="~amd64 ~x86"
 
 IUSE="
 	+sound +video webcam +joystick +haptic +hidapi
@@ -87,9 +87,6 @@ DEPEND="
 	)
 "
 RDEPEND="${DEPEND}"
-BDEPEND=""
-
-S="${WORKDIR}/SDL-preview-${PV}"
 
 multilib_src_configure() {
 	local mycmakeargs=(

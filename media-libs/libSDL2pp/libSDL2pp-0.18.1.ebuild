@@ -12,7 +12,7 @@ SRC_URI="https://github.com/libSDL2pp/libSDL2pp/archive/refs/tags/${PV}.tar.gz -
 LICENSE="ZLIB"
 SLOT="0"
 KEYWORDS="~amd64"
-IUSE="image mixer ttf -static-libs"
+IUSE="image mixer ttf static-libs"
 
 DEPEND="
 	media-libs/libsdl2
@@ -21,7 +21,6 @@ DEPEND="
 	ttf? ( media-libs/sdl2-ttf )
 "
 RDEPEND="${DEPEND}"
-BDEPEND=""
 
 src_configure() {
 	local mycmakeargs=(
@@ -33,4 +32,3 @@ src_configure() {
 	)
 	cmake_src_configure
 }
-

@@ -9,9 +9,6 @@
 		<bugs-to>https://github.com/FontManager/font-manager/issues</bugs-to>
 		<doc>http://fontmanager.github.io/</doc>
 	</upstream>
-	<longdescription>
-		A simple font management application for GTK Desktop Environments
-	</longdescription>
 	<use>
 		<flag name="manager">Build Font Manager</flag>
 		<flag name="viewer">Build Font Viewer</flag>

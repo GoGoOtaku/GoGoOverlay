@@ -8,7 +8,4 @@
 		<remote-id type="github">XProger/OpenLara</remote-id>
 		<bugs-to>https://github.com/XProger/OpenLara/issues</bugs-to>
 	</upstream>
-	<longdescription>
-		 Classic Tomb Raider open-source engine
-	</longdescription>
 </pkgmetadata>

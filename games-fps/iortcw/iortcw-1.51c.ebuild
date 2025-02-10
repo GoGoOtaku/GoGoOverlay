@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit xdg-utils flag-o-matic toolchain-funcs
+inherit xdg-utils toolchain-funcs
 
 DESCRIPTION="ioquake3 port of Return to Castle Wolfenstein"
 HOMEPAGE="https://github.com/iortcw/iortcw"
@@ -28,7 +28,7 @@ DEPEND="
 		media-libs/opusfile
 	)
 	system-zlib? ( sys-libs/zlib )
-	system-jpeg? ( virtual/jpeg )
+	system-jpeg? ( media-libs/libjpeg-turbo )
 	system-freetype? ( media-libs/freetype )
 	system-ogg? ( media-libs/libogg )
 	mumble? ( net-voip/mumble )
@@ -82,7 +82,7 @@ src_install() {
 	MP=${S}/MP/build/${BUILD_TYPE}-linux-${WOLFARCH}/
 
 	if use starter ; then
-		dobin ${FILESDIR}/iortcw
+		dobin "${FILESDIR}/iortcw"
 	fi
 
 	exeinto /usr/lib/${PN}

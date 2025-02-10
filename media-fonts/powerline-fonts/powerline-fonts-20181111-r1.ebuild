@@ -1,18 +1,15 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
-inherit font git-r3
+inherit font
+
+PHASH="e80e3eba9091dac0655a0a77472e10f53e754bb0"
 
 DESCRIPTION="Monospaced fonts pre-patched with Powerline symbols"
 HOMEPAGE="https://github.com/powerline/fonts"
-
-EGIT_REPO_URI="https://github.com/powerline/fonts"
-if [[ ${PV} != 9999 ]]; then
-	EGIT_COMMIT="e80e3eba9091dac0655a0a77472e10f53e754bb0"
-	KEYWORDS="amd64 arm ppc ppc64 x86"
-fi
+SRC_URI="https://github.com/powerline/fonts/archive/${PHASH}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="
 	3270? ( || ( BSD CC-BY-SA-3.0 ) )
@@ -45,6 +42,7 @@ LICENSE="
 	ubuntumono? ( UbuntuFontLicense-1.0 )
 "
 SLOT="0"
+KEYWORDS="amd64 arm ppc ppc64 x86"
 
 # src_install() expects USE flags to be the lowercase basenames of the
 # corresponding font directories. See src_install_font() for details.
@@ -80,16 +78,13 @@ IUSE_FLAGS=(
 )
 
 # TODO: Add d2coding w/ own ebuild and RDEPEND
-IUSE="${IUSE_FLAGS[*]} +pcf psf -bdf"
+IUSE="${IUSE_FLAGS[*]} +pcf psf bdf"
 
 # If no such USE flags were enabled, fail.
 REQUIRED_USE="
 	|| ( ${IUSE_FLAGS[*]} )
 	|| ( pcf psf bdf )
 "
-
-DEPEND=""
-RDEPEND=""
 
 # List of the basenames of all subdirectories containing OTF-formatted fonts.
 OTF_DIRNAMES=(
@@ -133,7 +128,6 @@ TTF_DIRNAMES=(
 FONT_S="${S}/fonts"
 DOCS="README.rst"
 
-
 src_install() {
 	# Map of all font filetypes to be installed and hence appended to eclass
 	# "font" string global ${FONT_SUFFIX} below. Since we only leverage this
@@ -163,10 +157,10 @@ src_install() {
 		if use "${flag_name}"; then
 			# Install all fonts of this filetype in this subdirectory.
 			mv "${dirname}"/*.${filetype} "${FONT_S}" || die '"mv" failed.'
-	
+
 			# Register this filetype with the "font" eclass below.
 			font_filetypes[${filetype}]=
-	
+
 			# Install this font's documentation (if available) to a file with
 			# the same basename as this directory with whitespace stripped.
 			doc_filename="${dirname}/README.rst"

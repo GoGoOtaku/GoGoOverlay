@@ -3,13 +3,13 @@
 
 EAPI=8
 
-inherit cmake
+inherit cmake xdg-utils
 
 DESCRIPTION="ECWolf is a port of the Wolfenstein 3D engine based of Wolf4SDL."
 HOMEPAGE="https://maniacsvault.net/ecwolf/"
 
 if [[ ${PV} != "9999" ]] ; then
-	KEYWORDS="amd64 86"
+	KEYWORDS="amd64 x86"
 	SRC_URI="https://bitbucket.org/ecwolf/ecwolf/get/${PV}.tar.gz -> ${P}.tar.gz"
 
 	S="${WORKDIR}/ecwolf-ecwolf-8cf8d23a6da3"
@@ -32,8 +32,6 @@ RDEPEND="
 	x11-libs/gtk+
 	app-arch/xz-utils"
 DEPEND="${RDEPEND}"
-BDEPEND=""
-
 
 src_prepare() {
 	default
@@ -79,4 +77,3 @@ pkg_postinst() {
 	elog "Consult the man page for more information."
 	echo
 }
-

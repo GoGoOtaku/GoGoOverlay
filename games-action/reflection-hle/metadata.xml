@@ -8,7 +8,4 @@
 		<remote-id type="github">ReflectionHLE/ReflectionHLE</remote-id>
 		<bugs-to>https://github.com/ReflectionHLE/ReflectionHLE/issues</bugs-to>
 	</upstream>
-	<longdescription>
-		Ports of Keen Dreams, the 3D Catacomb games and Wolfenstein 3D
-	</longdescription>
 </pkgmetadata>

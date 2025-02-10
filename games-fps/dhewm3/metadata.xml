@@ -12,5 +12,6 @@
 		<flag name="base">Add support for the Doom 3 base game</flag>
 		<flag name="client">Build playable game executable - disable for server installation</flag>
 		<flag name="d3xp">Add support for Doom 3: Resurrection of Evil expansion</flag>
+		<flag name="imgui">Build with Dear ImGui integration</flag>
 	</use>
 </pkgmetadata>

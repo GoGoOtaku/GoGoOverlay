@@ -13,6 +13,7 @@ LICENSE="GPL-3+ OFL-1.1 VicFiegerLicense"
 SLOT="0"
 KEYWORDS="~amd64"
 IUSE="flac jpeg mod mp3 test"
+RESTRICT="!test? ( test )"
 
 DEPEND="
 	media-libs/libsdl2
@@ -23,7 +24,6 @@ DEPEND="
 	test? ( dev-libs/unittest++ )
 "
 RDEPEND="${DEPEND}"
-BDEPEND=""
 
 PATCHES=(
 	"${FILESDIR}/${PN}-move_bin_directory.patch"
@@ -45,4 +45,3 @@ src_configure() {
 	)
 	cmake_src_configure
 }
-

@@ -8,7 +8,4 @@
 		<remote-id type="github">kmxz/overlayfs-tools</remote-id>
 		<bugs-to>https://github.com/kmxz/overlayfs-tools/issues</bugs-to>
 	</upstream>
-	<longdescription>
-		 Maintenance tools for overlay-filesystem.
-	</longdescription>
 </pkgmetadata>

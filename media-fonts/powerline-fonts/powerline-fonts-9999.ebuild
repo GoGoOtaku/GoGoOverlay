@@ -1,18 +1,13 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 inherit font git-r3
 
 DESCRIPTION="Monospaced fonts pre-patched with Powerline symbols"
 HOMEPAGE="https://github.com/powerline/fonts"
-
 EGIT_REPO_URI="https://github.com/powerline/fonts"
-if [[ ${PV} != 9999 ]]; then
-	EGIT_COMMIT="e80e3eba9091dac0655a0a77472e10f53e754bb0"
-	KEYWORDS="~amd64 ~arm ~ppc ~ppc64 ~x86"
-fi
 
 LICENSE="
 	3270? ( || ( BSD CC-BY-SA-3.0 ) )
@@ -26,9 +21,9 @@ LICENSE="
 	firamono? ( OFL-1.1 )
 	gomono? ( BSD )
 	hack? ( OFL-1.1 )
-	inconsolata? ( OFL )
-	inconsolatadz? ( OFL )
-	inconsolata-g? ( OFL )
+	inconsolata? ( OFL-1.0 )
+	inconsolatadz? ( OFL-1.0 )
+	inconsolata-g? ( OFL-1.0 )
 	liberationmono? ( OFL-1.1 )
 	meslodotted? ( Apache-2.0 )
 	mesloslashed? ( Apache-2.0 )
@@ -80,16 +75,13 @@ IUSE_FLAGS=(
 )
 
 # TODO: Add d2coding w/ own ebuild and RDEPEND
-IUSE="${IUSE_FLAGS[*]} +pcf psf -bdf"
+IUSE="${IUSE_FLAGS[*]} +pcf psf bdf"
 
 # If no such USE flags were enabled, fail.
 REQUIRED_USE="
 	|| ( ${IUSE_FLAGS[*]} )
 	|| ( pcf psf bdf )
 "
-
-DEPEND=""
-RDEPEND=""
 
 # List of the basenames of all subdirectories containing OTF-formatted fonts.
 OTF_DIRNAMES=(
@@ -133,7 +125,6 @@ TTF_DIRNAMES=(
 FONT_S="${S}/fonts"
 DOCS="README.rst"
 
-
 src_install() {
 	# Map of all font filetypes to be installed and hence appended to eclass
 	# "font" string global ${FONT_SUFFIX} below. Since we only leverage this
@@ -163,10 +154,10 @@ src_install() {
 		if use "${flag_name}"; then
 			# Install all fonts of this filetype in this subdirectory.
 			mv "${dirname}"/*.${filetype} "${FONT_S}" || die '"mv" failed.'
-	
+
 			# Register this filetype with the "font" eclass below.
 			font_filetypes[${filetype}]=
-	
+
 			# Install this font's documentation (if available) to a file with
 			# the same basename as this directory with whitespace stripped.
 			doc_filename="${dirname}/README.rst"

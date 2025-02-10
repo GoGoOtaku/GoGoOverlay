@@ -10,6 +10,8 @@ DESCRIPTION="AppImage release of JRomManager"
 HOMEPAGE="https://github.com/optyfr/JRomManager"
 SRC_URI="https://github.com/optyfr/JRomManager/releases/download/${PV}/JRomManager-3.0.0-x86_64.AppImage -> ${P}.AppImage"
 
+S=${WORKDIR}
+
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64"
@@ -18,9 +20,6 @@ RESTRICT="strip"
 
 DEPEND="sys-fs/fuse"
 RDEPEND="${DEPEND} !games-emulation/jrommanager"
-BDEPEND=""
-
-S=${WORKDIR}
 
 src_prepare() {
 	cp "${DISTDIR}/${P}.AppImage" "${WORKDIR}/jrommanager"
@@ -30,4 +29,3 @@ src_prepare() {
 src_install() {
 	dobin jrommanager
 }
-

@@ -9,7 +9,9 @@ HASH="8e4c249c1cd76e3a9f1394670fb1130b4c7ef251"
 
 DESCRIPTION="An open-source Tomb Raider 1-5 engine remake"
 HOMEPAGE="http://opentomb.github.io/"
-SRC_URI="https://github.com/opentomb/OpenTomb/archive/${HASH}.zip -> opentomb.zip"
+SRC_URI="https://github.com/opentomb/OpenTomb/archive/${HASH}.tar.gz -> ${P}.tar.gz"
+
+S="${WORKDIR}/OpenTomb-${HASH}"
 
 # OpenTomb - LGPL-3
 # Droid Sans Mono (Bundled) - Apache 2.0
@@ -32,9 +34,10 @@ DEPEND="
 	media-libs/openal
 	sys-libs/zlib"
 RDEPEND="${DEPEND}"
-BDEPEND=""
 
-S="${WORKDIR}/OpenTomb-${HASH}"
+PATCHES=(
+	"${FILESDIR}/size_t.patch"
+)
 
 src_configure() {
 	local mycmakeargs=(
@@ -44,8 +47,8 @@ src_configure() {
 }
 
 src_install() {
-	dodir /usr/share/OpenTomb
 	insinto /usr/share/OpenTomb
+	dodir /usr/share/OpenTomb
 
 	doins config.lua
 	doins -r scripts
@@ -55,4 +58,3 @@ src_install() {
 	cd "${WORKDIR}/OpenTomb-${HASH}_build"
 	dobin OpenTomb
 }
-

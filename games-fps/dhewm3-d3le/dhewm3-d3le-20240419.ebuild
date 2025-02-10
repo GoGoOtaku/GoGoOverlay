@@ -9,15 +9,16 @@ D3LE_HASH="0e6e3519b21eae4690810180210cc90b0174dc3d"
 
 DESCRIPTION="Port of The Lost Missions to dhewm3"
 HOMEPAGE="https://github.com/dhewm/dhewm3-sdk"
-SRC_URI="https://github.com/dhewm/dhewm3-sdk/archive/${D3LE_HASH}.zip -> ${P}-d3le.zip"
+SRC_URI="https://github.com/dhewm/dhewm3-sdk/archive/${D3LE_HASH}.tar.gz -> ${P}-d3le.tar.gz"
+
+S="${WORKDIR}/dhewm3-sdk-${D3LE_HASH}"
 
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="~amd64"
-IUSE=""
 
 DEPEND="
-	virtual/jpeg:0
+	media-libs/libjpeg-turbo
 	media-libs/libogg
 	media-libs/libsdl2
 	media-libs/libvorbis
@@ -28,8 +29,6 @@ DEPEND="
 RDEPEND="${DEPEND}
 	games-fps/dhewm3[d3xp]
 "
-
-S="${WORKDIR}/dhewm3-sdk-${D3LE_HASH}"
 
 DATADIR=/usr/share/dhewm3
 

@@ -9,7 +9,9 @@ fi
 
 DESCRIPTION="Apple 2e emulator"
 HOMEPAGE="https://github.com/linappleii/linapple"
-SRC_URI="https://github.com/linappleii/linapple/archive/${PHASH}.zip -> ${P}.zip"
+SRC_URI="https://github.com/linappleii/linapple/archive/${PHASH}.tar.gz -> ${P}.tar.gz"
+
+S=${WORKDIR}/linapple-${PHASH}
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -24,13 +26,9 @@ DEPEND="
 	x11-libs/libX11
 "
 RDEPEND="${DEPEND}"
-BDEPEND=""
-
-S=${WORKDIR}/linapple-${PHASH}
 
 src_install() {
 	emake DESTDIR="${D}" BINDIR="/usr/bin" DATADIR="/usr/share/linapple" install
 
 	einstalldocs
 }
-

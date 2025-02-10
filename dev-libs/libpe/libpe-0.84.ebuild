@@ -4,8 +4,10 @@
 EAPI=8
 
 DESCRIPTION="The PE library used by pev"
-HOMEPAGE="pev.sf.net"
+HOMEPAGE="https://pev.sf.net"
 SRC_URI="https://github.com/mentebinaria/readpe/archive/refs/tags/v${PV}.tar.gz -> ${P}.tar.gz"
+
+S="${WORKDIR}/readpe-${PV}/lib/libpe"
 
 LICENSE="LGPL-3"
 SLOT="0"
@@ -13,11 +15,8 @@ KEYWORDS="amd64"
 
 DEPEND="dev-libs/openssl"
 RDEPEND="${DEPEND}"
-BDEPEND=""
 
 LDFLAGS="${LDFLAGS} -lm"
-
-S="${WORKDIR}/readpe-${PV}/lib/libpe"
 
 src_prepare() {
 	default
@@ -40,4 +39,3 @@ src_install() {
 	cd include
 	doheader -r libpe
 }
-

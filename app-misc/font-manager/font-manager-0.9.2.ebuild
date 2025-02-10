@@ -3,25 +3,18 @@
 
 EAPI=8
 
-inherit gnome2 meson vala
-
-if [[ ${PV} = *9999* ]]; then
-	inherit git-r3
-	EGIT_REPO_URI="https://github.com/FontManager/font-manager.git"
-	SRC_URI=""
-else
-	SRC_URI="https://github.com/FontManager/font-manager/archive/${PV}.tar.gz -> ${P}.tar.gz"
-	KEYWORDS="~amd64 ~x86"
-fi
-
-DESCRIPTION="A simple font management application for Gtk+ Desktop Environments"
-HOMEPAGE="https://fontmanager.github.io"
-
 VALA_MIN_API_VERSION=0.56
 VALA_USE_DEPEND="vapigen"
 
+inherit gnome2 meson vala
+
+DESCRIPTION="A simple font management application for Gtk+ Desktop Environments"
+HOMEPAGE="https://fontmanager.github.io"
+SRC_URI="https://github.com/FontManager/font-manager/archive/${PV}.tar.gz -> ${P}.tar.gz"
+
 LICENSE="GPL-3"
 SLOT="0"
+KEYWORDS="~amd64 ~x86"
 IUSE="apparmor doc google-fonts +manager nautilus nemo reproducible thunar +viewer +nls gnome unihan"
 
 RDEPEND="
@@ -88,4 +81,3 @@ pkg_postinst() {
 	elog "This is a known error with Vala code generation"
 	elog "and should not interfere with runtime performance."
 }
-

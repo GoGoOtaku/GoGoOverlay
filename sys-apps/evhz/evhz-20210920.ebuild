@@ -9,6 +9,8 @@ DESCRIPTION="Show mouse refresh rate under linux + evdev"
 HOMEPAGE="https://git.sr.ht/~iank/evhz"
 SRC_URI="https://git.sr.ht/~iank/evhz/archive/${PHASH}.tar.gz -> ${P}.tar.gz"
 
+S="${WORKDIR}/evhz-${PHASH}"
+
 LICENSE="Apache-2.0 GPL-3+"
 SLOT="0"
 KEYWORDS="~amd64"
@@ -21,8 +23,6 @@ BDEPEND="
 	sys-kernel/linux-headers
 "
 
-S="${WORKDIR}/evhz-${PHASH}"
-
 src_compile() {
 	cc evhz.c -o evhz
 }
@@ -30,4 +30,3 @@ src_compile() {
 src_install() {
 	dosbin evhz
 }
-

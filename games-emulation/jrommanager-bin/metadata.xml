@@ -8,7 +8,4 @@
 		<remote-id type="github">optyfr/JRomManager</remote-id>
 		<bugs-to>https://github.com/optyfr/JRomManager/issues</bugs-to>
 	</upstream>
-	<longdescription>
-		A Rom Manager entirely written in Java and released under GPL-2
-	</longdescription>
 </pkgmetadata>

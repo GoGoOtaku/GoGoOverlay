@@ -9,6 +9,8 @@ DESCRIPTION="Playtesting focused Doom engine"
 HOMEPAGE="https://jnechaevsky.github.io/crl/"
 SRC_URI="https://github.com/JNechaevsky/CRL/archive/refs/tags/${P}.tar.gz"
 
+S=${WORKDIR}/CRL-${P}
+
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64"
@@ -25,13 +27,10 @@ DEPEND="
 	net? ( >=media-libs/sdl2-mixer-2.0.2 )
 "
 RDEPEND="${DEPEND}"
-BDEPEND=""
 
 PATCHES=(
-	${FILESDIR}/${PN}-fix-sdl2-mixer-dep.patch
+	"${FILESDIR}/${PN}-fix-sdl2-mixer-dep.patch"
 )
-
-S=${WORKDIR}/CRL-${P}
 
 src_configure() {
 	local mycmakeargs=(
@@ -45,8 +44,7 @@ src_configure() {
 }
 
 src_install() {
-	dobin ${BUILD_DIR}/src/crl-doom
-	dobin ${BUILD_DIR}/src/crl-heretic
-	dobin ${BUILD_DIR}/src/crl-setup
+	dobin "${BUILD_DIR}/src/crl-doom"
+	dobin "${BUILD_DIR}/src/crl-heretic"
+	dobin "${BUILD_DIR}/src/crl-setup"
 }
-
