@@ -1,0 +1,40 @@
+From feffa4a4dd9a2a5f3c608f720cde41bea37797d3 Mon Sep 17 00:00:00 2001
+From: Robert Beckebans <robert.beckebans@gmail.com>
+Date: Mon, 9 Oct 2023 15:14:43 +0200
+Subject: [PATCH] Replaced ternary operators in HLSL code. Fixes #803
+
+---
+ neo/shaders/builtin/SSAO/ssao_compute.cs.hlsl | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/neo/shaders/builtin/SSAO/ssao_compute.cs.hlsl b/neo/shaders/builtin/SSAO/ssao_compute.cs.hlsl
+index 4ded9a8597..e81c796ade 100644
+--- a/shaders/builtin/SSAO/ssao_compute.cs.hlsl
++++ b/shaders/builtin/SSAO/ssao_compute.cs.hlsl
+@@ -104,7 +104,7 @@ static const float g_RandomValues[16] =
+ // over the diagonals in the octahedral map
+ float2 octWrap( float2 v )
+ {
+-	return ( 1.f - abs( v.yx ) ) * ( v.xy >= 0.f ? 1.f : -1.f );
++	return ( 1.f - abs( v.yx ) ) * select( v.xy >= 0.f, 1.f, -1.f );
+ }
+ 
+ /**********************/
+@@ -116,7 +116,7 @@ float2 ndirToOctSigned( float3 n )
+ {
+ 	// Project the sphere onto the octahedron (|x|+|y|+|z| = 1) and then onto the xy-plane
+ 	float2 p = n.xy * ( 1.f / ( abs( n.x ) + abs( n.y ) + abs( n.z ) ) );
+-	return ( n.z < 0.f ) ? octWrap( p ) : p;
++	return select( n.z < 0.f, octWrap( p ), p );
+ }
+ 
+ // Converts a point in the octahedral map to a normalized direction (non-equal area, signed)
+@@ -127,7 +127,7 @@ float3 octToNdirSigned( float2 p )
+ 	// https://twitter.com/Stubbesaurus/status/937994790553227264
+ 	float3 n = float3( p.x, p.y, 1.0 - abs( p.x ) - abs( p.y ) );
+ 	float t = max( 0, -n.z );
+-	n.xy += n.xy >= 0.0 ? -t : t;
++	n.xy += select( n.xy >= 0.0, -t, t );
+ 	return normalize( n );
+ }
+ 
