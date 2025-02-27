@@ -5,7 +5,7 @@
 		<email>GoGoOtaku+Ebuild@gmail.com</email>
 	</maintainer>
 	<upstream>
-		<remote-id type="github">kondrak/vkQuake</remote-id>
+		<remote-id type="github">kondrak/vkQuake2</remote-id>
 		<bugs-to>https://github.com/kondrak/vkQuake/issues</bugs-to>
 	</upstream>
 </pkgmetadata>
