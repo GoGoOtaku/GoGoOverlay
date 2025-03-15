@@ -5,17 +5,24 @@ EAPI=8
 
 inherit font
 
-PHASH="e80e3eba9091dac0655a0a77472e10f53e754bb0"
+if [[ "${PV}" == "20240322" ]]; then
+	PHASH="a029626780dd4af32f15a3e708a5b00528c22f1d"
+fi
 
 DESCRIPTION="Monospaced fonts pre-patched with Powerline symbols"
 HOMEPAGE="https://github.com/powerline/fonts"
 SRC_URI="https://github.com/powerline/fonts/archive/${PHASH}.tar.gz -> ${P}.tar.gz"
 
+# CPMono is arguably CC-BY-3.0 or to be precise CC-BY-3.0-DE
+# but sites list it as all-rights-reserved
+# and even the license in the powerline fonts repo starts with that line.
+# So I decided to stay safe and give it it's own license.
 LICENSE="
 	3270? ( || ( BSD CC-BY-SA-3.0 ) )
 	anonymouspro? ( OFL-1.1 )
 	arimo? ( Apache-2.0 )
 	cousine? ( Apache-2.0 )
+	cpmono? ( CPMono )
 	dejavusansmono? ( BitstreamVera )
 	droidsansmono? ( Apache-2.0 )
 	droidsansmonodotted? ( Apache-2.0 )
@@ -42,7 +49,7 @@ LICENSE="
 	ubuntumono? ( UbuntuFontLicense-1.0 )
 "
 SLOT="0"
-KEYWORDS="amd64 arm ppc ppc64 x86"
+KEYWORDS="~amd64 ~arm ~ppc ~ppc64 ~x86"
 
 # src_install() expects USE flags to be the lowercase basenames of the
 # corresponding font directories. See src_install_font() for details.
@@ -51,6 +58,7 @@ IUSE_FLAGS=(
 	anonymouspro
 	arimo
 	cousine
+	d2coding
 	dejavusansmono
 	droidsansmono
 	droidsansmonodotted
@@ -58,15 +66,13 @@ IUSE_FLAGS=(
 	firamono
 	gomono
 	hack
-	inconsolata-g
 	inconsolata
 	inconsolatadz
+	inconsolata-g
 	liberationmono
 	meslodotted
 	mesloslashed
-	monofur
 	notomono
-	novamono
 	profont
 	robotomono
 	sourcecodepro
@@ -77,17 +83,28 @@ IUSE_FLAGS=(
 	ubuntumono
 )
 
+IUSE_FLAGS_NONFREE=(
+	cpmono
+	monofur
+	novamono
+)
+
+RDEPEND="
+	d2coding? ( media-fonts/d2coding )
+"
+
 # TODO: Add d2coding w/ own ebuild and RDEPEND
-IUSE="${IUSE_FLAGS[*]} +pcf psf bdf"
+IUSE="${IUSE_FLAGS[@]/#/+} ${IUSE_FLAGS_NONFREE[*]} +pcf psf bdf"
 
 # If no such USE flags were enabled, fail.
 REQUIRED_USE="
-	|| ( ${IUSE_FLAGS[*]} )
+	|| ( ${IUSE_FLAGS[*]} ${IUSE_FLAGS_NONFREE[*]} )
 	|| ( pcf psf bdf )
 "
 
 # List of the basenames of all subdirectories containing OTF-formatted fonts.
 OTF_DIRNAMES=(
+	CPMono
 	DroidSansMono
 	FiraMono
 	Inconsolata-g

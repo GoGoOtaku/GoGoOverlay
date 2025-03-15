@@ -16,6 +16,8 @@
 		<flag name="anonymouspro">Install Powerline-patched Anonymous Pro fonts</flag>
 		<flag name="arimo">Install Powerline-patched Arimo fonts</flag>
 		<flag name="cousine">Install Powerline-patched Cousine fonts</flag>
+		<flag name="cpmono">Install Powerline-patched CPMono fonts</flag>
+		<flag name="d2coding">Install D2Coding fonts</flag>
 		<flag name="dejavusansmono">Install Powerline-patched DejaVu Sans Mono fonts</flag>
 		<flag name="droidsansmono">Install Powerline-patched Droid Sans Mono fonts</flag>
 		<flag name="droidsansmonodotted">Install Powerline-patched Droid Sans Mono Dotted fonts</flag>
