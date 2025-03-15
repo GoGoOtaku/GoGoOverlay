@@ -13,6 +13,8 @@ DESCRIPTION="Monospaced fonts pre-patched with Powerline symbols"
 HOMEPAGE="https://github.com/powerline/fonts"
 SRC_URI="https://github.com/powerline/fonts/archive/${PHASH}.tar.gz -> ${P}.tar.gz"
 
+S="${WORKDIR}/fonts-${PHASH}"
+
 # CPMono is arguably CC-BY-3.0 or to be precise CC-BY-3.0-DE
 # but sites list it as all-rights-reserved
 # and even the license in the powerline fonts repo starts with that line.
