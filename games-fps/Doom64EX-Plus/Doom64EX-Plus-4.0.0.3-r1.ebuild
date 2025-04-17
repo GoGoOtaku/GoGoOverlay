@@ -18,8 +18,9 @@ IUSE="man doc"
 
 # Note: Technically media-libs/libsdl2[sound] is also required due to fluidsynth
 # Note: Required sdl3-net is not finalized and so needs to be pegged to unstable
+# Note: Removed audio/video use flags for libsdl3 since gentoo does not have them
 DEPEND="
-	>=media-libs/libsdl3-3.1.3[sound,video]
+	>=media-libs/libsdl3-3.1.3
 	~media-libs/sdl3-net-20241102
 	media-libs/libpng
 	media-sound/fluidsynth[sdl]
