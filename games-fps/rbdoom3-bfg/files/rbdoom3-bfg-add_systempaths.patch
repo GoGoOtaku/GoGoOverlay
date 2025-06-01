@@ -1,0 +1,13 @@
+diff --git a/neo/framework/FileSystem.cpp b/neo/framework/FileSystem.cpp
+index 2fb794b7..e72fd0a1 100644
+--- a/framework/FileSystem.cpp
++++ b/framework/FileSystem.cpp
+@@ -3262,6 +3262,8 @@ idFileSystemLocal::SetupGameDirectories
+ */
+ void idFileSystemLocal::SetupGameDirectories( const char* gameName )
+ {
++    AddGameDirectory( "/usr/share/rbdoom3bfg", gameName );
++    AddGameDirectory( "/usr/local/share/rbdoom3bfg", gameName );
+ 	// setup basepath
+ 	if( fs_basepath.GetString()[0] )
+ 	{
