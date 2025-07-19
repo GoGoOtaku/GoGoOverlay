@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>GoGoOtaku+Ebuild@gmail.com</email>
+	</maintainer>
+	<upstream>
+		<remote-id type="github">dethrace-labs/dethrace</remote-id>
+		<bugs-to>https://github.com/dethrace-labs/dethrace/issues</bugs-to>
+	</upstream>
+	<longdescription>
+		Dethrace is an attempt to learn how the 1997 driving/mayhem game
+		Carmageddon works behind the scenes and rebuild it to run natively
+		on modern systems.
+	</longdescription>
+	<use>
+		<flag name="bugs">Keep bugs from the original game intact.</flag>
+	</use>
+</pkgmetadata>

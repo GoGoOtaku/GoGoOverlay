@@ -1,0 +1,39 @@
+diff --git a/src/S3/CMakeLists.txt b/src/S3/CMakeLists.txt
+index be8843a..cf159be 100644
+--- a/src/S3/CMakeLists.txt
++++ b/src/S3/CMakeLists.txt
+@@ -5,7 +5,7 @@ target_include_directories(s3
+         include
+ )
+ 
+-target_link_libraries(s3 PRIVATE brender SDL2::SDL2 harness compile_with_werror)
++target_link_libraries(s3 PRIVATE BRender::Core SDL2::SDL2 harness compile_with_werror)
+ 
+ if(NOT MSVC)
+     target_link_libraries(s3 PUBLIC pthread m)
+diff --git a/src/harness/CMakeLists.txt b/src/harness/CMakeLists.txt
+index 9349d4b..05f4bcd 100644
+--- a/src/harness/CMakeLists.txt
++++ b/src/harness/CMakeLists.txt
+@@ -19,7 +19,7 @@ if(DETHRACE_FIX_BUGS)
+     target_compile_definitions(harness PRIVATE DETHRACE_FIX_BUGS)
+ endif()
+ 
+-target_link_libraries(harness PRIVATE brender miniaudio stb compile_with_werror)
++target_link_libraries(harness PRIVATE BRender::Core miniaudio stb compile_with_werror)
+ 
+ if(NOT MSVC)
+     target_compile_options(harness PRIVATE
+diff --git a/src/smackw32/CMakeLists.txt b/src/smackw32/CMakeLists.txt
+index 482f1d1..fd3ceee 100644
+--- a/src/smackw32/CMakeLists.txt
++++ b/src/smackw32/CMakeLists.txt
+@@ -7,7 +7,7 @@ target_include_directories(smackw32
+         ${CMAKE_SOURCE_DIR}
+ )
+ 
+-target_link_libraries(smackw32 PRIVATE harness brender libsmacker compile_with_werror)
++target_link_libraries(smackw32 PRIVATE harness BRender::Core libsmacker compile_with_werror)
+ 
+ if(NOT MSVC)
+     add_compile_flags_if_supported(smackw32

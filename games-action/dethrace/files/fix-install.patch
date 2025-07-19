@@ -1,0 +1,23 @@
+diff --git a/src/DETHRACE/CMakeLists.txt b/src/DETHRACE/CMakeLists.txt
+index f44e5bd..deab866 100644
+--- a/src/DETHRACE/CMakeLists.txt
++++ b/src/DETHRACE/CMakeLists.txt
+@@ -198,10 +198,14 @@ if(DETHRACE_IDE_ARGUMENTS)
+ endif()
+ 
+ if(DETHRACE_INSTALL)
+-    install(TARGETS dethrace
+-        BUNDLE DESTINATION . COMPONENT Runtime
+-        RUNTIME DESTINATION . COMPONENT Runtime
+-    )
++    if(LINUX)
++        install(TARGETS dethrace)
++    else()
++        install(TARGETS dethrace
++            BUNDLE DESTINATION . COMPONENT Runtime
++            RUNTIME DESTINATION . COMPONENT Runtime
++        )
++    endif()
+ 
+     if(APPLE)
+         set_target_properties(dethrace PROPERTIES

@@ -1,0 +1,15 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 762e138..c8b349c 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -91,10 +91,6 @@ if(BUILD_TESTS)
+ endif()
+ 
+ if(DETHRACE_INSTALL)
+-    install(FILES LICENSE
+-        DESTINATION "."
+-    )
+-
+     set(DETHRACE_PACKAGE_PLATFORM "" CACHE STRING "Dethrace binary package platform")
+     set(DETHRACE_PACKAGE_ARCH "" CACHE STRING "Dethrace binary package architecture")
+ 
