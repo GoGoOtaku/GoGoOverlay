@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>GoGoOtaku+Ebuild@gmail.com</email>
+	</maintainer>
+	<upstream>
+		<remote-id type="gnome-gitlab">GNOME/msitools</remote-id>
+		<bugs-to>https://gitlab.gnome.org/GNOME/msitools/-/issues</bugs-to>
+	</upstream>
+	<use>
+		<flag name="non-free">Install none free parts that are required for certain UI tasks</flag>
+	</use>
+</pkgmetadata>
