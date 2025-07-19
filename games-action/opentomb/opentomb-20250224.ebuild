@@ -5,7 +5,7 @@ EAPI=8
 
 inherit cmake
 
-HASH="8e4c249c1cd76e3a9f1394670fb1130b4c7ef251"
+HASH="ae7e07af766a48c7e5b5f2d6e14a5fa64e37e20c"
 
 DESCRIPTION="An open-source Tomb Raider 1-5 engine remake"
 HOMEPAGE="http://opentomb.github.io/"
