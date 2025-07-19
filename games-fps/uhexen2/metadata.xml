@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>GoGoOtaku+Ebuild@gmail.com</email>
+	</maintainer>
+	<upstream>
+		<remote-id type="github">sezero/uhexen2</remote-id>
+		<bugs-to>https://github.com/sezero/uhexen2/issues</bugs-to>
+	</upstream>
+	<use>
+		<flag name="client">Build Hexen 2 game executable (Recommended)</flag>
+		<flag name="server">Build Hexen 2 multiplayer server</flag>
+		<flag name="utils">Build Hexen 2 utils for modding and working with data files</flag>
+		<flag name="world">Build Hexenworld executables</flag>
+		<flag name="demo">Build Hexen 2 demo version</flag>
+		<flag name="mpg123">Enable support for MPEG audio playback via media-sound/mpg123</flag>
+		<flag name="soft">Enable support for software rendering</flag>
+		<flag name="tremor">Enable support for OggVorbis via media-libs/tremor</flag>
+		<flag name="umx">Enable support for tracker music via media-libs/libumx</flag>
+		<flag name="wav">Enable wav audio codec for wavetable files</flag>
+		<flag name="wildmidi">Enable support for MIDI files via media-libs/wildmidi</flag>
+	</use>
+</pkgmetadata>
