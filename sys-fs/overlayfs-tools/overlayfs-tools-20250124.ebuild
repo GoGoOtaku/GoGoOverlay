@@ -3,7 +3,11 @@
 
 EAPI=8
 
-PSHA="b5e5a829895ac98ccfe4629fbfbd8b819262bd00"
+inherit meson
+
+if [[ "${PV}" -eq "20250124" ]]; then
+PSHA="6e925bbbe747fbb58bc4a95a646907a2101741f6"
+fi
 
 DESCRIPTION="Maintenance tools for overlay-filesystem"
 HOMEPAGE="https://github.com/kmxz/overlayfs-tools"
@@ -14,7 +18,3 @@ S="${WORKDIR}/${PN}-${PSHA}"
 LICENSE="WTFPL-2"
 SLOT="0"
 KEYWORDS="~amd64"
-
-src_install() {
-	dosbin overlay
-}
