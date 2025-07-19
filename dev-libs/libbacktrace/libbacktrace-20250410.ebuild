@@ -3,18 +3,13 @@
 
 EAPI=8
 
-PHASH="11427f31a64b11583fec94b4c2a265c7dafb1ab3"
+PHASH="793921876c981ce49759114d7bb89bb89b2d3a2d"
 
 DESCRIPTION="C library that may be linked to produce symbolic backtraces"
 HOMEPAGE="https://github.com/ianlancetaylor/libbacktrace"
-SRC_URI="https://github.com/ianlancetaylor/libbacktrace/archive/${PHASH}.zip"
+SRC_URI="https://github.com/ianlancetaylor/libbacktrace/archive/${PHASH}.tar.gz -> ${P}.tar.gz"
+S="${WORKDIR}/libbacktrace-${PHASH}"
 
 LICENSE="BSD"
 SLOT="0"
 KEYWORDS="~amd64"
-
-DEPEND=""
-RDEPEND="${DEPEND}"
-BDEPEND=""
-
-S="${WORKDIR}/libbacktrace-${PHASH}"
