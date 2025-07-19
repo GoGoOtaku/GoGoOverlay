@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>GoGoOtaku+Ebuild@gmail.com</email>
+	</maintainer>
+	<upstream>
+		<remote-id type="github">dethrace-labs/BRender-v1.3.2</remote-id>
+	</upstream>
+	<use>
+		<flag name="drivers">Compile different render backends</flag>
+		<flag name="asan">Enable address sanatization</flag>
+	</use>
+</pkgmetadata>
