@@ -5,19 +5,18 @@ EAPI=7
 
 LIBRETRO_CORE_NAME="mame"
 LIBRETRO_REPO_NAME="libretro/mame"
-LIBRETRO_COMMIT_SHA="1e31f3a77644341e0ff9065aff3bc249fb024978"
+LIBRETRO_COMMIT_SHA="b0dcc353e82871ea53022cc9544fa74af21f1ed5"
 inherit check-reqs libretro-core
 
 DESCRIPTION="MAME (current) for libretro."
 HOMEPAGE="https://github.com/libretro/mame"
-KEYWORDS="~amd64 ~x86"
 
 LICENSE="MAME-GPL"
 SLOT="0"
+KEYWORDS="~amd64 ~x86"
 
-DEPEND=""
-RDEPEND="${DEPEND}
-		games-emulation/libretro-info"
+DEPEND="games-emulation/libretro-info"
+RDEPEND="${DEPEND}"
 
 CHECKREQS_MEMORY="8G" # Debug build requires more
 CHECKREQS_DISK_BUILD="25G" # Debug build requires more
@@ -34,7 +33,6 @@ pkg_setup() {
 src_compile() {
 		myemakeargs=(
 			PTR64=1
-			IGNORE_GIT=1
 			NEW_GIT_VERSION=$(PV)
 		)
 		libretro-core_src_compile

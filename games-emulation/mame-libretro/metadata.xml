@@ -8,7 +8,4 @@
 		<remote-id type="github">libretro/mame</remote-id>
 		<bugs-to>https://github.com/libretro/mame/issues</bugs-to>
 	</upstream>
-	<longdescription>
-		MAME (current) for libretro
-	</longdescription>
 </pkgmetadata>
