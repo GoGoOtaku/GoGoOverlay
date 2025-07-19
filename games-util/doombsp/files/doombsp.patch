@@ -1,0 +1,279 @@
+diff --git a/DoomData.h b/DoomData.h
+index 21ae4b0..21b2fce 100644
+--- a/DoomData.h
++++ b/DoomData.h
+@@ -6,6 +6,8 @@
+ #ifndef __DOOMDATA__
+ #define __DOOMDATA__
+ 
++#include <stdbool.h>
++
+ #ifndef __BYTEBOOL__
+ #define __BYTEBOOL__
+ typedef unsigned char byte;
+diff --git a/Storage.cpp b/Storage.cpp
+index c8f5e51..1e93561 100644
+--- a/Storage.cpp
++++ b/Storage.cpp
+@@ -1,10 +1,10 @@
+ // borrowed from https://github.com/fragglet/DoomEd (Simon Howard)
++#include "Storage.h"
++#include <cstdlib>
+ #include <stdlib.h>
+ #include <string.h>
+ #include <stdio.h>
+ 
+-#include "Storage.h"
+-
+ void Storage::addElement(void *anElement)
+ {
+ 	// Equivalent to insert at the end:
+@@ -78,7 +78,16 @@ void Storage::insertElement(void *anElement, unsigned int index)
+     if ( elements == 0 ) {
+         data = (uint8_t *)malloc(elementSize);
+     } else {
+-        data = (uint8_t *)realloc(data, elementSize * (elements + 1));
++        uint8_t *new_data;
++        new_data = (uint8_t *)realloc(data, elementSize * (elements + 1));
++        if (new_data == NULL)
++            free(data);
++        else
++            data = new_data;
++    }
++
++    if (!data) {
++        exit(EXIT_FAILURE);
+     }
+ 
+ 	memmove(data + elementSize * (index + 1),
+diff --git a/Storage.h b/Storage.h
+index 0eee15e..79078d6 100644
+--- a/Storage.h
++++ b/Storage.h
+@@ -1,6 +1,8 @@
+ #ifndef STORAGE_H
+ #define STORAGE_H
+ 
++#include <stdint.h>
++
+ struct Storage
+ {
+ 	uint8_t *data;
+diff --git a/Wadfile.cpp b/Wadfile.cpp
+index 6e9941b..ca4880b 100644
+--- a/Wadfile.cpp
++++ b/Wadfile.cpp
+@@ -1,3 +1,4 @@
++#include "cmdlib.h"
+ #include "doombsp.h"
+ #include "Wadfile.h"
+ #include <ctype.h>
+@@ -44,6 +45,7 @@ Wadfile * Wadfile::initFromFile(const char *path)
+ 	newWad->handle = open (newWad->pathname, O_RDWR, 0666);
+     if ( newWad->handle == -1 ) {
+         newWad->dealloc();
++        free(newWad);
+         return NULL;
+     }
+ 
+@@ -55,6 +57,7 @@ Wadfile * Wadfile::initFromFile(const char *path)
+ 	{
+ 		close (newWad->handle);
+         newWad->dealloc();
++        free(newWad);
+ 		return NULL;
+ 	}
+ 	wad.numlumps = LONG (wad.numlumps);
+@@ -102,6 +105,7 @@ Wadfile *Wadfile::initNew(const char *path)
+     newWad->handle = open (newWad->pathname, O_CREAT | O_TRUNC | O_RDWR, 0666);
+     if (newWad->handle== -1) {
+         printf("could not open wad handle\n");
++        free(newWad);
+         return NULL;
+     }
+ 
+diff --git a/Wadfile.h b/Wadfile.h
+index 78bd896..0225ff7 100644
+--- a/Wadfile.h
++++ b/Wadfile.h
+@@ -2,16 +2,17 @@
+ #define WADFILE_H
+ 
+ #include "Storage.h"
++#include <stdbool.h>
+ 
+ struct Wadfile
+ {
+-	int		handle; // TODO: use FILE * for better portability
+-	char    *pathname;
+-	Storage *info;
++	int		       handle; // TODO: use FILE * for better portability
++	char           *pathname;
++	struct Storage *info;
+ 	bool	dirty;
+ 
+-    static Wadfile *initFromFile(const char *path);
+-    static Wadfile *initNew(const char *path);
++    static struct Wadfile *initFromFile(const char *path);
++    static struct Wadfile *initNew(const char *path);
+     void closeHandle();
+     void dealloc();
+ 
+diff --git a/buildbsp.cpp b/buildbsp.cpp
+index b7423a5..3058882 100644
+--- a/buildbsp.cpp
++++ b/buildbsp.cpp
+@@ -1,5 +1,7 @@
++#include "cmdlib.h"
+ #include "doombsp.h"
+ #include <SDL2/SDL.h>
++#include <climits>
+ 
+ // I assume that a grid 8 is used for the maps, so a point will be considered
+ // on a line if it is within 8 pixels of it.  The accounts for floating error.
+diff --git a/doombsp.cpp b/doombsp.cpp
+index dc0e229..c87b094 100644
+--- a/doombsp.cpp
++++ b/doombsp.cpp
+@@ -1,5 +1,6 @@
+ // doombsp.c
+ #include "doombsp.h"
++#include "cmdlib.h"
+ 
+ Wadfile *   wad_i;
+ bool		draw;
+diff --git a/doombsp.h b/doombsp.h
+index 0d2309a..3c41c97 100644
+--- a/doombsp.h
++++ b/doombsp.h
+@@ -1,12 +1,9 @@
+ // doombsp.h
+ 
+-#include <SDL2/SDL.h>
+-#include <math.h>
+-#include <limits.h>
+-#include "cmdlib.h"
+ #include "Wadfile.h"
+ #include "DoomData.h"
+ #include "nextstep.h"
++#include <SDL2/SDL.h>
+ 
+ //#define	SHORT(x)	NSSwapLittleShortToHost((short)x)
+ //#define	LONG(x)		NSSwapLittleLongToHost((long)x)
+@@ -78,7 +75,7 @@ typedef	struct
+ 
+ typedef struct bspstruct_s
+ {
+-	Storage				    *lines_i;		// if non NULL, the node is
++	struct Storage				    *lines_i;		// if non NULL, the node is
+ 	divline_t				divline;		// terminal and has no children
+ 	float					bbox[4];
+ 	struct	bspstruct_s		*side[2];
+@@ -101,8 +98,8 @@ typedef struct
+ ===============================================================================
+ */
+ 
+-extern	Wadfile	    *wad_i;
+-extern	bool		draw;
++extern	struct Wadfile	*wad_i;
++extern	bool		    draw;
+ 
+ 
+ /*
+@@ -113,7 +110,7 @@ extern	bool		draw;
+ ===============================================================================
+ */
+ 
+-extern Storage *linestore_i, *thingstore_i;
++extern struct Storage *linestore_i, *thingstore_i;
+ 
+ void LoadDoomMap (char *mapname);
+ 
+@@ -134,7 +131,7 @@ extern	NXRect		worldbounds;
+ 
+ void EraseWindow (void);
+ void DrawMap (void);
+-void DrawLineStore (Storage *lines_i);
++void DrawLineStore (struct Storage *lines_i);
+ void DrawDivLine (divline_t *div);
+ void DrawLineDef (maplinedef_t *ld);
+ void DrawLine(int x1, int y1, int x2, int y2);
+@@ -166,14 +163,14 @@ int	PointOnSide (NXPoint *p, divline_t *l);
+ ===============================================================================
+ */
+ 
+-extern	Storage	*secstore_i;
+-extern	Storage	*mapvertexstore_i;
+-extern	Storage	*subsecstore_i;
+-extern	Storage	*maplinestore_i;
+-extern	Storage	*nodestore_i;
+-extern	Storage	*mapthingstore_i;
+-extern	Storage	*ldefstore_i;
+-extern	Storage	*sdefstore_i;
++extern	struct Storage	*secstore_i;
++extern	struct Storage	*mapvertexstore_i;
++extern	struct Storage	*subsecstore_i;
++extern	struct Storage	*maplinestore_i;
++extern	struct Storage	*nodestore_i;
++extern	struct Storage	*mapthingstore_i;
++extern	struct Storage	*ldefstore_i;
++extern	struct Storage	*sdefstore_i;
+ 
+ void SaveDoomMap (void);
+ 
+diff --git a/doomload.cpp b/doomload.cpp
+index d6f6b69..981a951 100644
+--- a/doomload.cpp
++++ b/doomload.cpp
+@@ -1,4 +1,5 @@
+ // doomload.m
++#include "cmdlib.h"
+ #include "doombsp.h"
+ 
+ 
+diff --git a/drawing.cpp b/drawing.cpp
+index 36fd601..a56194a 100644
+--- a/drawing.cpp
++++ b/drawing.cpp
+@@ -1,4 +1,5 @@
+ // drawing.m
++#include "cmdlib.h"
+ #include "doombsp.h"
+ #include <SDL2/SDL.h>
+ 
+diff --git a/savebsp.cpp b/savebsp.cpp
+index 3174f8d..7be7b84 100644
+--- a/savebsp.cpp
++++ b/savebsp.cpp
+@@ -1,6 +1,8 @@
+ // savebsp.m
+ 
++#include "cmdlib.h"
+ #include "doombsp.h"
++#include <climits>
+ 
+ Storage *secstore_i;
+ Storage *mapvertexstore_i;
+diff --git a/saveconnect.cpp b/saveconnect.cpp
+index 8125316..f08cbca 100644
+--- a/saveconnect.cpp
++++ b/saveconnect.cpp
+@@ -2,6 +2,7 @@
+ 
+ #include "doombsp.h"
+ #include <SDL2/SDL.h>
++#include <climits>
+ 
+ typedef struct
+ {
+diff --git a/savesectors.cpp b/savesectors.cpp
+index 1240e1f..300d7c7 100644
+--- a/savesectors.cpp
++++ b/savesectors.cpp
+@@ -1,5 +1,6 @@
+ // savebsp.m
+ 
++#include "cmdlib.h"
+ #include "doombsp.h"
+ 
+ Storage		*secdefstore_i;

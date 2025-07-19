@@ -1,0 +1,13 @@
+diff --git a/Makefile b/Makefile
+index 159833e..0ba5875 100644
+--- a/Makefile
++++ b/Makefile
+@@ -14,7 +14,7 @@ OBJ=Storage.o 		\
+ 	nextstep.o		\
+ 
+ $(TARGET): $(OBJ)
+-	$(CC) $^ -o $@ -lSDL2
++	$(CC) $^ -o $@ -lSDL2 -lm
+ 
+ %.o: %.cpp
+ 	$(CC) -g -c $< -o $@

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+<maintainer type="person">
+<email>GoGoOtaku@gmail.com</email>
+<name>Ophelia Beatrice de Sica</name>
+</maintainer>
+	<upstream>
+		<remote-id type="github">ZDoom/wadext</remote-id>
+		<bugs-to>https://github.com/ZDoom/wadext/issues</bugs-to>
+	</upstream>
+</pkgmetadata>
