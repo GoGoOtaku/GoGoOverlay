@@ -5,7 +5,7 @@ EAPI=8
 
 DESCRIPTION="The PE library used by pev"
 HOMEPAGE="https://pev.sf.net"
-SRC_URI="https://github.com/mentebinaria/readpe/archive/refs/tags/v${PV}.tar.gz -> ${P}.tar.gz"
+SRC_URI="https://github.com/mentebinaria/readpe/archive/refs/tags/v${PV}.tar.gz -> readpe-${PV}.tar.gz"
 
 S="${WORKDIR}/readpe-${PV}/lib/libpe"
 
