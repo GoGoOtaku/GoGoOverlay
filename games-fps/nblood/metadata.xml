@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>GoGoOtaku+Ebuild@gmail.com</email>
+	</maintainer>
+	<upstream>
+		<remote-id type="github">NBlood/NBlood</remote-id>
+		<bugs-to>https://github.com/NBlood/NBlood/issues</bugs-to>
+	</upstream>
+	<use>
+		<flag name="nblood">Build nblood for playing Blood</flag>
+		<flag name="pcexhumed">Build pcexhumed for playing Exhumed</flag>
+		<flag name="rednukem">Build rednukem for playing various Build Engine games (e.g. Duke3D)</flag>
+		<flag name="voidsw">Build voidsw for playing Shadow Warrior (Classic)</flag>
+		<flag name="etekwar">Build etekwar for playing Shatner's TekWar</flag>
+		<flag name="ewitchaven">Build ewitchaven for playing Witchaven I and II</flag>
+		<flag name="tools">Build tools for debugging and modding</flag>
+		<flag name="force-short-tool-names">Omit "nblood-" prefix from tools</flag>
+		<flag name="server">Add multiplayer support</flag>
+		<flag name="opengl">Build with OpenGL support (Recommended)</flag>
+		<flag name="gtk">Build gtk launcher for nblood, pcexhumed and rednukem</flag>
+		<flag name="clang">Use clang as compiler</flag>
+	</use>
+</pkgmetadata>

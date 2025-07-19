@@ -1,0 +1,29 @@
+diff --git a/source/build/src/clip.cpp b/source/build/src/clip.cpp
+index c7ce570..04d6b97 100644
+--- a/source/build/src/clip.cpp
++++ b/source/build/src/clip.cpp
+@@ -45,6 +45,12 @@ static uint8_t yax_hitscan_ceilmap[bitmap_size(MAXSECTORS)];
+ static uint8_t yax_hitscan_floormap[bitmap_size(MAXSECTORS)];
+ #endif
+ 
++vec2_t hitscangoal = { (1<<29)-1, (1<<29)-1 };
++
++#ifdef USE_OPENGL
++int32_t hitallsprites = 0;
++#endif
++
+ ////// sector-like clipping for sprites //////
+ #ifdef HAVE_CLIPSHAPE_FEATURE
+ void engineSetClipMap(mapinfo_t *bak, mapinfo_t *newmap)
+@@ -82,11 +88,6 @@ static usectortype *loadsector;
+ static uwalltype *loadwall, *loadwallinv;
+ static uspritetype *loadsprite;
+ 
+-vec2_t hitscangoal = { (1<<29)-1, (1<<29)-1 };
+-#ifdef USE_OPENGL
+-int32_t hitallsprites = 0;
+-#endif
+-
+ void engineInitClipMaps()
+ {
+     numclipmaps = 0;
