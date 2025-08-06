@@ -1,0 +1,190 @@
+
+
+		Data Utility License
+
+
+
+This Data Utility License (the "License") describes the only terms by
+which Id Software, Inc., ("Id") a Texas corporation doing business
+at 18601 LBJ Frwy., Suite 615, Mesquite, Texas 75150, authorises the use
+of the Trademark in connection with promoting the distribution of a
+software utility (the "Utility") that manipulates data from the
+registered version of the software game entitled DOOM (the "Program").
+
+"Distribute" means to distribute for money or other consideration or for 
+free. It includes copying onto magnetic disks, CD-ROM's, or any other 
+tangible medium now or subsequently known, and distribution by retail 
+rack, direct mail, catalog, advertisement, or trade show.
+
+The Program is currently distributed by Id, and its authorized licensees, 
+under the trademark DOOM (the "Trademark"). In connection with this
+License, Id will allow Licensee to use certain software code (the
+"Binary Space Partition") in NEXTSTEP Objective C, to be delivered
+"as is" and without warranty, either express or implied.
+
+"You" shall mean the licensee ("Licensee") shown on page 2 hereof,
+
+1) LICENSE: Id Software hereby grants Licensee and Licensee hereby accepts
+a non-exclusive, non-assignable, and non-sublicensable right to use the
+Trademark solely to promote the Utility during the term hereof. Id Software
+hereby grants Licensee and Licensee hereby accepts a non-exclusive,
+non-assignable, and non-sublicensable right to use the Binary Space
+Partition for purposes of developing the Utility.
+
+
+2) OWNERSHIP RIGHTS: You acknowledge that Id owns all right, title, and 
+interest, including all copyrights, trademarks, trade secret rights, in 
+and to the Binary Space Partition and the Program and all elements
+comprising the Binary Space Partition and the Program, including, but not
+limited to, the characters, images, scenes, artwork, events, storyline,
+and sound depicted therein and the routines, subroutines, techniques,
+algorithms, and other such elements, and all right, title, and interest
+including all copyrights, trademarks, and trade secrets in and to the
+Trademark. Except as otherwise licensed by Id in writing, Id reserves all
+right, title and interest to market, sell, and distribute the Program, to
+utilize the Trademark, and to utilize the Binary Space Partition.
+
+
+3) AUTHOR'S DUTIES: You, the author of the Utility, may use the Trademark 
+to promote Distribution of the Utility on a non-exclusive basis and may 
+use the Binary Space Partition to develop the utility during the term of
+this limited License so long as you:
+
+	a) Execute this License and promptly deliver an executed original to Id;
+
+	b) Certify that your Utility doesn't work with the shareware version
+     of the Program;
+
+	c) Do not Distribute the Utility with any other product;
+
+	d) Make distribution copies only using high quality disks and
+     duplication technology and comply with all laws, treaties,
+     ordinances and regulations which relate to the production,
+     marketing and distribution of the Utility; and
+
+	e) Conspicuously place the following on the packaing and in the text
+     for the Utility: "DOOM (tm) is a registered trademark of Id
+     Software, Inc. The DOOM (tm) characters and the Id Software logo
+     are trademarks of Id Software, Inc. DOOM (tm) Copyright (R) 1993.
+     Id Software, Inc. All rights reserved. This utlity product is
+     not a product of Id Software, Inc... and has not been approved by
+     Id Software, Inc. Id Software will not provide technical suport
+     for this product. The purchaser of this utility product may not
+     distribute for money or other consideration any software data
+     created and/or modified by the use ot this utlity product.
+
+
+
+4) RESTRICTIONS ON USE AND ASSIGNABILITY: The reverse engineering, 
+decompiling, disassembling, or modification of the Program is prohibited. 
+You rights under this License are personal to you and are not assignable 
+or in any way transferable. This License shall inure to the benefit of Id 
+and its assigns and successors and Id may assign its rights hereunder. 
+Any Distribution by you or anyone that buys the Utility from you of the 
+data manipulated by the Utility is prohibited.
+
+
+5) NO WARRANTIES: ITS YOUR OBLIGATION TO OBTAIN A COPY OF THE PROGRAM
+AND YOU ACKNOWLEDGE THE PROGRAM IS PROVIDED "AS-IS". NO WARRANTIES OF
+ANY KIND, EITHER EXPRESS OR IMPLIED, ARE MADE AS TO IT, THE BINARY
+SPACE PARTITION OR ANY MEDIUM THEY MAY BE ON. ID WILL PROVIDE NO REMEDY
+FOR INDIRECT, CONSEQUENTIAL, PUNITIVE OR INCIDENTAL DAMAGES ARISING FROM
+THE PROGRAM OR THE BINARY SPACE PARTITION, INCLUDING SUCH FROM NEGLIGENCE,
+STRICT LIABILITY, OF BREACH OF WARRANTY OR CONTRACT, EVEN AFTER NOTICE
+OF THE POSSIBILITY OF SUCH DAMAGES. ID MAKES NO WARRANTIES OF ANY KIND
+UNDER THIS LICENSEE.
+
+
+6) TERM AND TERMINATION: This License shall begin on the date Id Software 
+executes this Licensee, and shall expire two (2) calendar years from the 
+date Id software executes this License. This License shall be 
+automatically extended for successive one (1) calendar year periods 
+beginning on the original expiration date, unless either party hereto 
+terminates this License. This License shall terminate upon 30 days prior 
+written notice by either of us to the other. Termination will be 
+effective on the thiertieth (30th) day following delivery by the
+non-terminating party of the written termination notice. You shall have
+no rights to use the Trademark following termination or expiration of
+this License. Notwithstanding the foregoing, if the License is
+terminated by Id by such notice, you may use the Trademark for
+purposes of marketing the Utility until the earlier of thirty (30)
+days after the termination date in the notice, or completion of the
+distribution of the Utility copies you have in stock. Sections 2, 5, 7 
+will survive the termination or expiration of this license. In the event 
+you breach this License, Id may pursue all remedies against you to which
+it is entitled under applicable law. You agree that your sole and excusive
+remedy for any breach of this License by Id to terminate this Agreement.
+
+7) MISCELLANEOUS PROVISIONS:
+
+a) You agree that Id will be irreparably damaged if Sections 2., 3., or 4.
+of this License are breached by you. In the event of your breach, Id will
+be entitled without bound, other security or proof of damages, to
+appropriate equitable remedies, including but not limited to injunctive
+relief, with respect to breaches of such sections, in addition to such
+other remedies as Id may have under this License of under applicable law.
+In the event of any breach by you of this License, any exercise by Id of
+any of its rights or remedies shall not constitute a waiver by Id of any
+other right or remedy.
+
+
+b) You will hold and agree to hold harmless and indemnify Id, its
+shareholders, officers, directors, attorneys, accountants, affiliates,
+subsidiaries, agents, employees and independent contractors from damage,
+loss and expense, including attorney's fees and costs of court, asrising
+directly or indirectly from your acts and omissions in using the Trademark,
+using the Binary Space Partition or developing, copying, distributing and
+selling the Utility. You agree to promptly notify Id of any unauthorized
+use of the Program or the Binary Space Partition.
+
+c) With respect to every matter arising under this License, you consent to
+the exclusive jurisdiction and venue of the state and federal courts
+sitting in Dallas, Texas, and to service of process by certified mail,
+return receipt requested, or as otherwise permitted by applicable law.
+The laws of the state of Texas and applicable federal law shall govern
+this License.
+
+d) You acknowledge the terms of this License have been freely negotiated
+and the preparation of this License by counsel for any party will not be
+material to the construction hereof. The terms of this License shall not
+be strictly construed against such party and this License represents the
+entire understanding between parties hereto regarding the subject matter
+of this License.
+
+e) You warrant and represent that you have full legal rights and
+authority to enter into this License, and to perform your obligations
+hereunder, and that by entering into this License and performing
+hereunder, you are not in default under any agreement with any third
+party, you are not violating the rights of any third party and you are
+not creating rights in favor of any third party.
+
+f) Unless otherwise directed in writing by the parties hereto, all notices,
+requests, consents and other communications under this License shal be in
+writing and shall be deemed to have been delivered on the date personally
+delivered or on the date deposited in the United States Postal Service,
+postage prepaid, by certified mail, return-receipt requested, or
+telegraphed and confirmed, or delivered by electronic facsimile and
+confirmed. The adresses shown below, unless otherwise directed in
+writing by the parties hereto, shall be the proper adresses for all
+notices.
+
+The undersigned do hereby agree to the terms and conditions of this License.
+
+AGREED:                                     AGREED:
+
+"LICENSEE"                                  ID SOFTWARE, INC.
+__________________________
+
+
+BY:_______________________                  BY:__________________________
+ITS:______________________                  ITS:_________________________
+EXECUTED ON:______________                  EXECUTED:____________________
+ADDRESS:__________________                  ADRESS: 18601 LBJ Frwy.,
+__________________________                          Suite 615
+__________________________                          Mesquite, Texas 75150
+TELEPHONE:________________                  TELEPHONE:___________________
+TELECOPIER:_______________                  TELECOPIER:__________________
+
+
+
+
