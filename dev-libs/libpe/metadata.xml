@@ -5,8 +5,8 @@
 		<email>GoGoOtaku+Ebuild@gmail.com</email>
 	</maintainer>
 	<upstream>
-		<remote-id type="github">merces/libpe</remote-id>
-		<bugs-to>https://github.com/merces/libpe/issues</bugs-to>
-		<doc>https://github.com/merces/pev/wiki</doc>
+		<remote-id type="github">mentebinaria/readpe</remote-id>
+		<bugs-to>https://github.com/mentebinaria/readpe/issues</bugs-to>
+		<doc>https://github.com/mentebinaria/readpe/wiki</doc>
 	</upstream>
 </pkgmetadata>
