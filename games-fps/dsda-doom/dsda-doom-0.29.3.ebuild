@@ -13,15 +13,14 @@ S="${WORKDIR}/${P}/prboom2"
 
 LICENSE="GPL-2+ GPL-3+ BSD BSD-2 BSD-with-disclosure CC-BY-3.0 CC0-1.0 LGPL-2.1+ MIT public-domain"
 SLOT="0"
-KEYWORDS="~amd64 ~arm64 ~x86"
-IUSE="dumb fluidsynth mad portmidi sdl2-image vorbis"
+KEYWORDS="~amd64 ~arm ~x86"
+IUSE="fluidsynth mad portmidi sdl2-image vorbis"
 
 DEPEND="
 	dev-libs/libzip
 	media-libs/libsdl2[opengl,joystick,sound,video]
 	media-libs/sdl2-mixer[midi]
 	sys-libs/zlib
-	dumb? ( media-libs/dumb:= )
 	fluidsynth? ( media-sound/fluidsynth:= )
 	mad? ( media-libs/libmad )
 	portmidi? ( media-libs/portmidi )
@@ -42,7 +41,6 @@ src_configure() {
 		-DWITH_IMAGE="$(usex sdl2-image)"
 		-DWITH_MAD="$(usex mad)"
 		-DWITH_FLUIDSYNTH="$(usex fluidsynth)"
-		-DWITH_DUMB="$(usex dumb)"
 		-DWITH_VORBISFILE="$(usex vorbis)"
 		-DWITH_PORTMIDI="$(usex portmidi)"
 		-DDOOMWADDIR="${EPREFIX}/usr/share/doom"

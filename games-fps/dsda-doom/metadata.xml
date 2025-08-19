@@ -18,7 +18,6 @@
 		<email>GoGoOtaku+Ebuild@gmail.com</email>
 	</maintainer>
 	<use>
-		<flag name="dumb">Enable support for various tracker-style music formats via <pkg>media-libs/dumb</pkg></flag>
 		<flag name="fluidsynth">Enable support for MIDI via <pkg>media-sound/fluidsynth</pkg></flag>
 		<flag name="portmidi">Enable support for MIDI via <pkg>media-libs/portmidi</pkg></flag>
 		<flag name="sdl2-image">Enable support for high-resolution texture support via <pkg>media-libs/sdl2-image</pkg></flag>
