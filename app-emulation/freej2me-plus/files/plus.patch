@@ -1,0 +1,91 @@
+diff --git a/build.xml b/build.xml
+index 5be4077..d25f8fb 100644
+--- a/build.xml
++++ b/build.xml
+@@ -5,9 +5,6 @@
+ *    Class compilation
+ ****************************************************
+ -->
+-	<property name="source.version" value="1.6"/>
+-	<property name="target.version" value="1.6"/>
+-
+ 	<mkdir dir="build/classes"/>
+ 	<mkdir dir="build/classes/org/objectweb"/>
+ 
+@@ -16,8 +13,6 @@
+ 		srcdir="src"
+ 		destdir="build/classes"
+ 		includeantruntime="false"
+-		source="${source.version}"
+-		target="${target.version}"
+ 		bootclasspath="${java.home}/lib/rt.jar"
+ 	>
+ 	<include name="org/objectweb/asm/**"/>
+@@ -30,8 +25,6 @@
+ 		srcdir="src"
+ 		destdir="build/classes"
+ 		includeantruntime="false"
+-		source="${source.version}"
+-		target="${target.version}"
+ 		bootclasspath="${java.home}/lib/rt.jar"
+ 	>
+     <exclude name="org/objectweb/**"/>
+@@ -50,7 +43,7 @@
+ 
+ 	<echo message="Building JAR - AWT" />
+ 	<jar
+-		destfile="build/freej2me.jar">
++		destfile="build/freej2meplus.jar">
+ 		<fileset dir="build/classes" excludes="**/Libretro*.class"/> <!-- Exclude Libretro classes -->
+ 		<fileset dir="resources" />
+ 		<metainf dir="META-INF" />
+@@ -63,7 +56,7 @@
+ 
+ 	<echo message="Building JAR - Libretro" />
+ 	<jar
+-		destfile="build/freej2me-lr.jar">
++		destfile="build/freej2meplus-lr.jar">
+ 		<fileset dir="build/classes" excludes="**/AWTGUI*.class, **/FreeJ2ME*.class, org/recompile/freej2me/ProgressBar.class, **/ScreenShot*.class"/> <!-- Exclude AWT classes (FreeJ2ME.class is only needed for AWT) -->
+ 		<fileset dir="resources" />
+ 		<metainf dir="META-INF" />
+diff --git a/src/libretro/Makefile b/src/libretro/Makefile
+index 58dde04..1be1da9 100644
+--- a/src/libretro/Makefile
++++ b/src/libretro/Makefile
+@@ -31,7 +31,7 @@ endif
+ 
+ 
+ CORE_DIR    += .
+-TARGET_NAME := freej2me
++TARGET_NAME := freej2meplus
+ LIBM		    = -lm
+ 
+ ifeq ($(ARCHFLAGS),)
+diff --git a/src/libretro/freej2me_libretro.c b/src/libretro/freej2me_libretro.c
+index cb06ad4..205a21d 100755
+--- a/src/libretro/freej2me_libretro.c
++++ b/src/libretro/freej2me_libretro.c
+@@ -703,7 +703,7 @@ void retro_init(void)
+ #endif
+ 	params[1] = strdup("-jar");
+ 	params[2] = strdup(supported_encodings[characterEncoding]);
+-	params[3] = strdup("freej2me-lr.jar");
++	params[3] = strdup("freej2meplus-lr.jar");
+ 	params[4] = strdup(resArg[0]);
+ 	params[5] = strdup(resArg[1]);
+ 	params[6] = strdup(rotateArg);
+diff --git a/src/libretro/freej2me_libretro.info b/src/libretro/freej2me_libretro.info
+index 7d5f4ba..4c8adfe 100644
+--- a/src/libretro/freej2me_libretro.info
++++ b/src/libretro/freej2me_libretro.info
+@@ -26,8 +26,8 @@ core_options = "true"
+ 
+ # BIOS / Firmware
+ firmware_count = 1
+-firmware0_desc = "freej2me-lr.jar"
+-firmware0_path = "freej2me-lr.jar"
++firmware0_desc = "freej2meplus-lr.jar"
++firmware0_path = "freej2meplus-lr.jar"
+ firmware0_opt = "false"
+ 
+ description = "A fork of FreeJ2ME with improved compatibility and better libretro support. This core emulates Java ME applications and games for Java-based mobile phones."
