@@ -1,0 +1,113 @@
+diff --git a/tools/CMakeLists.txt b/tools/CMakeLists.txt
+new file mode 100644
+index 0000000..939fb46
+--- /dev/null
++++ b/tools/CMakeLists.txt
+@@ -0,0 +1,35 @@
++# CMakeLists.txt for brender tools
++
++# TODO: asm
++# add_subdirectory(trackmem)
++
++# TODO: dosio.h
++# add_subdirectory(texconv)
++# add_subdirectory(geoconv)
++
++# add_executable(modtest modtest/modtest.c)
++# add_executable(viewpal viewpal/viewpal.c viewpal/brbhook.c)
++# add_executable(timetest timetest/timetest.c)
++# add_executable(paljoin paljoin/paljoin.c)
++# add_executable(mkblend mkblend/mkblend.c)
++# add_executable(testview testview/testview.c)
++add_executable(mkranges mkranges/mkranges.c)
++add_executable(mkshades mkshades/mkshades.c)
++add_executable(dquery dquery/dquery.c)
++add_executable(3ds2br 3ds2br/3ds2br.c)
++add_executable(mkfog mkfog/mkfog.c)
++
++# target_link_libraries( modtest PRIVATE BRender::Full BRender::DDI )
++# target_link_libraries( viewpal PRIVATE BRender::Full BRender::DDI )
++# target_link_libraries( timetest PRIVATE BRender::Full BRender::DDI )
++# target_link_libraries( paljoin PRIVATE BRender::Full BRender::DDI )
++# target_link_libraries( mkblend PRIVATE BRender::Full BRender::DDI )
++# target_link_libraries( testview PRIVATE BRender::Full BRender::DDI )
++target_link_libraries( mkranges PRIVATE BRender::Full BRender::DDI )
++target_link_libraries( mkshades PRIVATE BRender::Full BRender::DDI )
++target_link_libraries( dquery PRIVATE BRender::Full BRender::DDI )
++target_link_libraries( 3ds2br PRIVATE BRender::Full BRender::DDI )
++target_link_libraries( mkfog PRIVATE BRender::Full BRender::DDI )
++
++# target_include_directories( modtest PRIVATE "${CMAKE_SOURCE_DIR}/core/dosio/" )
++
+diff --git a/tools/geoconv/CMakeLists.txt b/tools/geoconv/CMakeLists.txt
+new file mode 100644
+index 0000000..09e2ca9
+--- /dev/null
++++ b/tools/geoconv/CMakeLists.txt
+@@ -0,0 +1,24 @@
++# CMakeLists.txt for geoconv
++
++option(SAVE_3DS "Save 3DS in geoconv" OFF)
++
++set(GEOCONV_INC
++    oldmodel.h
++)
++
++set(GEOCONV_SRC
++    ${GEOCONV_INC}
++    geoconv.c
++    brbhook.c
++    irit.c
++    save_c.c
++)
++
++if(SAVE_3DS)
++    list(APPEND GEOCONV_SRC save3ds.c )
++endif()
++
++add_executable(geoconv ${GEOCONV_SRC})
++target_compile_definitions(geoconv PUBLIC SAVE_3DS=${SAVE_3DS})
++target_link_libraries(geoconv BRender::Full BRender::DDI )
++
+diff --git a/tools/texconv/CMakeLists.txt b/tools/texconv/CMakeLists.txt
+new file mode 100644
+index 0000000..8877174
+--- /dev/null
++++ b/tools/texconv/CMakeLists.txt
+@@ -0,0 +1,36 @@
++# CMakeLists.txt for texconv
++
++set(TEXTCONV_INC
++	texconv.h
++	cla.h
++	convert.h
++	lists.h
++	loadpix.h
++	log.h
++	palquant.h
++	pmaps.h
++	savepix.h
++	savetga.h
++    mip.h
++    quantize.h
++)
++
++set(TEXTCONV_SRC
++    ${TEXTCONV_INC}
++	texconv.c
++	brbhook.c
++	cla.c
++	convert.c
++	lists.c
++	loadpix.c
++	log.c
++	palquant.c
++	pmaps.c
++	savepix.c
++	savetga.c
++    mip.cpp
++)
++
++add_executable(textconv ${TEXTCONV_SRC})
++target_link_libraries(textconv BRender::Full BRender::DDI )
++

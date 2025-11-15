@@ -1,0 +1,13 @@
+diff --git a/core/inc/CMakeLists.txt b/core/inc/CMakeLists.txt
+index 5de9d84..9b9247d 100644
+--- a/core/inc/CMakeLists.txt
++++ b/core/inc/CMakeLists.txt
+@@ -77,7 +77,7 @@ set(INC_FILES
+         transfrm.h
+         v1db_p.h
+         vecfns.h
+-        ${CMAKE_CURRENT_BINARY_DIR}/pretok.h
++        pretok.h
+ 
+         # added by dethrace
+         device_p.h

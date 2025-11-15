@@ -3,8 +3,8 @@
 
 EAPI=8
 
-if [ "${PV}" == "20250617" ]; then
-	PHASH="2bed4578e0ab2168687d2ecf3e366f1c618877f0"
+if [ "${PV}" == "20251001" ]; then
+	PHASH="c0cb594c3e62ab8b62b8fe8602e8269a9702ba27"
 fi
 
 inherit cmake
@@ -27,15 +27,21 @@ DEPEND="
 "
 RDEPEND="${DEPEND}"
 
+PATCHES=(
+	"${FILESDIR}/${P}-fix_pretok_h.patch"
+	"${FILESDIR}/tools.patch"
+)
+
 src_configure() {
 	local mycmakeargs=(
-		-DCMAKE_INSTALL_LIBDIR="$(get_libdir)/BRender-${SLOT}"
-		-DCMAKE_INSTALL_INCLUDEDIR="include/BRender-${SLOT}"
-		-DCMAKE_POSITION_INDEPENDENT_CODE=ON
+		-DBRENDER_ASAN_ENABLED=$(usex asan ON OFF)
 		-DBRENDER_BUILD_DRIVERS=$(usex drivers ON OFF)
 		-DBRENDER_BUILD_EXAMPLES=OFF
+		-DBRENDER_BUILD_TOOLS=OFF
 		-DBRENDER_INSTALL=ON
-		-DBRENDER_ASAN_ENABLED=$(usex asan ON OFF)
+		-DCMAKE_INSTALL_INCLUDEDIR="include/BRender-${SLOT}"
+		-DCMAKE_INSTALL_LIBDIR="$(get_libdir)/BRender-${SLOT}"
+		-DCMAKE_POSITION_INDEPENDENT_CODE=ON
 	)
 
 	cmake_src_configure
