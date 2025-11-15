@@ -5,10 +5,6 @@ EAPI=8
 
 inherit cmake
 
-if [[ ${PV} == "0.8.0" ]]; then
-	BRENDER_HASH="9c34086300f4f0bbb3a55206380f25b17dad6c12"
-fi
-
 DESCRIPTION="Reverse engineered Carmageddon (1997)"
 HOMEPAGE="https://github.com/dethrace-labs/dethrace"
 SRC_URI="https://github.com/dethrace-labs/dethrace/archive/refs/tags/v${PV}.tar.gz -> ${P}.tar.gz"
@@ -30,6 +26,11 @@ PATCHES=(
 
 src_prepare() {
 	cp "${FILESDIR}/brender.cmake" "${S}/lib/BRender-v1.3.2/CMakeLists.txt"
+
+	if use debug; then
+		CMAKE_BUILD_TYPE="Debug"
+		export CMAKE_BUILD_TYPE
+	fi
 
 	eapply_user
 	cmake_src_prepare

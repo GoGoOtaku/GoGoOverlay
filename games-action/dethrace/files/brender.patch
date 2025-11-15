@@ -6,8 +6,8 @@ index be8843a..cf159be 100644
          include
  )
  
--target_link_libraries(s3 PRIVATE brender SDL2::SDL2 harness compile_with_werror)
-+target_link_libraries(s3 PRIVATE BRender::Core SDL2::SDL2 harness compile_with_werror)
+-target_link_libraries(s3 PRIVATE brender harness compile_with_werror)
++target_link_libraries(s3 PRIVATE BRender::Core harness compile_with_werror)
  
  if(NOT MSVC)
      target_link_libraries(s3 PUBLIC pthread m)
@@ -19,8 +19,8 @@ index 9349d4b..05f4bcd 100644
      target_compile_definitions(harness PRIVATE DETHRACE_FIX_BUGS)
  endif()
  
--target_link_libraries(harness PRIVATE brender miniaudio stb compile_with_werror)
-+target_link_libraries(harness PRIVATE BRender::Core miniaudio stb compile_with_werror)
+-target_link_libraries(harness PRIVATE brender miniaudio stb inih compile_with_werror)
++target_link_libraries(harness PRIVATE BRender::Core miniaudio stb inih compile_with_werror)
  
  if(NOT MSVC)
      target_compile_options(harness PRIVATE
