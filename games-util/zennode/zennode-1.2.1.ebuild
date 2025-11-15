@@ -4,10 +4,12 @@
 EAPI=8
 
 DESCRIPTION="A DOOM node/blockmap/reject builder"
-HOMEPAGE="https://www.mrousseau.org/programs/ZenNode/"
-SRC_URI="https://www.mrousseau.org/programs/ZenNode/archives/${P}.zip"
+HOMEPAGE="
+	https://www.mrousseau.org/programs/ZenNode/
+	https://github.com/Doom-Utils/zennode"
+SRC_URI="https://github.com/Doom-Utils/zennode/archive/refs/tags/${PV}.tar.gz -> ${P}.tar.gz"
 
-S="${WORKDIR}/src/ZenNode"
+S="${WORKDIR}/${P}/ZenNode"
 
 LICENSE="GPL-2+"
 SLOT="0"
@@ -15,17 +17,10 @@ KEYWORDS="~amd64"
 
 BDEPEND="app-arch/unzip"
 
-src_unpack() {
-	unpack "${P}.zip"
-	mv "${WORKDIR}/ZenNode-${PV}/zennode-src.zip" "${WORKDIR}"
-	unpack "${WORKDIR}/zennode-src.zip"
-	rm -rf "${WORKDIR}/ZenNode-${PV}"
-}
-
 src_install() {
 	dobin "${S}/ZenNode"
 
-	newbin "${S}/bspinfo ZenNodeBSPInfo"
-	newbin "${S}/bspdiff ZenNodeBSPDiff"
-	newbin "${S}/compare ZenNodeCompare"
+	newbin "${S}/bspinfo" ZenNodeBSPInfo
+	newbin "${S}/bspdiff" ZenNodeBSPDiff
+	newbin "${S}/compare" ZenNodeCompare
 }
