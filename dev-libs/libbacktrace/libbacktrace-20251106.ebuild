@@ -3,7 +3,7 @@
 
 EAPI=8
 
-PHASH="793921876c981ce49759114d7bb89bb89b2d3a2d"
+PHASH="b9e40069c0b47a722286b94eb5231f7f05c08713"
 
 DESCRIPTION="C library that may be linked to produce symbolic backtraces"
 HOMEPAGE="https://github.com/ianlancetaylor/libbacktrace"
