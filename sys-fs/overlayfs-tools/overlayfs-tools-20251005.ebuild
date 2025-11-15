@@ -5,8 +5,8 @@ EAPI=8
 
 inherit meson
 
-if [[ "${PV}" -eq "20250124" ]]; then
-PSHA="6e925bbbe747fbb58bc4a95a646907a2101741f6"
+if [[ "${PV}" -eq "20251005" ]]; then
+PSHA="1ccb44553f850913c7b89a64d2572f07df3ddbf9"
 fi
 
 DESCRIPTION="Maintenance tools for overlay-filesystem"
