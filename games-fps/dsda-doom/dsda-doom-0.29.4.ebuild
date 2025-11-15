@@ -29,8 +29,6 @@ DEPEND="
 RDEPEND="${DEPEND}"
 
 src_prepare() {
-	eapply "${FILESDIR}/${PN}-docdir.patch"
-
 	rm cmake/FindLibMad.cmake
 	cp "${FILESDIR}/FindLibMad.cmake" cmake/
 	cmake_src_prepare
@@ -45,6 +43,7 @@ src_configure() {
 		-DWITH_PORTMIDI="$(usex portmidi)"
 		-DDOOMWADDIR="${EPREFIX}/usr/share/doom"
 		-DWAD_DATA_PATH="${EPREFIX}/usr/share/doom"
+		-DDSDA_INSTALL_COPYRIGHT_DIR="${EPREFIX}/usr/share/doc/${P}"
 	)
 	cmake_src_configure
 }
