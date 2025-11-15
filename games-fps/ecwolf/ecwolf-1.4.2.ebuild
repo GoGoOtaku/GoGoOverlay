@@ -12,7 +12,7 @@ if [[ ${PV} != "9999" ]] ; then
 	KEYWORDS="amd64 x86"
 	SRC_URI="https://bitbucket.org/ecwolf/ecwolf/get/${PV}.tar.gz -> ${P}.tar.gz"
 
-	S="${WORKDIR}/ecwolf-ecwolf-8cf8d23a6da3"
+	S="${WORKDIR}/ecwolf-ecwolf-ca1143ef0088"
 else
 	inherit git-r3
 	EGIT_REPO_URI="https://bitbucket.org/ecwolf/${PN}.git"
