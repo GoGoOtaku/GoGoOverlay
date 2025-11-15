@@ -9,4 +9,8 @@
 	<remote-id type="github">dimtpap/coppwr</remote-id>
 	<remote-id type="freedesktop-gitlab">dimtpap/pipewire-rs</remote-id>
 </upstream>
+<use>
+	<flag name="persistence">Build with persistent window state bewteen launches</flag>
+	<flag name="desktop-portal">Build <pkg>sys-apps/xdg-desktop-portal</pkg> support</flag>
+</use>
 </pkgmetadata>

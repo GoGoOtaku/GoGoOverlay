@@ -6,6 +6,7 @@
 EAPI=8
 
 CRATES=""
+RUST_MIN_VER="1.85.0"
 
 inherit cargo desktop xdg-utils
 
@@ -21,17 +22,34 @@ LICENSE="GPL-3"
 # Dependent crate licenses
 LICENSE+="
 	Apache-2.0 Apache-2.0-with-LLVM-exceptions BSD-2 BSD Boost-1.0
-	CC0-1.0 ISC MIT OFL-1.1 UbuntuFontLicense-1.0 Unicode-DFS-2016 ZLIB
+	CC0-1.0 ISC MIT OFL-1.1 UbuntuFontLicense-1.0 Unicode-3.0 ZLIB
 "
 SLOT="0"
 KEYWORDS="~amd64"
+IUSE="+persistence +desktop-portal"
 
 RESTRICT="mirror"
 
 DEPEND="
 	media-video/pipewire
+	desktop-portal? ( sys-apps/xdg-desktop-portal )
 	"
 RDEPEND="${DEPEND}"
+
+src_prepare() {
+	mkdir "${S}/.cargo"
+	cp -f "${FILESDIR}/${P}-config.toml" "${S}/.cargo/config.toml"
+
+	eapply_user
+}
+
+src_configure() {
+	local myfeatures=(
+		$(usev persistence)
+		$(usev desktop-portal xdg_desktop_portals)
+	)
+	cargo_src_configure
+}
 
 src_install(){
 	domenu assets/io.github.dimtpap.coppwr.desktop
@@ -39,7 +57,9 @@ src_install(){
 		newicon -s ${size} assets/icon/${size}.png io.github.dimtpap.coppwr.png
 	done
 	newicon -s scalable assets/icon/scalable.svg io.github.dimtpap.coppwr.svg
-	cargo_src_install
+	# Manually install as cargo_src_install crashes
+	# due to git dependencies
+	dobin "${S}/target/release/coppwr"
 }
 
 pkg_postinst(){
