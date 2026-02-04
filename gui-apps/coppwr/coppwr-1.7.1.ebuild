@@ -8,6 +8,15 @@ EAPI=8
 CRATES=""
 RUST_MIN_VER="1.85.0"
 
+
+declare -A GIT_CRATES=(
+	[egui-snarl]='https://github.com/dimtpap/egui-snarl;a0b529e23131fc5c00d995c479047557be646bb3;egui-snarl-%commit%'
+	[libspa-sys]='https://gitlab.freedesktop.org/dimtpap/pipewire-rs;bc3f3ddcf1d61083257f5f04b800c5a411fc2c4d;pipewire-rs-%commit%/libspa-sys'
+	[libspa]='https://gitlab.freedesktop.org/dimtpap/pipewire-rs;bc3f3ddcf1d61083257f5f04b800c5a411fc2c4d;pipewire-rs-%commit%/libspa'
+	[pipewire-sys]='https://gitlab.freedesktop.org/dimtpap/pipewire-rs;bc3f3ddcf1d61083257f5f04b800c5a411fc2c4d;pipewire-rs-%commit%/pipewire-sys'
+	[pipewire]='https://gitlab.freedesktop.org/dimtpap/pipewire-rs;bc3f3ddcf1d61083257f5f04b800c5a411fc2c4d;pipewire-rs-%commit%/pipewire'
+)
+
 inherit cargo desktop xdg-utils
 
 DESCRIPTION="Low level control GUI for the PipeWire multimedia server"
@@ -26,7 +35,7 @@ LICENSE+="
 "
 SLOT="0"
 KEYWORDS="~amd64"
-IUSE="+persistence +desktop-portal"
+IUSE="persistence +desktop-portal"
 
 RESTRICT="mirror"
 
@@ -35,13 +44,6 @@ DEPEND="
 	desktop-portal? ( sys-apps/xdg-desktop-portal )
 	"
 RDEPEND="${DEPEND}"
-
-src_prepare() {
-	mkdir "${S}/.cargo"
-	cp -f "${FILESDIR}/${P}-config.toml" "${S}/.cargo/config.toml"
-
-	eapply_user
-}
 
 src_configure() {
 	local myfeatures=(
