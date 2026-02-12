@@ -25,7 +25,7 @@ BDEPEND="dev-java/ant"
 JAVA_PKG_FORCE_VM="openjdk-bin-8"
 
 src_prepare() {
-	eapply "${FILESDIR}/plus.patch"
+	eapply "${FILESDIR}/${P}_plus.patch"
 	eapply_user
 }
 
@@ -40,20 +40,20 @@ src_compile() {
 }
 
 src_install() {
-	java-pkg_dojar "${S}/build/freej2meplus.jar"
+	java-pkg_dojar "${S}/build/freej2me-plus.jar"
 
 	if use libretro; then
-		java-pkg_dojar "${S}/build/freej2meplus-lr.jar"
+		java-pkg_dojar "${S}/build/freej2me-plus-lr.jar"
 
 		insinto "/usr/$(get_libdir)/libretro/"
-		doins "${S}/src/libretro/freej2meplus_libretro.so"
-		fperms 644 "/usr/$(get_libdir)/libretro/freej2meplus_libretro.so"
+		doins "${S}/src/libretro/freej2me-plus_libretro.so"
+		fperms 644 "/usr/$(get_libdir)/libretro/freej2me-plus_libretro.so"
 
 		insinto /usr/share/libretro/info
-		newins "${S}/src/libretro/freej2me_libretro.info" "freej2meplus_libretro.info"
+		newins "${S}/src/libretro/freej2me_libretro.info" "freej2me-plus_libretro.info"
 	fi
 
-	make_desktop_entry "env JAVA_HOME=$(java-config --select-vm openjdk-bin-8 --jdk-home) java -jar /usr/share/freej2me-plus/lib/freej2meplus.jar" "FreeJ2ME-Plus" "freej2meplus" "Game"
+	make_desktop_entry "env JAVA_HOME=$(java-config --select-vm openjdk-bin-8 --jdk-home) java -jar /usr/share/freej2me-plus/lib/freej2me-plus.jar" "FreeJ2ME-Plus" "freej2me-plus" "Game"
 }
 
 pkg_postinst() {
