@@ -5,8 +5,8 @@ EAPI=8
 
 inherit cmake
 
-if [[ "${PV}" == "20250825" ]]; then
-	PH="b18f91a906099ed4bd3976cc24b5db50ef9ac492"
+if [[ "${PV}" == "20260125" ]]; then
+	PH="9c9da268908cf761a3a875bd28a087389a21d215"
 fi
 
 DESCRIPTION="Ports of Keen Dreams, the 3D Catacomb games and Wolfenstein 3D"
