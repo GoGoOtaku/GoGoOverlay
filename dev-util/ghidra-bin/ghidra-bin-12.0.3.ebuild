@@ -5,7 +5,7 @@ EAPI=8
 
 inherit desktop
 
-PD="20250826"
+PD="20260210"
 
 DESCRIPTION="Ghidra is a software reverse engineering (SRE) framework"
 HOMEPAGE="https://ghidra-sre.org"
