@@ -1,0 +1,25 @@
+diff --git a/game/q_shared.h b/game/q_shared.h
+index 937ebbe..7243d2f 100644
+--- a/game/q_shared.h
++++ b/game/q_shared.h
+@@ -39,6 +39,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ #include <string.h>
+ #include <stdlib.h>
+ #include <time.h>
++#include <stdbool.h>
+ 
+ #if (defined _M_IX86 || defined __i386__) && !defined C_ONLY && !defined __sun__
+ #define id386	1
+@@ -60,7 +61,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ #endif
+ 
+ typedef unsigned char 		byte;
+-typedef enum {false, true}	qboolean;
++#if __STDC_VERSION__ < 202311L
++typedef enum{false,true}    qboolean;
++#else
++typedef bool	            qboolean;
++#endif
+ 
+ 
+ #ifndef NULL

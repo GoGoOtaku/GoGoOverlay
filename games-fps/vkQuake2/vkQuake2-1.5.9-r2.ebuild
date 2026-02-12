@@ -3,6 +3,8 @@
 
 EAPI=8
 
+inherit flag-o-matic
+
 DESCRIPTION="id Software's Quake 2 v3.21 with mission packs and Vulkan support"
 HOMEPAGE="https://github.com/kondrak/vkQuake2"
 SRC_URI="https://github.com/kondrak/vkQuake2/archive/refs/tags/${PV}.tar.gz -> ${P}.tar.gz"
@@ -29,6 +31,7 @@ RDEPEND="${DEPEND}"
 
 src_prepare() {
 	eapply "${FILESDIR}/${P}-vkref_include_cstdio.patch"
+	eapply "${FILESDIR}/${PN}-stdc23.patch"
 	S="${S}/linux"
 	eapply_user
 }
