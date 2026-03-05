@@ -3,8 +3,6 @@
 
 EAPI=8
 
-inherit flag-o-matic
-
 DESCRIPTION="id Software's Quake 2 v3.21 with mission packs and Vulkan support"
 HOMEPAGE="https://github.com/kondrak/vkQuake2"
 SRC_URI="https://github.com/kondrak/vkQuake2/archive/refs/tags/${PV}.tar.gz -> ${P}.tar.gz"
@@ -19,7 +17,8 @@ DEPEND="
 	media-libs/alsa-lib
 	media-libs/libglvnd
 	media-libs/mesa[vulkan]
-	media-libs/vulkan-loader[layers]
+	media-libs/vulkan-layers
+	media-libs/vulkan-loader
 	virtual/glu
 	x11-libs/libX11
 	x11-libs/libXext
