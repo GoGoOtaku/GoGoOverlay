@@ -29,9 +29,7 @@ src_install() {
 	default
 	distutils-r1_src_install
 
-	dodoc "${S}/commands.md"
-	dodoc "${S}/comparision.md"
-	dodoc "${S}/documentation.md"
+	dodoc -r "${S}/docs"
 }
 
 # python_test() {
