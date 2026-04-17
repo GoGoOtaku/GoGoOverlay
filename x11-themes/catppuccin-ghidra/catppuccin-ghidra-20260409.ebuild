@@ -3,7 +3,9 @@
 
 EAPI=8
 
-PH="bed0999f96ee9869ed25e0f1439bef5eff341e22"
+if [[ "$PV" = "20260409" ]]; then
+	PH="f856eb1fd4d265776d1d3cd1e65573188a431ea3"
+fi
 
 DESCRIPTION="Soothing pastel theme for Ghidra"
 HOMEPAGE="https://github.com/catppuccin/ghidra"
