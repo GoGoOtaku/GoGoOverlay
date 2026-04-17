@@ -5,7 +5,7 @@ EAPI=8
 
 inherit meson
 
-if [[ "${PV}" -eq "20260409" ]]; then
+if [[ "${PV}" -eq "20260415" ]]; then
 PSHA="11ed6b4776bb9c68cf76652321e754c19549b58a"
 fi
 
