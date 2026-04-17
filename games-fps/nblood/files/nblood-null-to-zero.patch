@@ -1,0 +1,13 @@
+diff --git a/source/witchaven/src/player.cpp b/source/witchaven/src/player.cpp
+index daab40dce..0358fb26d 100644
+--- a/source/witchaven/src/player.cpp
++++ b/source/witchaven/src/player.cpp
+@@ -1889,7 +1889,7 @@ void drawweapons(Player* plr)
+             dax = lefthandanimtics[plr->currweapon][plr->currweaponanim].currx;
+             day = lefthandanimtics[plr->currweapon][plr->currweaponanim].curry + 8;
+         }
+-        if (plr->currweapon == 0 && currweaponframe != NULL)
++        if (plr->currweapon == 0 && currweaponframe != 0)
+         {
+             if (dahand == 1)
+                 overwritesprite(dax, day, currweaponframe, dashade, dabits, dapalnum);

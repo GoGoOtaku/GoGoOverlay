@@ -44,6 +44,7 @@ DEPEND="
 RDEPEND="${DEPEND}"
 
 PATCHES=(
+	"${FILESDIR}/nblood-null-to-zero.patch"
 	"${FILESDIR}/no_clip_shape.patch"
 )
 
