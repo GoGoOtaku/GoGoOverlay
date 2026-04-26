@@ -3,8 +3,8 @@
 
 EAPI=8
 
-if [ "${PV}" == "20260125" ]; then
-	PHASH="243402396af4122a0784be3450d650143e363f4d"
+if [ "${PV}" == "20260408" ]; then
+	PHASH="e4e390a972396f47dc4baeb8bc5f90f20e1f2978"
 fi
 
 inherit cmake
@@ -28,7 +28,7 @@ DEPEND="
 RDEPEND="${DEPEND}"
 
 PATCHES=(
-	"${FILESDIR}/${P}-fix_pretok_h.patch"
+	"${FILESDIR}/${PN}-fix_pretok_h.patch"
 	"${FILESDIR}/tools.patch"
 )
 
