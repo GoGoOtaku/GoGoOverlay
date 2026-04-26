@@ -3,8 +3,8 @@
 
 EAPI=8
 
-if [[ ${PV} == "20231017" ]] ; then
-	PHASH="eb1f22e6093bc95cc93756fb905180d01c28656b"
+if [[ ${PV} == "20260419" ]] ; then
+	PHASH="b7a26b46773996130a602b9ac7ac2ebeae5c0b11"
 fi
 
 DESCRIPTION="Apple 2e emulator"
@@ -22,13 +22,21 @@ DEPEND="
 	media-libs/libsdl
 	media-libs/sdl-image
 	net-misc/curl
-	sys-libs/zlib
+	virtual/zlib
 	x11-libs/libX11
 "
 RDEPEND="${DEPEND}"
 
 src_install() {
-	emake DESTDIR="${D}" BINDIR="/usr/bin" DATADIR="/usr/share/linapple" install
+	dobin "${S}/build/bin/linapple"
+
+	insinto "/usr/share/linapple"
+	doins "${S}/build/share/linapple/Master.dsk"
+	doins "${S}/build/bin/APPLE2E.SYM"
+	doins "${S}/build/bin/A2_BASIC.SYM"
+
+	insinto "/etc/linapple"
+	doins "${S}/build/etc/linapple/linapple.conf"
 
 	einstalldocs
 }
