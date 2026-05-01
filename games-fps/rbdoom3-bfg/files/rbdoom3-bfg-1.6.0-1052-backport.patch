@@ -1,0 +1,139 @@
+diff --git a/neo/renderer/Cinematic.cpp b/neo/renderer/Cinematic.cpp
+index 842d492065..dd50841c11 100644
+--- a/renderer/Cinematic.cpp
++++ b/renderer/Cinematic.cpp
+@@ -861,9 +861,12 @@ void idCinematicLocal::FFMPEGReset()
+ 	// SRS - Special handling for RoQ files: only byte seek works and ffmpeg RoQ decoder needs reset
+ 	else if( dec_ctx->codec_id == AV_CODEC_ID_ROQ && av_seek_frame( fmt_ctx, video_stream_index, 0, AVSEEK_FLAG_BYTE ) >= 0 )
+ 	{
++#if LIBAVCODEC_VERSION_MAJOR <= 61
+ 		// Close and reopen the ffmpeg RoQ codec without clearing the context - this seems to reset the decoder properly
++		// Note avcodec_close( dec_ctx ) is deprecated and removed as of ffmpeg version 8 or LIBAVCODEC_VERSION_MAJOR 62
+ 		avcodec_close( dec_ctx );
+ 		avcodec_open2( dec_ctx, dec, NULL );
++#endif
+ 
+ 		status = FMV_LOOPED;
+ 	}
+
+diff --git a/neo/sys/sdl/sdl_events.cpp b/neo/sys/sdl/sdl_events.cpp
+index 79f2ba0df5..32acf1f686 100644
+--- a/sys/sdl/sdl_events.cpp
++++ b/sys/sdl/sdl_events.cpp
+@@ -511,12 +511,11 @@ sysEvent_t Sys_GetEvent()
+ 						SDL_Window* window = SDL_GetWindowFromID( ev.window.windowID );
+ 						if( !renderSystem->IsFullScreen() && !( SDL_GetWindowFlags( window ) & SDL_WINDOW_MAXIMIZED ) )
+ 						{
+-							// SRS - take window border into account when when saving window position cvars
+-							int topBorder, leftBorder, bottomBorder, rightBorder;
+-							SDL_Window* window = SDL_GetWindowFromID( ev.window.windowID );
+-							SDL_GetWindowBordersSize( window, &topBorder, &leftBorder, &bottomBorder, &rightBorder );
+-							r_windowX.SetInteger( x - leftBorder );
+-							r_windowY.SetInteger( y - topBorder );
++							// SRS - don't take window border into account when when saving window position cvars
++							//     - border policies are different across window managers and sdl2 vs. sdl2-compat
++							//     - window position may creep on restore, but too many differences so just *KISS*
++							r_windowX.SetInteger( x );
++							r_windowY.SetInteger( y );
+ 						}
+ 						break;
+ 					}
+diff --git a/neo/sys/sdl/sdl_vkimp.cpp b/neo/sys/sdl/sdl_vkimp.cpp
+old mode 100755
+new mode 100644
+index 38359533f6..20aa6b238b
+--- a/sys/sdl/sdl_vkimp.cpp
++++ b/sys/sdl/sdl_vkimp.cpp
+@@ -302,7 +302,8 @@ bool VKimp_Init( glimpParms_t parms )
+ 	}
+ 	else if( parms.fullScreen == -2 )
+ 	{
+-		// SRS - Switch into borderless fullscreen mode after window creation
++		// SRS - Maximize window and switch into borderless fullscreen mode after window creation
++		SDL_MaximizeWindow( window );
+ 		if( SDL_SetWindowFullscreen( window, SDL_WINDOW_FULLSCREEN_DESKTOP ) < 0 )
+ 		{
+ 			common->Warning( "Couldn't switch to borderless fullscreen mode, reason: %s", SDL_GetError() );
+@@ -364,12 +365,7 @@ static int ScreenParmsHandleDisplayIndex( glimpParms_t parms )
+ 	}
+ 
+ 	// SRS - For reliable operation on all SDL2 platforms, restore window before monitor or mode switching
+-	if( SDL_GetWindowFlags( window ) & SDL_WINDOW_MAXIMIZED )
+-	{
+-		// if window is maximized but want to switch to another monitor
+-		// we have to restore first to move the window.. SDL-oddity.
+-		SDL_RestoreWindow( window );
+-	}
++	SDL_RestoreWindow( window );
+ 
+ 	int displayIdx = GetDisplayIndex( parms );
+ 
+@@ -382,7 +378,8 @@ static int ScreenParmsHandleDisplayIndex( glimpParms_t parms )
+ 			return displayIdx;
+ 		}
+ 
+-		if( parms.fullScreen != glConfig.isFullscreen )
++		// SRS - if selected display is different than current display, move window prior to fullscreen
++		if( displayIdx != SDL_GetWindowDisplayIndex( window ) )
+ 		{
+ 			// select display ; SDL_WINDOWPOS_UNDEFINED_DISPLAY() doesn't work.
+ 			int windowPos = SDL_WINDOWPOS_CENTERED_DISPLAY( displayIdx );
+@@ -435,7 +432,7 @@ static bool SetScreenParmsFullscreen( glimpParms_t parms )
+ 			return false;
+ 		}
+ 
+-		// SRS - Move to fullscreen mode
++		// SRS - Switch into fullscreen mode
+ 		if( SDL_SetWindowFullscreen( window, SDL_WINDOW_FULLSCREEN ) < 0 )
+ 		{
+ 			common->Warning( "Couldn't switch to fullscreen mode, reason: %s", SDL_GetError() );
+@@ -444,7 +441,8 @@ static bool SetScreenParmsFullscreen( glimpParms_t parms )
+ 	}
+ 	else // -2 == use current display for borderless fullscreen
+ 	{
+-		// SRS - Move to borderless fullscreen mode
++		// SRS - Maximize window and switch into borderless fullscreen mode
++		SDL_MaximizeWindow( window );
+ 		if( SDL_SetWindowFullscreen( window, SDL_WINDOW_FULLSCREEN_DESKTOP ) < 0 )
+ 		{
+ 			common->Warning( "Couldn't switch to borderless fullscreen mode, reason: %s", SDL_GetError() );
+@@ -480,11 +478,8 @@ static bool SetScreenParmsWindowed( glimpParms_t parms )
+ 		}
+ 	}
+ 
+-	// if window is maximized, restore it to normal before setting size
+-	if( SDL_GetWindowFlags( window ) & SDL_WINDOW_MAXIMIZED )
+-	{
+-		SDL_RestoreWindow( window );
+-	}
++	// restore window before setting new size and position
++	SDL_RestoreWindow( window );
+ 
+ 	// set window to bordered or borderless based on parms
+ 	SDL_SetWindowBordered( window, parms.fullScreen == 0 ? SDL_TRUE : SDL_FALSE );
+
+diff --git a/neo/sys/sdl/sdl_events.cpp b/neo/sys/sdl/sdl_events.cpp
+index 32acf1f686..573505b212 100644
+--- a/sys/sdl/sdl_events.cpp
++++ b/sys/sdl/sdl_events.cpp
+@@ -807,13 +807,19 @@ sysEvent_t Sys_GetEvent()
+ 				continue; // just handle next event
+ 
+ 			// Avoid 'unknown event' spam
++			case SDL_DISPLAYEVENT:
+ 			case SDL_TEXTEDITING:
+ 			case SDL_KEYMAPCHANGED:
+ 			case SDL_CLIPBOARDUPDATE:
+ 				continue; // just handle next event
+ 
+ 			default:
+-				common->Warning( "unknown event %u = %#x", ev.type, ev.type );
++				// SRS - Suppress warnings for redundant SDL3 display / window events leaking in from sdl2-compat
++				//     - This is likely a defect in sdl2-compat but suppress since unknown event spam is annoying
++				if( !( ev.type > SDL_DISPLAYEVENT && ev.type < SDL_WINDOWEVENT ) && !( ev.type > SDL_SYSWMEVENT && ev.type < SDL_KEYDOWN ) )
++				{
++					common->Warning( "unknown event %u = %#x", ev.type, ev.type );
++				}
+ 				continue; // just handle next event
+ 		}
+ 	}

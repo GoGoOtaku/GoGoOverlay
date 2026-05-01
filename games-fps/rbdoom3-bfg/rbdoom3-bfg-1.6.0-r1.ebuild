@@ -60,7 +60,7 @@ DEPEND="
 	ffmpeg? ( media-video/ffmpeg )
 
 	system-rapidjson? ( dev-libs/rapidjson )
-	system-zlib? ( sys-libs/zlib )
+	system-zlib? ( virtual/zlib )
 
 	dev-util/DirectXShaderCompiler
 "
@@ -83,6 +83,10 @@ PATCHES=(
 	"${FILESDIR}/${PN}-add_systempaths.patch"
 
 	"${FILESDIR}/${P}-fixes.patch"
+
+	# Backport fix for issues with SDL2 and FFMPEG 8
+	# https://github.com/RobertBeckebans/RBDOOM-3-BFG/pull/1052
+	"${FILESDIR}/${P}-1052-backport.patch"
 )
 
 src_unpack() {
@@ -186,7 +190,7 @@ pkg_postinst() {
 		einfo "In it's current state PCH is not fully compatible with march and mtune"
 	fi
 
-	if !use prebaked; then
+	if ! use prebaked; then
 		ewarn "Not using prebaked content! This is NOT recommended!"
 	fi
 
