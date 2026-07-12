@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit cmake
+inherit cmake desktop
 
 DESCRIPTION="Reverse engineered Carmageddon (1997)"
 HOMEPAGE="https://github.com/dethrace-labs/dethrace"
@@ -19,6 +19,9 @@ DEPEND="media-libs/libsdl2"
 RDEPEND="${DEPEND}"
 
 PATCHES=(
+	"${FILESDIR}/harness.patch"
+	"${FILESDIR}/fixes.patch"
+
 	"${FILESDIR}/brender.patch"
 	"${FILESDIR}/fix-install.patch"
 	"${FILESDIR}/no-license.patch"
@@ -44,7 +47,32 @@ src_configure() {
 		-DDETHRACE_INSTALL=ON
 		-DDETHRACE_WERROR=ON
 		-DDETHRACE_FIX_BUGS=$(usex bugs OFF ON)
+		-DDETHRACE_3DFX_PATCH=ON
+		-DDETHRACE_SOUND_ENABLED=ON
+		-DDETHRACE_NET_ENABLED=ON
+		-DDETHRACE_PLATFORM_SDL1=ON
+		-DDETHRACE_PLATFORM_SDL2=ON
+		-DDETHRACE_PLATFORM_SDL3=ON
 		-DBUILD_TESTS=$(usex test ON OFF)
+		-DDETHRACE_ASAN=ON
 	)
 	cmake_src_configure
+}
+
+src_install() {
+	cmake_src_install
+
+	newicon "${S}/packaging/icon_source.png" dethrace.png
+
+	local entryargs=(
+		dethrace
+		Dethrace
+		dethrace
+		"Game;Action;Simulator"
+		Comment="Reverse engineering the 1997 game \"Carmageddon\""
+	)
+	make_desktop_entry ${entryargs}
+
+	insinto /usr/share/dethrace
+	doins "${FILESDIR}/dethrace.ini"
 }

@@ -1,0 +1,137 @@
+diff --git a/src/DETHRACE/common/crush.c b/src/DETHRACE/common/crush.c
+index b43c912..17c4e36 100644
+--- a/src/DETHRACE/common/crush.c
++++ b/src/DETHRACE/common/crush.c
+@@ -1292,7 +1292,7 @@ void DoWheelDamage(tU32 pFrame_period) {
+     tCar_spec* car;
+     br_scalar y_amount;
+     br_scalar z_amount;
+-    br_scalar wheel_circum;
++    br_scalar wheel_circum = 0;
+     br_scalar old_offset;
+     br_vector3 temp_vector;
+     br_vector3 wonky_vector;
+diff --git a/src/DETHRACE/common/globvars.c b/src/DETHRACE/common/globvars.c
+index 5fbc8c4..c9100d4 100644
+--- a/src/DETHRACE/common/globvars.c
++++ b/src/DETHRACE/common/globvars.c
+@@ -82,7 +82,7 @@ tSave_game* gPre_race_saved_game;
+ FILE* gDiagnostic_file;
+ 
+ // GLOBAL: CARM95 0x00521360
+-br_vector3 gDisabled_vector = { 1000.f, 1000.f, 1000.f };
++br_vector3 gDisabled_vector = {{ 1000.f, 1000.f, 1000.f }};
+ 
+ // GLOBAL: CARM95 0x0052136c
+ tU32 gI_am_cheating;
+diff --git a/src/DETHRACE/common/graphics.c b/src/DETHRACE/common/graphics.c
+index 440ffe4..925b6cd 100644
+--- a/src/DETHRACE/common/graphics.c
++++ b/src/DETHRACE/common/graphics.c
+@@ -611,7 +611,7 @@ void Copy8BitStripImageTo16Bit(br_pixelmap* pDest, br_int_16 pDest_x, br_int_16
+     int old_x_byte;
+     int x_byte;
+     int off_the_left;
+-    int destn_width;
++    int destn_width = 0;
+     int chunk_length;
+     char* destn_ptr;
+     char* destn_ptr2;
+diff --git a/src/DETHRACE/common/network.c b/src/DETHRACE/common/network.c
+index 51c75bd..1650da8 100644
+--- a/src/DETHRACE/common/network.c
++++ b/src/DETHRACE/common/network.c
+@@ -568,11 +568,10 @@ void NetPlayersChanged(int pNew_count, tNet_game_player_info* pNew_players) {
+     int switched_res;
+     int new_player;
+     int player_still_there;
+-    tPlayer_ID old_fox_it;
++    tPlayer_ID old_fox_it = -1;
+ 
+     if (gCurrent_net_game->type == eNet_game_type_tag || gCurrent_net_game->type == eNet_game_type_foxy) {
+ #ifdef DETHRACE_FIX_BUGS
+-        old_fox_it = -1;
+         if (gIt_or_fox >= 0) {
+ #endif
+             old_fox_it = gNet_players[gIt_or_fox].ID;
+diff --git a/src/DETHRACE/common/opponent.c b/src/DETHRACE/common/opponent.c
+index 019d8ba..a11fab4 100644
+--- a/src/DETHRACE/common/opponent.c
++++ b/src/DETHRACE/common/opponent.c
+@@ -3880,8 +3880,8 @@ int ConsistencyCheck(void) {
+     tS16 section_no_index1;
+     int found_how_many;
+     int failed;
+-    tU8* nodes_referenced_by_sections_array;
+-    tU8* sections_referenced_by_nodes_array;
++    tU8* nodes_referenced_by_sections_array = NULL;
++    tU8* sections_referenced_by_nodes_array = NULL;
+ 
+     failed = 0;
+     if (gProgram_state.AI_vehicles.number_of_path_nodes != 0) {
+diff --git a/src/DETHRACE/common/piping.c b/src/DETHRACE/common/piping.c
+index 25b0584..bb599c7 100644
+--- a/src/DETHRACE/common/piping.c
++++ b/src/DETHRACE/common/piping.c
+@@ -2082,7 +2082,7 @@ void UndoSkidAdjustment(tPipe_chunk** pChunk, tPipe_chunk* pPrev_chunk) {
+ // FUNCTION: CARM95 0x0042b0a6
+ int UndoPipedSession(tU8** pPtr) {
+     tPipe_chunk* chunk_ptr;
+-    tPipe_chunk* prev_chunk;
++    tPipe_chunk* prev_chunk = NULL;
+     tU8* temp_ptr;
+     tU8* pushed_end_of_session;
+     int i;
+diff --git a/src/DETHRACE/common/powerup.c b/src/DETHRACE/common/powerup.c
+index 79c4f2c..b5c63fa 100644
+--- a/src/DETHRACE/common/powerup.c
++++ b/src/DETHRACE/common/powerup.c
+@@ -1154,7 +1154,7 @@ void DoBouncey(tPowerup* pPowerup, tU32 pPeriod) {
+ // FUNCTION: CARM95 0x0042e986
+ int HitMine(tPowerup* pPowerup, tCar_spec* pCar) {
+     int i;
+-    float fudge_multiplier;
++    float fudge_multiplier = 0;
+ 
+     pCar->v.v[1] = FRandomBetween(pPowerup->float_params[0], pPowerup->float_params[1]) / pCar->M + pCar->v.v[1];
+     pCar->omega.v[2] += FRandomPosNeg(pPowerup->float_params[2]) * TAU / pCar->M;
+diff --git a/src/DETHRACE/common/racestrt.c b/src/DETHRACE/common/racestrt.c
+index 7ff89b2..ef6ea43 100644
+--- a/src/DETHRACE/common/racestrt.c
++++ b/src/DETHRACE/common/racestrt.c
+@@ -2902,7 +2902,7 @@ tSO_result NetSynchRaceStart2(tNet_synch_mode pMode) {
+         COUNT_OF(flicker_on_c), flicker_on_c, flicker_off_c, push_c,
+         COUNT_OF(mouse_areas_c), mouse_areas_c, 0, NULL
+     };
+-    int result;
++    int result = 0;
+ 
+     if (pMode != eNet_synch_client) {
+         if (gCurrent_net_game->status.stage == eNet_game_starting) {
+diff --git a/src/DETHRACE/common/replay.c b/src/DETHRACE/common/replay.c
+index 924dd53..971102c 100644
+--- a/src/DETHRACE/common/replay.c
++++ b/src/DETHRACE/common/replay.c
+@@ -328,7 +328,9 @@ void MoveToEndOfReplay(void) {
+     DisablePipedSounds();
+     old_replay_rate = gReplay_rate;
+     gReplay_rate = 100.f;
++#ifndef INT32_MAX
+ #define INT32_MAX 2147483647
++#endif
+     MoveReplayBuffer(INT32_MAX);
+     gReplay_rate = old_replay_rate;
+     EnablePipedSounds();
+diff --git a/src/DETHRACE/common/utility.c b/src/DETHRACE/common/utility.c
+index 8a2d739..acfa523 100644
+--- a/src/DETHRACE/common/utility.c
++++ b/src/DETHRACE/common/utility.c
+@@ -1828,7 +1828,7 @@ int AlreadyBlended(br_material* pMaterial) {
+ // IDA: void __usercall BlendifyMaterialTablishly(br_material *pMaterial@<EAX>, int pPercent@<EDX>)
+ // FUNCTION: CARM95 0x004c3f0d
+ void BlendifyMaterialTablishly(br_material* pMaterial, int pPercent) {
+-    char* s;
++    char* s = NULL;
+ 
+     switch (pPercent) {
+     case 25:

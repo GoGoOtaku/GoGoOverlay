@@ -1,0 +1,31 @@
+--- a/src/harness/harness.c
++++ b/src/harness/harness.c
+@@ -537,7 +537,7 @@ static int Harness_Ini_Callback(void* user, const char* section, const char* nam
+ 
+ int Harness_ProcessIniFile(void) {
+     int i;
+-    char path[1024];
++    char path[1024] = {0};
+ 
+     OS_GetPrefPath(path, "dethrace");
+     strcat(path, "dethrace.ini");
+--- a/src/harness/os/linux.c
++++ b/src/harness/os/linux.c
+@@ -410,7 +410,7 @@ char* OS_GetWorkingDirectory(char* argv0) {
+ 
+ int OS_GetPrefPath(char* dest, char* app) {
+     const char* base = NULL;
+-    char path[1024];
++    char path[1024] = {0};
+     struct stat statbuf;
+ 
+     base = getenv("XDG_DATA_HOME");
+@@ -426,7 +426,7 @@ int OS_GetPrefPath(char* dest, char* app) {
+         base = path;
+     }
+ 
+-    if (stat(name_buf, &statbuf) == -1) {
++    if (stat(base, &statbuf) == -1) {
+         return -1;
+     }
+     if (!(statbuf.st_mode & S_IFDIR)) {
