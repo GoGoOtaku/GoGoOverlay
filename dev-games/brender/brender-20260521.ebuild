@@ -3,8 +3,8 @@
 
 EAPI=8
 
-if [ "${PV}" == "20260408" ]; then
-	PHASH="e4e390a972396f47dc4baeb8bc5f90f20e1f2978"
+if [ "${PV}" == "20260521" ]; then
+	PHASH="0556e21d8f8cbabeb9326c8c539bdf258bbf2e64"
 fi
 
 inherit cmake
