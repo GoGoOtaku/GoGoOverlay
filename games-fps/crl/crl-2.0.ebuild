@@ -15,28 +15,26 @@ LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64"
 
-IUSE="+sdl2-mixer fluidsynth net lto asan"
+IUSE="+sdl2-mixer fluidsynth lto asan"
 
 DEPEND="
 	>=dev-libs/miniz-2.0.0
 	>=media-libs/libsdl2-2.0.18
 	media-libs/libsamplerate
 
-	sdl2-mixer? ( >=media-libs/sdl2-net-2.0.0 )
 	fluidsynth? ( >=media-sound/fluidsynth-2.2.0 )
-	net? ( >=media-libs/sdl2-mixer-2.0.2 )
+	sdl2-mixer? ( >=media-libs/sdl2-mixer-2.0.2[flac,mp3,opus,timidity] )
 "
 RDEPEND="${DEPEND}"
 
 PATCHES=(
-	"${FILESDIR}/${PN}-fix-sdl2-mixer-dep.patch"
+	"${FILESDIR}/${P}-textscreen-include.patch"
 )
 
 src_configure() {
 	local mycmakeargs=(
 		-DENABLE_LTO=$(usex lto On Off)
 		-DENABLE_ASAN=$(usex asan ON OFF)
-		-DENABLE_SDL2_NET=$(usex net ON OFF)
 		-DENABLE_SDL2_MIXER=$(usex sdl2-mixer ON OFF)
 		-DHAVE_FLUIDSYNTH=$(usex fluidsynth ON OFF)
 	)
@@ -45,6 +43,5 @@ src_configure() {
 
 src_install() {
 	dobin "${BUILD_DIR}/src/crl-doom"
-	dobin "${BUILD_DIR}/src/crl-heretic"
 	dobin "${BUILD_DIR}/src/crl-setup"
 }

@@ -1,0 +1,11 @@
+--- a/lib/textscreen/textscreen.h
++++ b/lib/textscreen/textscreen.h
+@@ -19,7 +19,7 @@
+ extern "C" {
+ #endif
+ 
+-#include "../src/doomkeys.h"
++#include "../../src/doomkeys.h"
+ #include "txt_main.h"
+ 
+ #include "txt_button.h"
