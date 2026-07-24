@@ -3,7 +3,9 @@
 
 EAPI=8
 
-PHASH="b9e40069c0b47a722286b94eb5231f7f05c08713"
+if [[ "$PV" = "20260706" ]];then
+PHASH="6f8310e238fc3ce68f42f391cbe93fd156bb2c23"
+fi
 
 DESCRIPTION="C library that may be linked to produce symbolic backtraces"
 HOMEPAGE="https://github.com/ianlancetaylor/libbacktrace"
